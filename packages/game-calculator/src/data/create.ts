@@ -17956,6 +17956,29 @@ export const CREATE_DATA: GameDataset = {
             }
           ],
           "sourceMod": "Create Mod"
+        },
+        {
+          "id": "recipe-sugar-crafter",
+          "name": "Mechanical Crafter - Sugar",
+          "method": "Mechanical Crafting",
+          "buildingRequired": "Mechanical Crafter",
+          "processingTimeSeconds": 4,
+          "speedRpm": 64,
+          "ingredients": [
+            {
+              "itemId": "sugar-cane",
+              "itemName": "Sugar Cane",
+              "amount": 1
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "sugar",
+              "itemName": "Sugar",
+              "amount": 1
+            }
+          ],
+          "sourceMod": "Create Mod"
         }
       ],
       "sourceMod": "Vanilla"

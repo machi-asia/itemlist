@@ -5,11 +5,18 @@ describe("Game Datasets", () => {
   it("validates Create dataset integrity", () => {
     expect(CREATE_DATA.id).toBe("create");
     expect(CREATE_DATA.items.length).toBeGreaterThan(0);
+    const seenIds = new Set<string>();
+    const duplicateIds: string[] = [];
     for (const item of CREATE_DATA.items) {
       expect(item.id).toBeTruthy();
       expect(item.name).toBeTruthy();
       expect(item.category).toBeTruthy();
+      if (seenIds.has(item.id)) {
+        duplicateIds.push(item.id);
+      }
+      seenIds.add(item.id);
     }
+    expect(duplicateIds).toEqual([]);
 
     // Verify Sturdy Sheet recipe
     const sturdy = CREATE_DATA.items.find((i) => i.id === "sturdy-sheet");
@@ -30,6 +37,26 @@ describe("Game Datasets", () => {
         r.outputs.some((o) => o.itemId === cId)
       );
       expect(casingValid).toBe(true);
+    }
+
+    // Verify Cake and essential vanilla craftables
+    const cake = CREATE_DATA.items.find((i) => i.id === "cake");
+    expect(cake).toBeDefined();
+    expect(cake?.recipes?.length).toBeGreaterThan(0);
+    const cakeRecipe = cake?.recipes?.find((r) => r.method === "Mechanical Crafting");
+    expect(cakeRecipe).toBeDefined();
+    expect(cakeRecipe?.ingredients.map((ing) => ing.itemId).sort()).toEqual([
+      "egg",
+      "milk-bucket",
+      "sugar",
+      "wheat"
+    ]);
+
+    const vanillaItems = ["iron-block", "piston", "sticky-piston", "hopper", "shears", "bucket", "bow", "tnt"];
+    for (const vId of vanillaItems) {
+      const vItem = CREATE_DATA.items.find((i) => i.id === vId);
+      expect(vItem).toBeDefined();
+      expect(vItem?.recipes?.length).toBeGreaterThan(0);
     }
   });
 

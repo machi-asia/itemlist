@@ -205,5 +205,13 @@ export const RAW_ITEM_ICONS: Record<string, string> = {
   "250mB of Lava": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/lava_bucket.png",
   "Bread": "https://static.wikia.nocookie.net/create_mod/images/e/e1/Bread.png/revision/latest?cb=20210415115109",
   "Apple": "https://static.wikia.nocookie.net/create_mod/images/7/7d/Apple.png/revision/latest?cb=20210415114759",
-  "250mB of Honey": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/honey_bottle.png"
+  "250mB of Honey": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/honey_bottle.png",
+  "Milk Bucket": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/milk_bucket.png",
+  "Sugar": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/sugar.png",
+  "Cake": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/cake.png",
+  "Gunpowder": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/gunpowder.png",
+  "String": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/string.png",
+  "Feather": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/feather.png",
+  "Flint": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/flint.png",
+  "Nether Quartz": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/quartz.png"
 };

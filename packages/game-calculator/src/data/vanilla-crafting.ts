@@ -858,6 +858,488 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
     ]
   },
   {
+    id: "cake",
+    name: "Cake",
+    category: "Food & Farming",
+    icon: getIcon("Cake", "cake"),
+    description: "Multi-slice celebratory dessert block. Automated in a Mechanical Crafter using 3 Milk Buckets, 2 Sugar, 1 Egg, and 3 Wheat.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-cake-crafter",
+        name: "Mechanical Crafter - Cake",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "milk-bucket", itemName: "Milk Bucket", amount: 3 },
+          { itemId: "sugar", itemName: "Sugar", amount: 2 },
+          { itemId: "egg", itemName: "Egg", amount: 1 },
+          { itemId: "wheat", itemName: "Wheat", amount: 3 }
+        ],
+        outputs: [{ itemId: "cake", itemName: "Cake", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+
+  // --- Vanilla Compression Storage Blocks (Mechanical Crafter) ---
+  {
+    id: "iron-block",
+    name: "Block of Iron",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Iron", "iron_block"),
+    description: "Solid block of iron crafted in Mechanical Crafter from 9 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-block-crafter",
+        name: "Mechanical Crafter - Block of Iron",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 9 }],
+        outputs: [{ itemId: "iron-block", itemName: "Block of Iron", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "gold-block",
+    name: "Block of Gold",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Gold", "gold_block"),
+    description: "Solid block of gold crafted in Mechanical Crafter from 9 Gold Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-gold-block-crafter",
+        name: "Mechanical Crafter - Block of Gold",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "gold-ingot", itemName: "Gold Ingot", amount: 9 }],
+        outputs: [{ itemId: "gold-block", itemName: "Block of Gold", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "copper-block",
+    name: "Block of Copper",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Copper", "copper_block"),
+    description: "Solid block of copper crafted in Mechanical Crafter from 9 Copper Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-copper-block-crafter",
+        name: "Mechanical Crafter - Block of Copper",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "copper-ingot", itemName: "Copper Ingot", amount: 9 }],
+        outputs: [{ itemId: "copper-block", itemName: "Block of Copper", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "diamond-block",
+    name: "Block of Diamond",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Diamond", "diamond_block"),
+    description: "Solid block of diamond crafted in Mechanical Crafter from 9 Diamonds.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-block-crafter",
+        name: "Mechanical Crafter - Block of Diamond",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "diamond", itemName: "Diamond", amount: 9 }],
+        outputs: [{ itemId: "diamond-block", itemName: "Block of Diamond", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "redstone-block",
+    name: "Block of Redstone",
+    category: "Redstone & Displays",
+    icon: getBlockIcon("Block of Redstone", "redstone_block"),
+    description: "Constant redstone power source block crafted from 9 Redstone Dust in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-redstone-block-crafter",
+        name: "Mechanical Crafter - Block of Redstone",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "redstone", itemName: "Redstone", amount: 9 }],
+        outputs: [{ itemId: "redstone-block", itemName: "Block of Redstone", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "lapis-block",
+    name: "Block of Lapis Lazuli",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Lapis Lazuli", "lapis_block"),
+    description: "Solid block of lapis lazuli crafted in Mechanical Crafter from 9 Lapis Lazuli.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-lapis-block-crafter",
+        name: "Mechanical Crafter - Block of Lapis Lazuli",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "lapis-lazuli", itemName: "Lapis Lazuli", amount: 9 }],
+        outputs: [{ itemId: "lapis-block", itemName: "Block of Lapis Lazuli", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "coal-block",
+    name: "Block of Coal",
+    category: "Materials & Resources",
+    icon: getBlockIcon("Block of Coal", "coal_block"),
+    description: "High-density fuel block crafted from 9 Coal in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-coal-block-crafter",
+        name: "Mechanical Crafter - Block of Coal",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "coal", itemName: "Coal", amount: 9 }],
+        outputs: [{ itemId: "coal-block", itemName: "Block of Coal", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+
+  // --- Vanilla Redstone & Utility Automation Machines ---
+  {
+    id: "sticky-piston",
+    name: "Sticky Piston",
+    category: "Redstone & Displays",
+    icon: getBlockIcon("Sticky Piston", "piston_top"),
+    description: "Piston that pushes and pulls blocks. Crafted in Mechanical Crafter from a Piston and a Slimeball.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-sticky-piston-crafter",
+        name: "Mechanical Crafter - Sticky Piston",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "piston", itemName: "Piston", amount: 1 },
+          { itemId: "slimeball", itemName: "Slimeball", amount: 1 }
+        ],
+        outputs: [{ itemId: "sticky-piston", itemName: "Sticky Piston", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "dispenser",
+    name: "Dispenser",
+    category: "Redstone & Displays",
+    icon: getBlockIcon("Dispenser", "dispenser_front"),
+    description: "Redstone mechanism block that ejects items or shoots arrows. Crafted from 7 Cobblestone, a Bow, and 1 Redstone.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-dispenser-crafter",
+        name: "Mechanical Crafter - Dispenser",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 7 },
+          { itemId: "bow", itemName: "Bow", amount: 1 },
+          { itemId: "redstone", itemName: "Redstone", amount: 1 }
+        ],
+        outputs: [{ itemId: "dispenser", itemName: "Dispenser", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "dropper",
+    name: "Dropper",
+    category: "Redstone & Displays",
+    icon: getBlockIcon("Dropper", "dropper_front"),
+    description: "Redstone mechanism block that drops items into containers or the world. Crafted from 7 Cobblestone and 1 Redstone.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-dropper-crafter",
+        name: "Mechanical Crafter - Dropper",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 7 },
+          { itemId: "redstone", itemName: "Redstone", amount: 1 }
+        ],
+        outputs: [{ itemId: "dropper", itemName: "Dropper", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "tnt",
+    name: "TNT",
+    category: "Components & Tools",
+    icon: getBlockIcon("TNT", "tnt_side"),
+    description: "Explosive block crafted from 5 Gunpowder and 4 Sand in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-tnt-crafter",
+        name: "Mechanical Crafter - TNT",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gunpowder", itemName: "Gunpowder", amount: 5 },
+          { itemId: "sand", itemName: "Sand", amount: 4 }
+        ],
+        outputs: [{ itemId: "tnt", itemName: "TNT", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "cauldron",
+    name: "Cauldron",
+    category: "Logistics & Fluids",
+    icon: getBlockIcon("Cauldron", "cauldron_side"),
+    description: "Fluid holding vessel crafted from 7 Iron Ingots in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-cauldron-crafter",
+        name: "Mechanical Crafter - Cauldron",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 7 }],
+        outputs: [{ itemId: "cauldron", itemName: "Cauldron", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "anvil",
+    name: "Anvil",
+    category: "Components & Tools",
+    icon: getBlockIcon("Anvil", "anvil"),
+    description: "Heavy block for repairing and naming items. Crafted from 3 Blocks of Iron and 4 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-anvil-crafter",
+        name: "Mechanical Crafter - Anvil",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-block", itemName: "Block of Iron", amount: 3 },
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 4 }
+        ],
+        outputs: [{ itemId: "anvil", itemName: "Anvil", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "shears",
+    name: "Shears",
+    category: "Components & Tools",
+    icon: getIcon("Shears", "shears"),
+    description: "Cutting tool crafted from 2 Iron Ingots in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-shears-crafter",
+        name: "Mechanical Crafter - Shears",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 2 }],
+        outputs: [{ itemId: "shears", itemName: "Shears", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "bucket",
+    name: "Bucket",
+    category: "Logistics & Fluids",
+    icon: getIcon("Bucket", "bucket"),
+    description: "Vessel for transporting liquids. Crafted from 3 Iron Ingots in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-bucket-crafter",
+        name: "Mechanical Crafter - Bucket",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 3 }],
+        outputs: [{ itemId: "bucket", itemName: "Bucket", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "flint-and-steel",
+    name: "Flint and Steel",
+    category: "Components & Tools",
+    icon: getIcon("Flint and Steel", "flint_and_steel"),
+    description: "Fire starter crafted from 1 Iron Ingot and 1 Flint in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-flint-and-steel-crafter",
+        name: "Mechanical Crafter - Flint and Steel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 1 },
+          { itemId: "flint", itemName: "Flint", amount: 1 }
+        ],
+        outputs: [{ itemId: "flint-and-steel", itemName: "Flint and Steel", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "bow",
+    name: "Bow",
+    category: "Components & Tools",
+    icon: getIcon("Bow", "bow"),
+    description: "Ranged weapon crafted from 3 Sticks and 3 String in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-bow-crafter",
+        name: "Mechanical Crafter - Bow",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "stick", itemName: "Stick", amount: 3 },
+          { itemId: "string", itemName: "String", amount: 3 }
+        ],
+        outputs: [{ itemId: "bow", itemName: "Bow", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "arrow",
+    name: "Arrow",
+    category: "Components & Tools",
+    icon: getIcon("Arrow", "arrow"),
+    description: "Ammunition crafted from 1 Flint, 1 Stick, and 1 Feather in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-arrow-crafter",
+        name: "Mechanical Crafter - Arrow",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "flint", itemName: "Flint", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 1 },
+          { itemId: "feather", itemName: "Feather", amount: 1 }
+        ],
+        outputs: [{ itemId: "arrow", itemName: "Arrow", amount: 4 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "firework-rocket",
+    name: "Firework Rocket",
+    category: "Components & Tools",
+    icon: getIcon("Firework Rocket", "firework_rocket"),
+    description: "Pyrotechnic flight booster crafted from 1 Gunpowder and 1 Paper in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-firework-rocket-crafter",
+        name: "Mechanical Crafter - Firework Rocket",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gunpowder", itemName: "Gunpowder", amount: 1 },
+          { itemId: "paper", itemName: "Paper", amount: 1 }
+        ],
+        outputs: [{ itemId: "firework-rocket", itemName: "Firework Rocket", amount: 3 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "lead",
+    name: "Lead",
+    category: "Components & Tools",
+    icon: getIcon("Lead", "lead"),
+    description: "Leash for creatures crafted from 4 String and 1 Slimeball in Mechanical Crafter.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-lead-crafter",
+        name: "Mechanical Crafter - Lead",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "string", itemName: "String", amount: 4 },
+          { itemId: "slimeball", itemName: "Slimeball", amount: 1 }
+        ],
+        outputs: [{ itemId: "lead", itemName: "Lead", amount: 2 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
     id: "smooth-stone",
     name: "Smooth Stone",
     category: "Materials & Resources",
