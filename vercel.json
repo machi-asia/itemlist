@@ -16,6 +16,30 @@
   },
   "rewrites": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "create.itemlist.online"
+        }
+      ],
+      "destination": {
+        "service": "create"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "rimworld.itemlist.online"
+        }
+      ],
+      "destination": {
+        "service": "rimworld"
+      }
+    },
+    {
       "source": "/create(/.*)?",
       "destination": {
         "service": "create"
