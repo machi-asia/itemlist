@@ -5,7 +5,7 @@ export const CREATE_DATA: GameDataset = {
   "id": "create",
   "name": "Create",
   "tagline": "Build kinetic contraptions, rotational power networks, and automated multi-step assembly lines.",
-  "homeUrl": "http://localhost:3002",
+  "homeUrl": "/",
   "items": [
     {
       "id": "adjustable-chain-gearshift",

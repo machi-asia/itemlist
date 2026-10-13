@@ -4,7 +4,7 @@ export const RIMWORLD_DATA: GameDataset = {
   id: "rimworld",
   name: "RimWorld",
   tagline: "Manage colony production chains, crafting benches, fabrication, and survival manufacturing.",
-  homeUrl: "http://localhost:3002",
+  homeUrl: "/",
   items: [
     {
       id: "component",

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "home": {
+      "root": "apps/home",
+      "framework": "nextjs"
+    },
+    "create": {
+      "root": "apps/create",
+      "framework": "nextjs"
+    },
+    "rimworld": {
+      "root": "apps/rimworld",
+      "framework": "nextjs"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/create(/.*)?",
+      "destination": {
+        "service": "create"
+      }
+    },
+    {
+      "source": "/rimworld(/.*)?",
+      "destination": {
+        "service": "rimworld"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "home"
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import { CREATE_DATA, RIMWORLD_DATA } from "@repo/game-calculator/data";
 const GAMES = [
   {
     ...CREATE_DATA,
-    appUrl: "http://localhost:3000",
+    appUrl: "/create",
     icon: <Cog className="h-6 w-6 text-amber-400" />,
     gradient: "from-amber-500/20 via-orange-500/10 to-transparent",
     badge: "Minecraft Mod",
@@ -13,7 +13,7 @@ const GAMES = [
   },
   {
     ...RIMWORLD_DATA,
-    appUrl: "http://localhost:3001",
+    appUrl: "/rimworld",
     icon: <Cpu className="h-6 w-6 text-cyan-400" />,
     gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
     badge: "Colony Sim",
