@@ -1,0 +1,125 @@
+import Link from "next/link";
+import { ArrowRight, Layers, Sparkles, Cpu, Cog } from "lucide-react";
+import { CREATE_DATA, RIMWORLD_DATA } from "@repo/game-calculator/data";
+
+const GAMES = [
+  {
+    ...CREATE_DATA,
+    appUrl: "http://localhost:3000",
+    icon: <Cog className="h-6 w-6 text-amber-400" />,
+    gradient: "from-amber-500/20 via-orange-500/10 to-transparent",
+    badge: "Minecraft Mod",
+    previewIcons: ["⚙️", "🥢", "🔨", "⏱️"],
+  },
+  {
+    ...RIMWORLD_DATA,
+    appUrl: "http://localhost:3001",
+    icon: <Cpu className="h-6 w-6 text-cyan-400" />,
+    gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
+    badge: "Colony Sim",
+    previewIcons: ["⚙️", "🎛️", "💊", "👁️"],
+  },
+];
+
+export default function HomePage() {
+  return (
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-indigo-500 selection:text-white">
+      {/* Top Banner */}
+      <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">
+              <Layers className="h-5 w-5" />
+            </div>
+            <div>
+              <span className="font-bold text-white text-base tracking-tight">Game Production Suite</span>
+              <span className="ml-2 text-xs text-zinc-400 border border-zinc-800 rounded px-1.5 py-0.5">Directory Hub</span>
+            </div>
+          </div>
+          <div className="text-xs text-zinc-500">
+            Next.js Turborepo Architecture
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-12">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-300 mb-4">
+            <Sparkles className="h-3.5 w-3.5" />
+            Factory & Crafting Dependency Calculators
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white mb-4">
+            Select Your Game
+          </h1>
+          <p className="text-zinc-400 text-base sm:text-lg">
+            Plan production rates, calculate required building counts, avoid manufacturing bottlenecks, and visualize full interactive recipe dependency trees.
+          </p>
+        </div>
+
+        {/* Game Directory Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {GAMES.map((game) => (
+            <a
+              key={game.id}
+              href={game.appUrl}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-all hover:border-zinc-700 hover:bg-zinc-900/80 hover:shadow-xl hover:shadow-indigo-500/5"
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${game.gradient} opacity-50 group-hover:opacity-100 transition-opacity`} />
+              
+              <div className="relative z-10 space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-800 border border-zinc-700/80 shadow-md">
+                    {game.icon}
+                  </div>
+                  <span className="rounded-full bg-zinc-800/90 border border-zinc-700 px-2.5 py-1 text-xs font-semibold text-zinc-300">
+                    {game.badge}
+                  </span>
+                </div>
+
+                <div>
+                  <h2 className="text-2xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+                    {game.name}
+                  </h2>
+                  <p className="mt-2 text-sm text-zinc-400 line-clamp-2">
+                    {game.tagline}
+                  </p>
+                </div>
+
+                {/* Preview Icons Mosaic */}
+                <div className="flex items-center gap-2 pt-2">
+                  <span className="text-xs text-zinc-500 font-medium">Key Items:</span>
+                  <div className="flex items-center gap-1.5">
+                    {game.previewIcons.map((icon, idx) => (
+                      <span
+                        key={idx}
+                        className="flex h-7 w-7 items-center justify-center rounded-md bg-zinc-800/80 text-sm border border-zinc-700/60"
+                      >
+                        {icon}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="relative z-10 mt-6 flex items-center justify-between border-t border-zinc-800/80 pt-4">
+                <span className="text-xs font-mono text-zinc-500">
+                  {game.items.length} Registered Items
+                </span>
+                <span className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 group-hover:translate-x-1 transition-all">
+                  Launch Calculator
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-900 bg-zinc-950 py-8 text-center text-xs text-zinc-500">
+        Multi-App Production Calculator Monorepo • Powered by Turborepo & Next.js
+      </footer>
+    </div>
+  );
+}

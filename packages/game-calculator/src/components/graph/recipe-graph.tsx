@@ -1,0 +1,181 @@
+"use client";
+
+import React, { useMemo, useEffect } from "react";
+import {
+  ReactFlow,
+  Background,
+  Controls,
+  MiniMap,
+  BackgroundVariant,
+  useNodesState,
+  useEdgesState,
+  type NodeTypes,
+} from "@xyflow/react";
+import { RecipeProcessNode } from "./recipe-process-node";
+import type { GraphCalculationResult, RecipeCustomNode } from "../../types/graph";
+import { Cpu, Boxes } from "lucide-react";
+
+import type { GameItem } from "../../types/data";
+
+interface RecipeGraphViewProps {
+  calculation: GraphCalculationResult;
+  onNodeClick?: (item: GameItem) => void;
+}
+
+const nodeTypes: NodeTypes = {
+  recipeProcess: RecipeProcessNode,
+};
+
+export function RecipeGraphView({ calculation, onNodeClick }: RecipeGraphViewProps) {
+  const { nodes: initialNodes, edges: initialEdges, totalBuildings, rawIngredients } = calculation;
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+
+  // Sync state whenever recalculated graph updates (targets, recipes, or items change)
+  useEffect(() => {
+    setNodes(initialNodes);
+    setEdges(initialEdges);
+  }, [initialNodes, initialEdges, setNodes, setEdges]);
+
+  const totalMachineCount = useMemo(() => {
+    return Object.values(totalBuildings).reduce((sum, count) => sum + count, 0);
+  }, [totalBuildings]);
+
+  if (initialNodes.length === 0) {
+    return (
+      <div className="flex flex-1 h-full min-h-0 w-full flex-col items-center justify-center p-8 text-center text-zinc-500">
+        <Boxes className="h-10 w-10 text-zinc-600 mb-3" />
+        <h3 className="text-base font-medium text-zinc-300">No Target Products Selected</h3>
+        <p className="mt-1 max-w-sm text-sm text-zinc-500">
+          Add items to your production targets above to generate the full crafting and dependency graph.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-2 w-full h-full min-h-0 flex-1">
+      {/* Metrics Row - Sleek & Borderless */}
+      <div className="flex flex-wrap items-center justify-between gap-3 py-1 text-xs">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="flex items-center gap-1.5 font-medium text-zinc-400">
+            <Cpu className="h-3.5 w-3.5 text-indigo-400" />
+            <span>Facilities ({totalMachineCount.toFixed(1)}):</span>
+          </span>
+          {Object.keys(totalBuildings).length === 0 ? (
+            <span className="text-zinc-500">None</span>
+          ) : (
+            (calculation.buildingDetails || Object.entries(totalBuildings).map(([name, count]) => ({ name, count, icon: undefined, pairedCatalystIcon: undefined }))).map((bldg) => {
+              const icon = bldg.icon;
+              const isImg = icon && (icon.startsWith("/") || icon.startsWith("http"));
+              const catIcon = bldg.pairedCatalystIcon;
+              const isCatImg = catIcon && (catIcon.startsWith("/") || catIcon.startsWith("http"));
+              return (
+                <span
+                  key={bldg.name}
+                  className="inline-flex items-center gap-1.5 rounded bg-white/[0.04] px-2 py-0.5 text-zinc-200"
+                >
+                  <div className="flex items-center gap-0.5 shrink-0">
+                    {isImg ? (
+                      <img
+                        src={icon}
+                        alt={bldg.name}
+                        className="h-3.5 w-3.5 object-contain shrink-0"
+                        referrerPolicy="no-referrer"
+                        crossOrigin="anonymous"
+                        loading="lazy"
+                      />
+                    ) : icon ? (
+                      <span className="text-xs leading-none">{icon}</span>
+                    ) : null}
+                    {isCatImg ? (
+                      <img
+                        src={catIcon}
+                        alt="Catalyst"
+                        className="h-3.5 w-3.5 object-contain shrink-0 rounded-[2px]"
+                        referrerPolicy="no-referrer"
+                        crossOrigin="anonymous"
+                        loading="lazy"
+                      />
+                    ) : null}
+                  </div>
+                  <span>{bldg.name}</span>
+                  <span className="font-mono font-semibold text-indigo-400">×{bldg.count}</span>
+                </span>
+              );
+            })
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="flex items-center gap-1.5 font-medium text-zinc-400">
+            <Boxes className="h-3.5 w-3.5 text-emerald-400" />
+            <span>Raw Inputs:</span>
+          </span>
+          {rawIngredients.length === 0 ? (
+            <span className="text-zinc-500">None</span>
+          ) : (
+            rawIngredients.map((raw) => {
+              const icon = raw.icon;
+              const isImg = icon && (icon.startsWith("/") || icon.startsWith("http"));
+              return (
+                <span
+                  key={raw.itemId}
+                  className="inline-flex items-center gap-1.5 rounded bg-white/[0.04] px-2 py-0.5 text-zinc-200"
+                >
+                  {isImg ? (
+                    <img
+                      src={icon}
+                      alt={raw.itemName}
+                      className="h-3.5 w-3.5 object-contain shrink-0"
+                      referrerPolicy="no-referrer"
+                      crossOrigin="anonymous"
+                      loading="lazy"
+                    />
+                  ) : icon ? (
+                    <span className="text-xs leading-none">{icon}</span>
+                  ) : null}
+                  <span>{raw.itemName}</span>
+                  <span className="font-mono font-semibold text-emerald-400">
+                    {raw.requiredPerMinute}/m
+                  </span>
+                </span>
+              );
+            })
+          )}
+        </div>
+      </div>
+
+      {/* Interactive Graph Canvas - Sleek & Borderless */}
+      <div className="flex-1 h-full min-h-0 w-full rounded-lg overflow-hidden relative">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          nodesDraggable={true}
+          nodeTypes={nodeTypes}
+          onNodeClick={(_e, node) => {
+            if (onNodeClick && (node as RecipeCustomNode).data?.item) {
+              onNodeClick((node as RecipeCustomNode).data.item as GameItem);
+            }
+          }}
+          fitView
+          colorMode="dark"
+          minZoom={0.2}
+          maxZoom={1.5}
+          proOptions={{ hideAttribution: true }}
+        >
+          <Background color="#27272a" gap={16} variant={BackgroundVariant.Dots} />
+          <Controls className="!bg-zinc-900/80 !border-0 !text-white [&>button]:!fill-white [&>button]:!border-0" />
+          <MiniMap
+            className="!bg-zinc-900/60 !border-0 rounded-lg overflow-hidden"
+            nodeColor="#6366f1"
+            maskColor="rgba(0, 0, 0, 0.7)"
+          />
+        </ReactFlow>
+      </div>
+    </div>
+  );
+}
