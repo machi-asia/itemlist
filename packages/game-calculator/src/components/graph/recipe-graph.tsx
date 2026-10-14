@@ -209,13 +209,17 @@ export function RecipeGraphView({
       </div>
 
       {/* Interactive Graph Canvas - Sleek & Borderless */}
-      <div className="flex-1 h-full min-h-0 w-full rounded-lg overflow-hidden relative">
+      <div className="flex-1 h-full min-h-0 w-full rounded-lg overflow-hidden relative touch-none">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           nodesDraggable={true}
+          panOnDrag={true}
+          panOnScroll={false}
+          zoomOnPinch={true}
+          preventScrolling={true}
           nodeTypes={nodeTypes}
           edgeTypes={edgeTypes}
           onNodeDragStop={(_e, node) => {
