@@ -87,6 +87,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
 
   // Recipe chooser modal state
   const [chooserItem, setChooserItem] = useState<GameItem | null>(null);
+  const [chooserMode, setChooserMode] = useState<"plan" | "swap">("plan");
 
   // Report issue modal state
   const [isReportOpen, setIsReportOpen] = useState(false);
@@ -365,6 +366,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
   const handleItemClick = useCallback((item: GameItem) => {
     const availableRecipes = item.recipes || (item.recipe ? [item.recipe] : []);
     if (availableRecipes.length > 1) {
+      setChooserMode("plan");
       setChooserItem(item);
     } else {
       addTargetDirectly(item);
@@ -376,25 +378,37 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
     if (!chooserItem) return;
     const item = chooserItem;
 
-    // Check if item is already in requests
-    const isTarget = requests.some((r) => r.itemId === item.id);
-    if (isTarget) {
-      setRequests((prev) =>
-        prev.map((r) =>
-          r.itemId === item.id ? { ...r, recipeId: recipe.id } : r
-        )
-      );
+    if (chooserMode === "plan") {
+      // User clicked item from catalog to add to targets
+      const isTarget = requests.some((r) => r.itemId === item.id);
+      if (isTarget) {
+        setRequests((prev) =>
+          prev.map((r) =>
+            r.itemId === item.id ? { ...r, recipeId: recipe.id } : r
+          )
+        );
+      } else {
+        addTargetDirectly(item, recipe.id);
+      }
     } else {
-      // Add it to targets with the selected recipe
-      addTargetDirectly(item, recipe.id);
+      // User clicked an existing node in graph to swap its recipe
+      // If it's already an active target in requests, update its chosen recipeId
+      const isTarget = requests.some((r) => r.itemId === item.id);
+      if (isTarget) {
+        setRequests((prev) =>
+          prev.map((r) =>
+            r.itemId === item.id ? { ...r, recipeId: recipe.id } : r
+          )
+        );
+      }
     }
 
-    // Also record in recipeOverrides so intermediate crafting in the graph respects it
+    // Record in recipeOverrides so intermediate crafting in the graph respects it
     setRecipeOverrides((prev) => ({
       ...prev,
       [item.id]: recipe.id,
     }));
-  }, [chooserItem, requests, addTargetDirectly]);
+  }, [chooserItem, chooserMode, requests, addTargetDirectly]);
 
   const handleRemoveRequest = useCallback((itemId: string) => {
     setRequests((prev) => prev.filter((r) => r.itemId !== itemId));
@@ -956,6 +970,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
             onNodeClick={(item) => {
               const availableRecipes = item.recipes || (item.recipe ? [item.recipe] : []);
               if (availableRecipes.length > 1) {
+                setChooserMode("swap");
                 setChooserItem(item);
               }
             }}
