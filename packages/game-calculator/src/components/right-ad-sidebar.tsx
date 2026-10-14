@@ -15,18 +15,34 @@ export function AdSidebar({
   className = "",
 }: AdSidebarProps) {
   const adRef = React.useRef<HTMLModElement | null>(null);
+  const pushedRef = React.useRef(false);
 
   useEffect(() => {
-    // Only push if the ins element exists and has not yet been initialized by AdSense
-    const elem = adRef.current;
-    if (elem && !elem.getAttribute("data-adsbygoogle-status")) {
-      try {
-        ((window as unknown as { adsbygoogle: unknown[] }).adsbygoogle =
-          (window as unknown as { adsbygoogle: unknown[] }).adsbygoogle || []).push({});
-      } catch {
-        // Ignored
+    if (pushedRef.current) return;
+
+    // Run asynchronously to allow DOM rendering and avoid blocking React hydration
+    const timer = setTimeout(() => {
+      const elem = adRef.current;
+      if (
+        elem &&
+        !elem.getAttribute("data-adsbygoogle-status") &&
+        !elem.hasChildNodes() &&
+        !pushedRef.current
+      ) {
+        pushedRef.current = true;
+        try {
+          if (typeof window !== "undefined") {
+            const win = window as unknown as { adsbygoogle?: unknown[] };
+            win.adsbygoogle = win.adsbygoogle || [];
+            win.adsbygoogle.push({});
+          }
+        } catch {
+          // Prevent any unhandled TagError from breaking React execution
+        }
       }
-    }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
