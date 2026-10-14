@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Layers, Sparkles, Cpu, Cog, AlertTriangle } from "lucide-react";
 import { CREATE_DATA, RIMWORLD_DATA } from "@repo/game-calculator/data";
+import { RightAdSidebar } from "@repo/game-calculator";
 import { APPS_CONFIG } from "@repo/app-config";
 
 const GAMES = [
@@ -26,9 +27,10 @@ const GAMES = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col selection:bg-indigo-500 selection:text-white">
-      {/* Top Banner */}
-      <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-40">
+    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-row selection:bg-indigo-500 selection:text-white">
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top Banner */}
+        <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">
@@ -144,10 +146,14 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-zinc-900 bg-zinc-950 py-8 text-center text-xs text-zinc-500">
-        Multi-App Production Calculator Monorepo • Powered by Turborepo & Next.js
-      </footer>
+        {/* Footer */}
+        <footer className="border-t border-zinc-900 bg-zinc-950 py-8 text-center text-xs text-zinc-500">
+          Multi-App Production Calculator Monorepo • Powered by Turborepo & Next.js
+        </footer>
+      </div>
+
+      {/* Right Ad Sidebar (Always Visible) */}
+      <RightAdSidebar client="ca-pub-2144375932551709" className="min-h-screen" />
     </div>
   );
 }
