@@ -1,4 +1,4 @@
-import type { GameDataset } from "../types/data";
+import type { GameDataset } from "@repo/game-calculator";
 
 export const RIMWORLD_DATA: GameDataset = {
   id: "rimworld",

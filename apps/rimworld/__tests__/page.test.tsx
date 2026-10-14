@@ -7,5 +7,6 @@ describe("RimWorld App Page", () => {
   it("renders RimWorld calculator with title", () => {
     render(<RimWorldPage />);
     expect(screen.getByText("RimWorld Calculator")).toBeInTheDocument();
+    expect(screen.getByText("Under Development")).toBeInTheDocument();
   });
 });

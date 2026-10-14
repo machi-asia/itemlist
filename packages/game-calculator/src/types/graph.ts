@@ -22,6 +22,14 @@ export interface RecipeNodeData extends Record<string, unknown> {
   recipeMethod?: string;
   pairedCatalystName?: string;
   pairedCatalystIcon?: string;
+  candidateOptions?: {
+    id: string;
+    name: string;
+    icon: string;
+  }[];
+  activeCandidateId?: string;
+  onSwitchIngredient?: (groupKey: string, chosenOptionId: string) => void;
+  groupKey?: string;
   ingredients?: {
     itemId: string;
     itemName: string;
@@ -31,8 +39,14 @@ export interface RecipeNodeData extends Record<string, unknown> {
   }[];
 }
 
+export interface RecipeEdgeData extends Record<string, unknown> {
+  ratePerMinute: number;
+  belts: number;
+  beltIcon?: string;
+}
+
 export type RecipeCustomNode = Node<RecipeNodeData>;
-export type RecipeCustomEdge = Edge;
+export type RecipeCustomEdge = Edge<RecipeEdgeData>;
 
 export interface FacilitySummaryItem {
   name: string;

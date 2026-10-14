@@ -13,6 +13,7 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@repo/app-config": "*",
     "@repo/game-calculator": "*",
     "@repo/ui": "*",
     "lucide-react": "^1.16.0",

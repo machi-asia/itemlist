@@ -10,8 +10,10 @@ import {
   useNodesState,
   useEdgesState,
   type NodeTypes,
+  type EdgeTypes,
 } from "@xyflow/react";
 import { RecipeProcessNode } from "./recipe-process-node";
+import { ConveyorBeltEdge } from "./conveyor-belt-edge";
 import type { GraphCalculationResult, RecipeCustomNode } from "../../types/graph";
 import { Cpu, Boxes } from "lucide-react";
 
@@ -20,21 +22,59 @@ import type { GameItem } from "../../types/data";
 interface RecipeGraphViewProps {
   calculation: GraphCalculationResult;
   onNodeClick?: (item: GameItem) => void;
+  onSwitchIngredient?: (groupKey: string, chosenOptionId: string) => void;
 }
 
 const nodeTypes: NodeTypes = {
   recipeProcess: RecipeProcessNode,
 };
 
-export function RecipeGraphView({ calculation, onNodeClick }: RecipeGraphViewProps) {
-  const { nodes: initialNodes, edges: initialEdges, totalBuildings, rawIngredients } = calculation;
+const edgeTypes: EdgeTypes = {
+  conveyorBelt: ConveyorBeltEdge,
+};
+
+export function RecipeGraphView({ calculation, onNodeClick, onSwitchIngredient }: RecipeGraphViewProps) {
+  const { nodes: rawNodes, edges: initialEdges, totalBuildings, rawIngredients } = calculation;
+
+  // Track user-dragged or customized positions across recalculations
+  const positionsRef = React.useRef<Map<string, { x: number; y: number }>>(new Map());
+
+  const initialNodes = useMemo(() => {
+    return rawNodes.map((node) => {
+      const savedPos = positionsRef.current.get(node.id);
+      return {
+        ...node,
+        position: savedPos || node.position,
+        data: {
+          ...node.data,
+          onSwitchIngredient,
+        },
+      };
+    });
+  }, [rawNodes, onSwitchIngredient]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  // Sync state whenever recalculated graph updates (targets, recipes, or items change)
+  // Sync state whenever recalculated graph updates (targets, recipes, or items change),
+  // merging updated node data while preserving existing node positions so they don't jump back!
   useEffect(() => {
-    setNodes(initialNodes);
+    setNodes((prevNodes) => {
+      const currentPosMap = new Map<string, { x: number; y: number }>();
+      for (const n of prevNodes) {
+        currentPosMap.set(n.id, n.position);
+        positionsRef.current.set(n.id, n.position);
+      }
+
+      return initialNodes.map((node) => {
+        const retainedPos = currentPosMap.get(node.id) || positionsRef.current.get(node.id);
+        return {
+          ...node,
+          position: retainedPos || node.position,
+        };
+      });
+    });
+
     setEdges(initialEdges);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
 
@@ -156,12 +196,19 @@ export function RecipeGraphView({ calculation, onNodeClick }: RecipeGraphViewPro
           onEdgesChange={onEdgesChange}
           nodesDraggable={true}
           nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
+          onNodeDragStop={(_e, node) => {
+            if (node.position) {
+              positionsRef.current.set(node.id, { x: node.position.x, y: node.position.y });
+            }
+          }}
           onNodeClick={(_e, node) => {
             if (onNodeClick && (node as RecipeCustomNode).data?.item) {
               onNodeClick((node as RecipeCustomNode).data.item as GameItem);
             }
           }}
           fitView
+          fitViewOptions={{ maxZoom: 1 }}
           colorMode="dark"
           minZoom={0.2}
           maxZoom={1.5}

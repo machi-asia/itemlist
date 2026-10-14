@@ -2,8 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "RimWorld Calculator | Colony Production Suite",
-  description: "Colony manufacturing, fabrication bench, and recipe throughput planner for RimWorld.",
+  title: "RimWorld Calculator | ItemList",
+  description: "Colony manufacturing, fabrication bench, bill management, and recipe throughput planner for RimWorld.",
+  keywords: ["rimworld calculator", "colony production", "fabrication bench", "recipe planner", "itemlist"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+  },
+  openGraph: {
+    title: "RimWorld Calculator — ItemList",
+    description: "Colony manufacturing, fabrication bench, bill management, and recipe throughput planner for RimWorld.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "RimWorld Calculator — ItemList",
+    description: "Colony manufacturing, fabrication bench, bill management, and recipe throughput planner for RimWorld.",
+  },
 };
 
 export default function RootLayout({

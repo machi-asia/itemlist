@@ -24,12 +24,16 @@ interface InternalNodeAccumulator {
   cycleTimeSeconds?: number;
   pairedCatalystName?: string;
   pairedCatalystIcon?: string;
+  candidateOptions?: { id: string; name: string; icon: string }[];
+  activeCandidateId?: string;
+  groupKey?: string;
 }
 
 export function calculateRecipeGraph(
   items: GameItem[],
   requests: ProductionRequest[],
-  recipeOverrides?: Record<string, string>
+  recipeOverrides?: Record<string, string>,
+  ingredientChoices?: Record<string, string>
 ): GraphCalculationResult {
   const itemMap = new Map<string, GameItem>();
   for (const item of items) {
@@ -86,7 +90,7 @@ export function calculateRecipeGraph(
     if (!buildingName) return undefined;
     const cleanName = buildingName.replace(/ Loop$/, "");
     const direct = resolveItem(cleanName) || resolveItem(cleanName.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
-    if (direct?.icon && direct.icon.startsWith("http")) return direct.icon;
+    if (direct?.icon && (direct.icon.startsWith("http") || direct.icon.startsWith("/"))) return direct.icon;
     const lower = cleanName.toLowerCase();
     if (lower.includes("crush")) return resolveItem("crushing-wheel")?.icon;
     if (lower.includes("crafter") || lower.includes("craft")) return resolveItem("mechanical-crafter")?.icon;
@@ -179,7 +183,36 @@ export function calculateRecipeGraph(
     };
   }
 
-  function addRequirement(item: GameItem, requiredPerMin: number, parentItem?: GameItem) {
+  function parseCandidateNames(rawName: string): string[] {
+    if (!rawName.includes(";")) return [];
+    return rawName.split(";").map((s) => s.trim()).filter(Boolean);
+  }
+
+  function resolveCandidateOptions(rawName: string): { id: string; name: string; icon: string }[] {
+    const names = parseCandidateNames(rawName);
+    return names.map((candName) => {
+      const found = resolveItem(candName) || resolveItem(candName.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+      const directIcon = RAW_ITEM_ICONS[candName] || found?.icon;
+      const assetSlug = candName.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+      const fallbackIcon = `/items/${assetSlug}.png`;
+      return {
+        id: found?.id || candName.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        name: found?.name || candName,
+        icon: directIcon || fallbackIcon,
+      };
+    });
+  }
+
+  function addRequirement(
+    item: GameItem,
+    requiredPerMin: number,
+    parentItem?: GameItem,
+    candidateContext?: {
+      candidateOptions: { id: string; name: string; icon: string }[];
+      activeCandidateId: string;
+      groupKey: string;
+    }
+  ) {
     const key = item.id;
 
     if (parentItem) {
@@ -205,6 +238,11 @@ export function calculateRecipeGraph(
     const existing = nodeAccumulators.get(key);
     if (existing) {
       existing.demandedOutputPerMinute += requiredPerMin;
+      if (candidateContext && !existing.candidateOptions) {
+        existing.candidateOptions = candidateContext.candidateOptions;
+        existing.activeCandidateId = candidateContext.activeCandidateId;
+        existing.groupKey = candidateContext.groupKey;
+      }
     } else {
       const overrideId = requestRecipeIds.get(key) ?? recipeOverrides?.[key];
       const recipe = pickRecipe(item, overrideId);
@@ -219,6 +257,9 @@ export function calculateRecipeGraph(
         pairedCatalystName: bInfo.pairedCatalystName,
         pairedCatalystIcon: bInfo.pairedCatalystIcon,
         cycleTimeSeconds: recipe?.processingTimeSeconds,
+        candidateOptions: candidateContext?.candidateOptions,
+        activeCandidateId: candidateContext?.activeCandidateId,
+        groupKey: candidateContext?.groupKey,
       };
       nodeAccumulators.set(key, nodeAcc);
     }
@@ -243,12 +284,41 @@ export function calculateRecipeGraph(
       const outputBatch = Math.max(0.001, expectedBatch);
 
       for (const ingredient of accRecipe.ingredients) {
-        const subItem = resolveItem(ingredient.itemId) || resolveItem(ingredient.itemName);
+        let subItem = resolveItem(ingredient.itemId) || resolveItem(ingredient.itemName);
+        let candCtx:
+          | {
+              candidateOptions: { id: string; name: string; icon: string }[];
+              activeCandidateId: string;
+              groupKey: string;
+            }
+          | undefined = undefined;
+
+        if (ingredient.itemName.includes(";")) {
+          const options = resolveCandidateOptions(ingredient.itemName);
+          if (options.length > 1) {
+            const groupKey = ingredient.itemId || ingredient.itemName;
+            const chosenId = ingredientChoices?.[groupKey] || ingredientChoices?.[ingredient.itemId] || options[0]?.id;
+            const chosenOption = options.find((opt) => opt.id === chosenId) || options[0];
+
+            if (chosenOption) {
+              const candidateItem = resolveItem(chosenOption.id) || resolveItem(chosenOption.name);
+              if (candidateItem) {
+                subItem = candidateItem;
+              }
+              candCtx = {
+                candidateOptions: options,
+                activeCandidateId: chosenOption.id,
+                groupKey,
+              };
+            }
+          }
+        }
+
         if (!subItem) continue;
 
         const ingredientBatchPerRecipe = ingredient.amount;
         const subItemNeededRate = (requiredPerMin / outputBatch) * ingredientBatchPerRecipe;
-        addRequirement(subItem, subItemNeededRate, item);
+        addRequirement(subItem, subItemNeededRate, item, candCtx);
       }
 
       visitedPath.delete(key);
@@ -314,13 +384,6 @@ export function calculateRecipeGraph(
     }
   }
 
-  const buildingDetails = Object.entries(totalBuildings).map(([name, count]) => ({
-    name,
-    count,
-    icon: buildingIconsMap[name] || resolveMachineIcon(name),
-    pairedCatalystIcon: buildingCatalystMap[name],
-  }));
-
   const g = new dagre.graphlib.Graph();
   g.setGraph({
     rankdir: "LR",
@@ -334,7 +397,8 @@ export function calculateRecipeGraph(
 
   for (const acc of nodeAccumulators.values()) {
     const ingredientCount = acc.recipe?.ingredients?.length || 0;
-    const dynamicHeight = Math.max(DEFAULT_NODE_HEIGHT, 100 + ingredientCount * 26);
+    const hasCandidates = Boolean(acc.candidateOptions && acc.candidateOptions.length > 1);
+    const dynamicHeight = Math.max(DEFAULT_NODE_HEIGHT, 100 + ingredientCount * 26 + (hasCandidates ? 42 : 0));
     g.setNode(`node-${acc.item.id}`, {
       width: DEFAULT_NODE_WIDTH,
       height: dynamicHeight,
@@ -352,7 +416,8 @@ export function calculateRecipeGraph(
     const nodeId = `node-${acc.item.id}`;
     const dagreNode = g.node(nodeId);
     const ingredientCount = acc.recipe?.ingredients?.length || 0;
-    const dynamicHeight = Math.max(DEFAULT_NODE_HEIGHT, 100 + ingredientCount * 26);
+    const hasCandidates = Boolean(acc.candidateOptions && acc.candidateOptions.length > 1);
+    const dynamicHeight = Math.max(DEFAULT_NODE_HEIGHT, 100 + ingredientCount * 26 + (hasCandidates ? 42 : 0));
     const posX = dagreNode ? dagreNode.x - DEFAULT_NODE_WIDTH / 2 : 0;
     const posY = dagreNode ? dagreNode.y - dynamicHeight / 2 : 0;
 
@@ -383,6 +448,9 @@ export function calculateRecipeGraph(
       sourceMod: acc.recipe?.sourceMod || acc.item.sourceMod,
       recipeMethod: acc.recipe?.method,
       ingredients: nodeIngredients,
+      candidateOptions: acc.candidateOptions,
+      activeCandidateId: acc.activeCandidateId,
+      groupKey: acc.groupKey,
     };
 
     finalNodes.push({
@@ -395,21 +463,43 @@ export function calculateRecipeGraph(
     });
   }
 
+  const beltItem = resolveItem("mechanical-belt") || resolveItem("mechanical belt");
+  const beltIcon = beltItem?.icon || "/items/mechanical_belt_block.png";
+
   const finalEdges: RecipeCustomEdge[] = [];
+  let totalBelts = 0;
   for (const [id, edge] of edgeMap.entries()) {
     const roundedRate = Number(edge.ratePerMinute.toFixed(1));
     const belts = Math.ceil(roundedRate / CONVEYOR_CAPACITY);
+    totalBelts += belts;
     finalEdges.push({
       id,
       source: edge.source,
       target: edge.target,
       targetHandle: edge.targetHandle,
-      type: "default",
+      type: "conveyorBelt",
       animated: true,
+      data: {
+        ratePerMinute: roundedRate,
+        belts,
+        beltIcon,
+      },
       label: `${belts} Belts • ${roundedRate}/m`,
       style: { stroke: "#6366f1", strokeWidth: 2 },
     });
   }
+
+  if (totalBelts > 0) {
+    totalBuildings["Mechanical Belt"] = (totalBuildings["Mechanical Belt"] || 0) + totalBelts;
+    buildingIconsMap["Mechanical Belt"] = beltIcon;
+  }
+
+  const buildingDetails = Object.entries(totalBuildings).map(([name, count]) => ({
+    name,
+    count,
+    icon: buildingIconsMap[name] || resolveMachineIcon(name),
+    pairedCatalystIcon: buildingCatalystMap[name],
+  }));
 
   return {
     nodes: finalNodes,

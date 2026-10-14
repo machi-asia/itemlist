@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { CREATE_DATA, RIMWORLD_DATA } from "../data";
+import type { GameItem, Recipe } from "../types/data";
 
 describe("Game Datasets", () => {
   it("validates Create dataset integrity", () => {
@@ -19,10 +20,10 @@ describe("Game Datasets", () => {
     expect(duplicateIds).toEqual([]);
 
     // Verify Sturdy Sheet recipe
-    const sturdy = CREATE_DATA.items.find((i) => i.id === "sturdy-sheet");
+    const sturdy = CREATE_DATA.items.find((i: GameItem) => i.id === "sturdy-sheet");
     expect(sturdy).toBeDefined();
     expect(sturdy?.recipes?.length).toBeGreaterThan(0);
-    const sturdyValid = sturdy?.recipes?.some((r) =>
+    const sturdyValid = sturdy?.recipes?.some((r: Recipe) =>
       r.outputs.some((o) => o.itemId === "sturdy-sheet")
     );
     expect(sturdyValid).toBe(true);
@@ -30,20 +31,20 @@ describe("Game Datasets", () => {
     // Verify Andesite, Brass, Copper, and Train Casings recipes
     const casings = ["andesite-casing", "brass-casing", "copper-casing", "train-casing"];
     for (const cId of casings) {
-      const casing = CREATE_DATA.items.find((i) => i.id === cId);
+      const casing = CREATE_DATA.items.find((i: GameItem) => i.id === cId);
       expect(casing).toBeDefined();
       expect(casing?.recipes?.length).toBeGreaterThan(0);
-      const casingValid = casing?.recipes?.some((r) =>
+      const casingValid = casing?.recipes?.some((r: Recipe) =>
         r.outputs.some((o) => o.itemId === cId)
       );
       expect(casingValid).toBe(true);
     }
 
     // Verify Cake and essential vanilla craftables
-    const cake = CREATE_DATA.items.find((i) => i.id === "cake");
+    const cake = CREATE_DATA.items.find((i: GameItem) => i.id === "cake");
     expect(cake).toBeDefined();
     expect(cake?.recipes?.length).toBeGreaterThan(0);
-    const cakeRecipe = cake?.recipes?.find((r) => r.method === "Mechanical Crafting");
+    const cakeRecipe = cake?.recipes?.find((r: Recipe) => r.method === "Mechanical Crafting");
     expect(cakeRecipe).toBeDefined();
     expect(cakeRecipe?.ingredients.map((ing) => ing.itemId).sort()).toEqual([
       "egg",
@@ -54,10 +55,29 @@ describe("Game Datasets", () => {
 
     const vanillaItems = ["iron-block", "piston", "sticky-piston", "hopper", "shears", "bucket", "bow", "tnt"];
     for (const vId of vanillaItems) {
-      const vItem = CREATE_DATA.items.find((i) => i.id === vId);
+      const vItem = CREATE_DATA.items.find((i: GameItem) => i.id === vId);
       expect(vItem).toBeDefined();
       expect(vItem?.recipes?.length).toBeGreaterThan(0);
     }
+
+    // Verify Stripped Log and Deployer recipes
+    const strippedLog = CREATE_DATA.items.find((i: GameItem) => i.id === "stripped-log");
+    expect(strippedLog).toBeDefined();
+    expect(strippedLog?.recipes?.some((r: Recipe) => r.buildingRequired === "Deployer")).toBe(true);
+
+    // Verify Sand Paper
+    const sandPaper = CREATE_DATA.items.find((i: GameItem) => i.id === "sand-paper");
+    expect(sandPaper).toBeDefined();
+    expect(sandPaper?.recipes?.length).toBeGreaterThan(0);
+
+    // Verify Rose Quartz and Polished Rose Quartz
+    const roseQuartz = CREATE_DATA.items.find((i: GameItem) => i.id === "rose-quartz");
+    expect(roseQuartz).toBeDefined();
+    expect(roseQuartz?.recipes?.length).toBeGreaterThan(0);
+
+    const polishedRoseQuartz = CREATE_DATA.items.find((i: GameItem) => i.id === "polished-rose-quartz");
+    expect(polishedRoseQuartz).toBeDefined();
+    expect(polishedRoseQuartz?.recipes?.some((r: Recipe) => r.buildingRequired === "Deployer")).toBe(true);
   });
 
   it("validates RimWorld dataset integrity", () => {

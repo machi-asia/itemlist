@@ -9,5 +9,6 @@ describe("Home Directory Page", () => {
     expect(screen.getByText("Select Your Game")).toBeInTheDocument();
     expect(screen.getByText("Create")).toBeInTheDocument();
     expect(screen.getByText("RimWorld")).toBeInTheDocument();
+    expect(screen.getByText("Under Development")).toBeInTheDocument();
   });
 });

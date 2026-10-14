@@ -1,4 +1,4 @@
-import type { GameDataset } from "../types/data";
+import type { GameDataset } from "@repo/game-calculator";
 import { VANILLA_CRAFTING_ITEMS } from "./vanilla-crafting";
 
 export const CREATE_DATA: GameDataset = {
@@ -11,7 +11,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "adjustable-chain-gearshift",
       "name": "Adjustable Chain Gearshift",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6c/Adjustable_Chain_Gearshift.png/revision/latest/scale-to-width-down/128?cb=20210413134705",
+      "icon": "/items/adjustable_chain_gearshift.png",
       "description": "The Adjustable Chain Gearshift functions similarly to Encased Chain Drive, but can change the speed of the output when powered with redstone.",
       "recipes": [
         {
@@ -49,7 +49,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "analog-lever",
       "name": "Analog Lever",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/a/a6/Analog_Lever.png/revision/latest/scale-to-width-down/128?cb=20210413134716",
+      "icon": "/items/analog_lever.png",
       "description": "The Analog Lever is used to emit a variable signal via player input.",
       "recipes": [
         {
@@ -87,7 +87,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "andesite",
       "name": "Andesite",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/ce/Andesite.png/revision/latest/scale-to-width-down/128?cb=20250918213659",
+      "icon": "/items/andesite.png",
       "description": "Cut Andesite Slab.png|Cut Slab",
       "recipes": [
         {
@@ -113,34 +113,6 @@ export const CREATE_DATA: GameDataset = {
               "itemId": "andesite",
               "itemName": "Andesite",
               "amount": 2
-            }
-          ],
-          "speedRpm": 64,
-          "sourceMod": "Vanilla"
-        },
-        {
-          "id": "recipe-andesite-crafter-1",
-          "name": "Mechanical Crafter - Andesite",
-          "method": "Mechanical Crafting",
-          "buildingRequired": "Mechanical Crafter",
-          "processingTimeSeconds": 4,
-          "ingredients": [
-            {
-              "itemId": "andesite",
-              "itemName": "Andesite",
-              "amount": 2
-            },
-            {
-              "itemId": "iron-nugget-zinc-nugget",
-              "itemName": "Iron Nugget;Zinc Nugget",
-              "amount": 2
-            }
-          ],
-          "outputs": [
-            {
-              "itemId": "andesite-alloy",
-              "itemName": "Andesite Alloy",
-              "amount": 1
             }
           ],
           "speedRpm": 64,
@@ -186,7 +158,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "andesite-funnel",
       "name": "Andesite Funnel",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/29/Andesite_Funnel.png/revision/latest?cb=20230522012349",
+      "icon": "/items/andesite_funnel.png",
       "description": "Andesite Belt Funnel.png|Belt",
       "recipes": [
         {
@@ -224,7 +196,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "andesite-tunnel",
       "name": "Andesite Tunnel",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f7/Andesite_Tunnel.png/revision/latest/scale-to-width-down/128?cb=20230522012427",
+      "icon": "/items/andesite_tunnel.png",
       "description": "A decorative Tunnel for Mechanical Belts.",
       "recipes": [
         {
@@ -262,7 +234,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "asurine",
       "name": "Asurine",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1f/Asurine.png/revision/latest/scale-to-width-down/128?cb=20230522113110",
+      "icon": "/items/asurine.png",
       "description": "Polished Cut Asurine.png|Polished Cut",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -271,7 +243,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "basin",
       "name": "Basin",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4a/Basin.png/revision/latest/scale-to-width-down/128?cb=20230522012507",
+      "icon": "/items/basin.png",
       "description": "The Basin is a block that holds items and fluids used in Packing, Compacting, and Mixing recipes. A basin can also function as an interaction point in fluid systems as fluids can be placed in or removed from a Basin directly by a player. In a survival game, a basin's most significant function is creating Brass, which is essential for the creation of most advanced components.",
       "recipes": [
         {
@@ -304,7 +276,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "belt-support",
       "name": "Belt Support",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/fc/Belt_Support.png/revision/latest/scale-to-width-down/128?cb=20250825153708",
+      "icon": "/items/belt_support.png",
       "description": "The Belt Support is a purely decorative block used for hiding the bottom of Mechanical Belts. This block's functionality would later be replaced by Casings.",
       "recipes": [
         {
@@ -342,7 +314,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blaze-burner",
       "name": "Blaze Burner",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9c/Empty_Blaze_Burner.png/revision/latest/scale-to-width-down/128?cb=20210413133249",
+      "icon": "/items/empty_blaze_burner.png",
       "description": "File:Empty Blaze Burner.png|Empty",
       "recipes": [
         {
@@ -380,7 +352,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-andesite-alloy",
       "name": "Block of Andesite Alloy",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1b/Block_of_Andesite_Alloy.png/revision/latest/scale-to-width-down/128?cb=20230522011518",
+      "icon": "/items/block_of_andesite_alloy.png",
       "description": "Block of Andesite Alloy is a decorative storage block for Andesite Alloy.",
       "recipes": [
         {
@@ -436,7 +408,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-brass",
       "name": "Block of Brass",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/24/Block_of_Brass.png/revision/latest/scale-to-width-down/128?cb=20230522012522",
+      "icon": "/items/block_of_brass.png",
       "description": "The Block of Brass is a metal block. It can be crafted with 9 Brass Ingots. It can be used to form the base of a beacon pyramid.",
       "recipes": [
         {
@@ -492,7 +464,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-copper",
       "name": "Block of Copper",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f0/Block_of_Copper.png/revision/latest/scale-to-width-down/128?cb=20251130200310",
+      "icon": "/items/block_of_copper_1.png",
       "description": "This article is about the block. For the ore, see Copper Ore. For other forms of copper, see Copper.",
       "recipes": [
         {
@@ -642,7 +614,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-experience",
       "name": "Block of Experience",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f8/Block_of_Experience.png/revision/latest/scale-to-width-down/128?cb=20230522011518",
+      "icon": "/items/block_of_experience.png",
       "description": "Block of Experience is a decorative storage block for Nuggets of Experience. It also can be used as a beacon base.",
       "recipes": [
         {
@@ -698,7 +670,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-industrial-iron",
       "name": "Block of Industrial Iron",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/ef/Block_of_Industrial_Iron.png/revision/latest/scale-to-width-down/128?cb=20230522011518",
+      "icon": "/items/block_of_industrial_iron.png",
       "description": "Block_of_Weathered_Iron.png|Weathered Iron</gallery>}}",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -707,7 +679,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "block-of-zinc",
       "name": "Block of Zinc",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/07/Block_of_Zinc.png/revision/latest/scale-to-width-down/128?cb=20210413134653",
+      "icon": "/items/block_of_zinc.png",
       "description": "This article is about the block. For the ore, see Zinc Ore. For other forms of zinc, see Zinc.",
       "recipes": [
         {
@@ -740,7 +712,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "bracket",
       "name": "Bracket",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c9/Metal_Bracket.png/revision/latest/scale-to-width-down/128?cb=20210413133912",
+      "icon": "/items/metal_bracket.png",
       "description": "Metal Bracket.png|Metal",
       "recipes": [
         {
@@ -816,7 +788,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brass-funnel",
       "name": "Brass Funnel",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d7/Brass_Funnel.png/revision/latest?cb=20230522012555",
+      "icon": "/items/brass_funnel.png",
       "description": "Brass Belt Funnel.png|Belt",
       "recipes": [
         {
@@ -859,7 +831,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brass-tunnel",
       "name": "Brass Tunnel",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/65/Brass_Tunnel.png/revision/latest/scale-to-width-down/128?cb=20230522012612",
+      "icon": "/items/brass_tunnel.png",
       "description": "A Brass Tunnel is a machine that can only be placed on Mechanical Belts. It can be decorative or it can be used to split, sort, or combine streams of items fed by belts.",
       "recipes": [
         {
@@ -902,7 +874,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "calcite",
       "name": "Calcite",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/97/Calcite.png/revision/latest/scale-to-width-down/128?cb=20220125232016",
+      "icon": "/items/calcite.png",
       "description": "Polished Cut Calcite.png|Polished Cut",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -911,7 +883,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cardboard",
       "name": "Cardboard",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/3b/Block_of_Cardboard.png/revision/latest/scale-to-width-down/128?cb=20250301002821",
+      "icon": "/items/block_of_cardboard_1.png",
       "description": "Block of Cardboard.png|Unbound",
       "recipes": [
         {
@@ -1084,7 +1056,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cardboard-package",
       "name": "Cardboard Package",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bc/Cardboard_package_10x8.png/revision/latest/scale-to-width-down/128?cb=20250228235521",
+      "icon": "/items/cardboard_package_10x8.png",
       "description": "Cardboard package 10x8.png|Small",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -1093,7 +1065,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cart-assembler",
       "name": "Cart Assembler",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6e/Cart_Assembler.png/revision/latest/scale-to-width-down/128?cb=20230522012629",
+      "icon": "/items/cart_assembler.png",
       "description": "The Cart Assembler can attach a Contraption to  that pass through it when supplied with a  signal.",
       "recipes": [
         {
@@ -1136,7 +1108,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "casing",
       "name": "Casing",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d1/Andesite_Casing.png/revision/latest/scale-to-width-down/128?cb=20230522012224",
+      "icon": "/items/andesite_casing_1.png",
       "description": "Casings are structural blocks used to encase shafts, gears, and automation contraptions. Created by applying material plates or ingots onto stripped logs or wood.",
       "recipes": [
         {
@@ -2597,7 +2569,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "chain-conveyor",
       "name": "Chain Conveyor",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bb/Chain_Conveyor.png/revision/latest/scale-to-width-down/128?cb=20250301004533",
+      "icon": "/items/chain_conveyor.png",
       "description": "The Chain Conveyor is used to transport Cardboard Packages. It has a secondary use of transferring rotational force across open spaces that aren't perfectly horizontal, vertical or on a 45° slope (where a Mechanical Belt would normally be used)",
       "recipes": [
         {
@@ -2635,7 +2607,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "chute",
       "name": "Chute",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d0/Chute.png/revision/latest/scale-to-width-down/128?cb=20230522113417",
+      "icon": "/items/chute.png",
       "description": "Smart Chute.png|Smart Chute",
       "recipes": [
         {
@@ -2706,7 +2678,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "clipboard",
       "name": "Clipboard",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/be/Clipboard_Block.png/revision/latest/scale-to-width-down/128?cb=20230619223843",
+      "icon": "/items/clipboard_block.png",
       "description": "A Clipboard can be used to copy and paste a block's settings, keep track of a Schematicannon's checklist, or another written checklist.",
       "recipes": [
         {
@@ -2749,7 +2721,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "clockwork-bearing",
       "name": "Clockwork Bearing",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/0d/Clockwork_Bearing.png/revision/latest/scale-to-width-down/128?cb=20230522012642",
+      "icon": "/items/clockwork_bearing.png",
       "description": "The Clockwork Bearing is an advanced version of the Mechanical Bearing for rotating up to two clock hands according to the current in-game time.",
       "recipes": [
         {
@@ -2792,7 +2764,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "clutch",
       "name": "Clutch",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/20/Clutch.png/revision/latest/scale-to-width-down/128?cb=20210413133002",
+      "icon": "/items/clutch.png",
       "description": "The Clutch stops outgoing rotation when a redstone signal is applied.",
       "recipes": [
         {
@@ -2835,7 +2807,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cogwheel",
       "name": "Cogwheel",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/3c/Cogwheel_%28block%29.png/revision/latest/scale-to-width-down/104?cb=20210414111858",
+      "icon": "/items/cogwheel__block_.png",
       "description": "Cogwheel (block).png|Small",
       "recipes": [
         {
@@ -2929,7 +2901,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "contraption-controls",
       "name": "Contraption Controls",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/82/Contraption_Controls.png/revision/latest/scale-to-width-down/128?cb=20230522011516",
+      "icon": "/items/contraption_controls.png",
       "description": "Contraption Controls are used to control Contraption Actors.",
       "recipes": [
         {
@@ -2972,7 +2944,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "controller-rail",
       "name": "Controller Rail",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c6/Controller_Rail.png/revision/latest/scale-to-width-down/128?cb=20210413133023",
+      "icon": "/items/controller_rail.png",
       "description": "Controller Rails are used to control the speed of s or Minecart Contraptions.",
       "recipes": [
         {
@@ -3015,7 +2987,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crafting-blueprint",
       "name": "Crafting Blueprint",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/fe/Crafting_Blueprint_Entity.png/revision/latest/scale-to-width-down/128?cb=20230602211324",
+      "icon": "/items/crafting_blueprint_entity.png",
       "description": "Crafting Blueprint is a block much like a  that can be used to save crafting recipes and auto craft them easily.",
       "recipes": [
         {
@@ -3053,7 +3025,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "creative-crate",
       "name": "Creative Crate",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/0e/Creative_Crate.png/revision/latest/scale-to-width-down/128?cb=20230528205416",
+      "icon": "/items/creative_crate.png",
       "description": "The Creative Crate is a creative-only block that can output the item in the filter slot (located on the top), infinitely. It will also act as a trash can when items are input to it, accepting and deleting the item. Although unobtainable in survival, it can be mined. Items can be extracted via a funnel, hopper or other item extracting components.",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -3062,7 +3034,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "creative-fluid-tank",
       "name": "Creative Fluid Tank",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4f/Creative_Fluid_Tank.png/revision/latest/scale-to-width-down/128?cb=20210413133057",
+      "icon": "/items/creative_fluid_tank.png",
       "description": "A Creative-exclusive block that acts as an infinite source of the fluid it contains.",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -3071,7 +3043,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "creative-motor",
       "name": "Creative Motor",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/82/Creative_Motor.png/revision/latest/scale-to-width-down/128?cb=20230522113610",
+      "icon": "/items/creative_motor.png",
       "description": "The Creative Motor is a block used for power generation.",
       "recipes": [
         {
@@ -3124,7 +3096,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crimsite",
       "name": "Crimsite",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/e0/Crimsite.png/revision/latest/scale-to-width-down/128?cb=20230522113650",
+      "icon": "/items/crimsite.png",
       "description": "Polished Cut Crimsite.png|Polished Cut",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -3133,7 +3105,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crushing-wheel",
       "name": "Crushing Wheel",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bd/Crushing_Wheel.png/revision/latest/scale-to-width-down/128?cb=20230522012731",
+      "icon": "/items/crushing_wheel.png",
       "description": "Crushing Wheels are the more advanced version of the Millstone. It applies Crushing recipes to any items inserted from the direction they are spinning away from.",
       "recipes": [
         {
@@ -3176,7 +3148,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cuckoo-clock",
       "name": "Cuckoo Clock",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9c/Cuckoo_Clock.png/revision/latest/scale-to-width-down/128?cb=20210413133117",
+      "icon": "/items/cuckoo_clock.png",
       "description": "The Cuckoo Clock is a block that displays in-game time.",
       "recipes": [
         {
@@ -3219,7 +3191,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "deepslate",
       "name": "Deepslate",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/39/Deepslate.png/revision/latest/scale-to-width-down/128?cb=20251020200036",
+      "icon": "/items/deepslate_1.png",
       "description": "Alongside vanilla generation,  generates in layers between Y -30 and 70 in the following patterns:",
       "recipes": [
         {
@@ -3270,7 +3242,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "deployer",
       "name": "Deployer",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b5/Deployer.png/revision/latest/scale-to-width-down/128?cb=20250510222114",
+      "icon": "/items/deployer.png",
       "description": "The Deployer simulates player actions on blocks or entities exactly 2 blocks away from it. It can simulate a left or a right click, holding or without holding an item.",
       "recipes": [
         {
@@ -3313,7 +3285,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "depot",
       "name": "Depot",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/ff/Depot.png/revision/latest/scale-to-width-down/128?cb=20210413133201",
+      "icon": "/items/depot.png",
       "description": "The Depot is used as an interaction point for machines such as the Mechanical Arm.",
       "recipes": [
         {
@@ -3351,7 +3323,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "diorite",
       "name": "Diorite",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/08/Diorite.png/revision/latest/scale-to-width-down/128?cb=20210415115551",
+      "icon": "/items/diorite.png",
       "description": "Polished Diorite.png|Polished",
       "recipes": [
         {
@@ -3394,7 +3366,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "display-board",
       "name": "Display Board",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c9/Display_Board.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/display_board.png",
       "description": "Display Boards are a scalable alternative to the .",
       "recipes": [
         {
@@ -3432,7 +3404,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "display-link",
       "name": "Display Link",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/41/Display_Link.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/display_link.png",
       "description": "A Display Link is used to get information from a block and send it to blocks that can display it.",
       "recipes": [
         {
@@ -3470,7 +3442,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "elevator-pulley",
       "name": "Elevator Pulley",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/25/Elevator_Pulley.png/revision/latest/scale-to-width-down/128?cb=20230522011516",
+      "icon": "/items/elevator_pulley.png",
       "description": "An Elevator Pulley is a Contraption useful for creating multi-floor elevators easily.",
       "recipes": [
         {
@@ -3513,7 +3485,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "encased-chain-drive",
       "name": "Encased Chain Drive",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9e/Encased_Chain_Drive.png/revision/latest/scale-to-width-down/128?cb=20210413133254",
+      "icon": "/items/encased_chain_drive.png",
       "description": "The Encased Chain Drive is a block that can transfer rotation much like the Mechanical Belt.",
       "recipes": [
         {
@@ -3551,7 +3523,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "encased-fan",
       "name": "Encased Fan",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/82/Encased_Fan.png/revision/latest/scale-to-width-down/128?cb=20210413133302",
+      "icon": "/items/encased_fan.png",
       "description": "The Encased Fan is a mechanical component that can create air streams. Encased Fans are used for moving entities, vertical transport of items and Bulk Item Processing.",
       "recipes": [
         {
@@ -3594,7 +3566,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "factory-gauge",
       "name": "Factory Gauge",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d5/Factory_Gauge.png/revision/latest/scale-to-width-down/128?cb=20250301003515",
+      "icon": "/items/factory_gauge.png",
       "description": "The Factory Gauge is used to send requests through a Logistics Network to maintain an amount of an item in the linked storage.",
       "recipes": [
         {
@@ -3632,7 +3604,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "fluid-pipe",
       "name": "Fluid Pipe",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/34/Fluid_Pipe.png/revision/latest/scale-to-width-down/128?cb=20251130202921",
+      "icon": "/items/fluid_pipe.png",
       "description": "Fluid Pipes are blocks used to  transport and deal with fluids.",
       "recipes": [
         {
@@ -3698,7 +3670,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "fluid-tank",
       "name": "Fluid Tank",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1e/Fluid_Tank.png/revision/latest/scale-to-width-down/128?cb=20251130203017",
+      "icon": "/items/fluid_tank.png",
       "description": "The Fluid Tank is a fluid storage mechanism that can store up to 8 buckets (displayed as 8,000 mB in-game) of fluid per block.",
       "recipes": [
         {
@@ -3736,7 +3708,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "fluid-valve",
       "name": "Fluid Valve",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/22/Fluid_Valve.png/revision/latest/scale-to-width-down/128?cb=20251130203052",
+      "icon": "/items/fluid_valve.png",
       "description": "Fluid valves can be used to close or open the flow in a pipe. Fluid Valves can be switched between open and closed by providing Rotational Force to the side. This is often done with a Valve Handle or Gearshift. A set of directional arrows on the side of the valve will also rotate to indicate whether the valve is open or closed.",
       "recipes": [
         {
@@ -3774,7 +3746,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "flywheel",
       "name": "Flywheel",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b7/Flywheel.png/revision/latest/scale-to-width-down/128?cb=20220712135421",
+      "icon": "/items/flywheel.png",
       "description": "The Flywheel is a legacy block that was repurposed to a decorative block. It is 3x3 in size, but only needs 1 block to be placed, similar to the Water Wheel. {{Block",
       "recipes": [
         {
@@ -3812,7 +3784,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "framed-glass",
       "name": "Framed Glass",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/26/Framed_Glass.png/revision/latest/scale-to-width-down/128?cb=20210413133450",
+      "icon": "/items/framed_glass.png",
       "description": "Framed Glass.png|Framed",
       "recipes": [
         {
@@ -3845,7 +3817,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "framed-glass-trapdoor",
       "name": "Framed Glass Trapdoor",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/a/a9/Framed_Glass_Trapdoor.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/framed_glass_trapdoor.png",
       "description": "The Framed Glass Trapdoor is a transparent trapdoor.",
       "recipes": [
         {
@@ -3883,7 +3855,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gantry-carriage",
       "name": "Gantry Carriage",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b8/Gantry_Carriage.png/revision/latest/scale-to-width-down/128?cb=20230522012825",
+      "icon": "/items/gantry_carriage.png",
       "description": "Gantry Carriage.png|Carriage",
       "recipes": [
         {
@@ -3954,7 +3926,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gearbox",
       "name": "Gearbox",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9e/Gearbox.png/revision/latest/scale-to-width-down/128?cb=20210413133526",
+      "icon": "/items/gearbox.png",
       "description": "Vertical Gearbox.png|Vertical</gallery>",
       "recipes": [
         {
@@ -4015,7 +3987,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gearshift",
       "name": "Gearshift",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1e/Gearshift.png/revision/latest/scale-to-width-down/128?cb=20210413133533",
+      "icon": "/items/gearshift.png",
       "description": "The Gearshift reverses outgoing Rotational Force when a  signal is applied.",
       "recipes": [
         {
@@ -4058,7 +4030,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "granite",
       "name": "Granite",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4a/Granite.png/revision/latest/scale-to-width-down/128?cb=20210415115756",
+      "icon": "/items/granite.png",
       "description": "Polished Granite.png|Polished",
       "recipes": [
         {
@@ -4101,7 +4073,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "hand-crank",
       "name": "Hand Crank",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/5d/Hand_Crank.png/revision/latest/scale-to-width-down/128?cb=20210413133603",
+      "icon": "/items/hand_crank.png",
       "description": "The Hand Crank generates a small amount of Rotational Force through player interaction.",
       "recipes": [
         {
@@ -4139,7 +4111,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "haunted-bell",
       "name": "Haunted Bell",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c6/Haunted_Bell.png/revision/latest/scale-to-width-down/128?cb=20210710220011",
+      "icon": "/items/haunted_bell.png",
       "description": "The Haunted Bell is a block that highlights mob spawnable spots when held or rang.",
       "recipes": [
         {
@@ -4172,7 +4144,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "hose-pulley",
       "name": "Hose Pulley",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/cc/Hose_Pulley.png/revision/latest/scale-to-width-down/128?cb=20251130203202",
+      "icon": "/items/hose_pulley.png",
       "description": "The Hose Pulley lets down a hose that can drain bodies of liquids.",
       "recipes": [
         {
@@ -4215,7 +4187,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "item-drain",
       "name": "Item Drain",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/18/Item_Drain.png/revision/latest/scale-to-width-down/128?cb=20251130203241",
+      "icon": "/items/item_drain.png",
       "description": "The Item Drain drains fluid from items such as buckets and bottles inserted onto it.",
       "recipes": [
         {
@@ -4253,7 +4225,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "item-hatch",
       "name": "Item Hatch",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/66/Item_Hatch.png/revision/latest/scale-to-width-down/128?cb=20250301004518",
+      "icon": "/items/item_hatch.png",
       "description": "The Item Hatch is used to deposit a player’s inventory into storage.",
       "recipes": [
         {
@@ -4291,7 +4263,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "item-vault",
       "name": "Item Vault",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/33/Item_Vault.png/revision/latest/scale-to-width-down/128?cb=20250704140329",
+      "icon": "/items/item_vault.png",
       "description": "By default, each Item Vault block has a storage space of 20 stacks, and this can be changed in the Config. Items cannot be added or removed by the player, but by components such as Chutes, Funnels, and Item Hatches.",
       "recipes": [
         {
@@ -4329,7 +4301,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "large-water-wheel",
       "name": "Large Water Wheel",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bb/Large_Water_Wheel.png/revision/latest/scale-to-width-down/128?cb=20230522024821",
+      "icon": "/items/large_water_wheel.png",
       "description": "The Large Water Wheel is a bigger version of the Water Wheel.",
       "recipes": [
         {
@@ -4367,7 +4339,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "limestone",
       "name": "Limestone",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4e/Limestone.png/revision/latest/scale-to-width-down/115?cb=20211213215305",
+      "icon": "/items/limestone.png",
       "description": "Cut Limestone.png|Cut",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -4376,7 +4348,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "linear-chassis",
       "name": "Linear Chassis",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/fc/Linear_Chassis.png/revision/latest/scale-to-width-down/128?cb=20230522012844",
+      "icon": "/items/linear_chassis_1.png",
       "description": "The Linear Chassis is one method of connecting up Contraptions.",
       "recipes": [
         {
@@ -4437,7 +4409,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-arm",
       "name": "Mechanical Arm",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/5b/Mechanical_Arm.png/revision/latest/scale-to-width-down/128?cb=20230522012945",
+      "icon": "/items/mechanical_arm.png",
       "description": "The Mechanical Arm is a block used to transfer items.",
       "recipes": [
         {
@@ -4485,7 +4457,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-bearing",
       "name": "Mechanical Bearing",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/36/Mechanical_Bearing.png/revision/latest/scale-to-width-down/128?cb=20230522013000",
+      "icon": "/items/mechanical_bearing.png",
       "description": "The Mechanical Bearing is used to create and rotate Contraptions.",
       "recipes": [
         {
@@ -4528,7 +4500,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-belt",
       "name": "Mechanical Belt",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f6/Mechanical_Belt_Block.png/revision/latest/scale-to-width-down/128?cb=20230620180131",
+      "icon": "/items/mechanical_belt_block.png",
       "description": "Mechanical Belt Block.png|Belt",
       "recipes": [
         {
@@ -4561,7 +4533,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-crafter",
       "name": "Mechanical Crafter",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/26/Mechanical_Crafter.png/revision/latest/scale-to-width-down/128?cb=20230522013023",
+      "icon": "/items/mechanical_crafter.png",
       "description": "Mechanical Crafters are machines that can automatically craft items.",
       "recipes": [
         {
@@ -4756,7 +4728,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-drill",
       "name": "Mechanical Drill",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1d/Mechanical_Drill.png/revision/latest/scale-to-width-down/128?cb=20230522013034",
+      "icon": "/items/mechanical_drill.png",
       "description": "The Mechanical Drill is a block used to break blocks.",
       "recipes": [
         {
@@ -4799,7 +4771,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-harvester",
       "name": "Mechanical Harvester",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/3d/Mechanical_Harvester.png/revision/latest/scale-to-width-down/128?cb=20210413133825",
+      "icon": "/items/mechanical_harvester.png",
       "description": "The Mechanical Harvester is a component used on Contraptions to harvest crops.",
       "recipes": [
         {
@@ -4842,7 +4814,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-mixer",
       "name": "Mechanical Mixer",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/eb/Mechanical_Mixer.png/revision/latest/scale-to-width-down/128?cb=20230528205454",
+      "icon": "/items/mechanical_mixer.png",
       "description": "The Mechanical Mixer is a mechanical component that applies Mixing recipes and shapeless Crafting recipes to items in Basins.",
       "recipes": [
         {
@@ -4885,7 +4857,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-piston",
       "name": "Mechanical Piston",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9f/Mechanical_Piston.png/revision/latest/scale-to-width-down/128?cb=20230522013055",
+      "icon": "/items/mechanical_piston.png",
       "description": "The Mechanical Piston is a piston that can push Contraptions when powered with Rotational Power.",
       "recipes": [
         {
@@ -4984,7 +4956,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-plough",
       "name": "Mechanical Plough",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b9/Mechanical_Plough.png/revision/latest/scale-to-width-down/128?cb=20210413133848",
+      "icon": "/items/mechanical_plough.png",
       "description": "The Mechanical Plough is a Movement Actor used to break non-collidable blocks and fling entities.",
       "recipes": [
         {
@@ -5027,7 +4999,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-press",
       "name": "Mechanical Press",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f3/Mechanical_Press.png/revision/latest/scale-to-width-down/128?cb=20230522013122",
+      "icon": "/items/mechanical_press.png",
       "description": "The Mechanical Press is a mechanical component that applies Pressing, Packing, and Compacting recipes to items below it. It is an important early-game item, as it is used to press Ingots into Sheets, which are important ingredients for higher-level components.",
       "recipes": [
         {
@@ -5070,7 +5042,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-pump",
       "name": "Mechanical Pump",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/07/Mechanical_Pump.png/revision/latest/scale-to-width-down/128?cb=20251130203329",
+      "icon": "/items/mechanical_pump.png",
       "description": "Mechanical Pumps (MPs) have a maximum range of 16 blocks (configurable) on either side, though this does not seem to apply to pipes themselves. You may however have up to 30 pipes between pumps. Mechanical Pumps will move fluid in only one direction at a time.",
       "recipes": [
         {
@@ -5108,7 +5080,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-roller",
       "name": "Mechanical Roller",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/0b/Mechanical_Roller.png/revision/latest/scale-to-width-down/128?cb=20230522011517",
+      "icon": "/items/mechanical_roller.png",
       "description": "The Mechanical Roller can be used on Contraptions to clear and pave a path.",
       "recipes": [
         {
@@ -5151,7 +5123,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "mechanical-saw",
       "name": "Mechanical Saw",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/a/a4/Mechanical_Saw.png/revision/latest/scale-to-width-down/128?cb=20230522013139",
+      "icon": "/items/mechanical_saw.png",
       "description": "Mechanical Saws are powered through rotational force, and when placed down facing to the side they will automatically chop down wood blocks in front of them. When chopping down a tree or giant mushroom, it will automatically destroy the entire tree by only destroying the bottom-most block. Blocks tagged as TREE_ATTACHMENTS will also be broken if found on the tree.",
       "recipes": [
         {
@@ -5194,7 +5166,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "metal-girder",
       "name": "Metal Girder",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/3a/Metal_Girder.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/metal_girder.png",
       "description": "Metal Girders are a decorative block.",
       "recipes": [
         {
@@ -5232,7 +5204,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "millstone",
       "name": "Millstone",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/dc/Millstone.png/revision/latest/scale-to-width-down/128?cb=20230522013159",
+      "icon": "/items/millstone.png",
       "description": "The Millstone is a more basic equivalent of the Crushing Wheels, and is most likely the first of the two that the Player will construct. It is capable of applying milling recipes to any valid items inserted from above.",
       "recipes": [
         {
@@ -5275,7 +5247,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nixie-tube",
       "name": "Nixie Tube",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/cb/Nixie_Tube.png/revision/latest/scale-to-width-down/128?cb=20230522114419",
+      "icon": "/items/nixie_tube.png",
       "description": "The Nixie Tube is a block that can display text or numbers.",
       "recipes": [
         {
@@ -5308,7 +5280,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nozzle",
       "name": "Nozzle",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/2f/Nozzle.png/revision/latest/scale-to-width-down/128?cb=20210413133956",
+      "icon": "/items/nozzle.png",
       "description": "A Nozzle distributes the effect of an Encased Fan in all directions.",
       "recipes": [
         {
@@ -5346,7 +5318,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "ochrum",
       "name": "Ochrum",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/df/Ochrum.png/revision/latest/scale-to-width-down/115?cb=20211213213955",
+      "icon": "/items/ochrum.png",
       "description": "Polished Cut Ochrum.png|Polished Cut",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -5355,7 +5327,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "package-frogport",
       "name": "Package Frogport",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/fe/Package_Frogport.png/revision/latest/scale-to-width-down/128?cb=20250301003444",
+      "icon": "/items/package_frogport.png",
       "description": "Package Frogports are used to move Cardboard Packages from and to Chain Conveyors.",
       "recipes": [
         {
@@ -5398,7 +5370,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "packager",
       "name": "Packager",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c1/Packager.png/revision/latest/scale-to-width-down/128?cb=20250301002525",
+      "icon": "/items/packager.png",
       "description": "The Packager is used to extract items from an attached storage block and place them in Cardboard Packages allowing the items to be transported, stored, or used as a set. Packagers can also extract items from cardboard packages and insert them into the attached storage.",
       "recipes": [
         {
@@ -5464,7 +5436,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "peculiar-bell",
       "name": "Peculiar Bell",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/5c/Peculiar_Bell.png/revision/latest/scale-to-width-down/128?cb=20210710220009",
+      "icon": "/items/peculiar_bell.png",
       "description": "The Peculiar Bell is a decorative block that is also used to create the Haunted Bell.",
       "recipes": [
         {
@@ -5502,7 +5474,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "piston-extension-pole",
       "name": "Piston Extension Pole",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f9/Piston_Extension_Pole.png/revision/latest/scale-to-width-down/128?cb=20210413134139",
+      "icon": "/items/piston_extension_pole.png",
       "description": "The Piston Extension Pole is an extension for the Mechanical Piston",
       "recipes": [
         {
@@ -5540,7 +5512,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "placard",
       "name": "Placard",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/65/Placard.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/placard.png",
       "description": "The Placard is a decorative block used to display items. It can be considered Create's counterpart to the vanilla Item Frame.",
       "recipes": [
         {
@@ -5578,7 +5550,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "planks",
       "name": "Planks",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c1/Oak_Planks.png/revision/latest/scale-to-width-down/128?cb=20210415120440",
+      "icon": "/items/oak_planks_1.png",
       "description": "Spruce_Planks.png|Spruce",
       "recipes": [
         {
@@ -5841,7 +5813,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "portable-fluid-interface",
       "name": "Portable Fluid Interface",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bc/Portable_Fluid_Interface.png/revision/latest/scale-to-width-down/128?cb=20251130203513",
+      "icon": "/items/portable_fluid_interface.png",
       "description": "The Portable Fluid Interface is the fluid version of the Portable Storage Interface. It is used to insert or extract from the fluid inventory of a Contraption.",
       "recipes": [
         {
@@ -5879,7 +5851,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "portable-storage-interface",
       "name": "Portable Storage Interface",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c0/Portable_Storage_Interface.png/revision/latest/scale-to-width-down/128?cb=20230522013220",
+      "icon": "/items/portable_storage_interface.png",
       "description": "The Portable Storage Interface is a block that allows Item Transporters to directly interact with Contraption inventories.",
       "recipes": [
         {
@@ -5917,7 +5889,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "postbox",
       "name": "Postbox",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/dd/White_Postbox.png/revision/latest/scale-to-width-down/128?cb=20250301003444",
+      "icon": "/items/white_postbox.png",
       "description": "White Postbox.png|White",
       "recipes": [
         {
@@ -5960,7 +5932,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "powered-latch",
       "name": "Powered Latch",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c5/Powered_Latch.png/revision/latest/scale-to-width-down/128?cb=20210413134244",
+      "icon": "/items/powered_latch.png",
       "description": "The Powered Latch emits a redstone signal that can be toggled on or off by other signals.",
       "recipes": [
         {
@@ -6008,7 +5980,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "powered-toggle-latch",
       "name": "Powered Toggle Latch",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/10/Powered_Toggle_Latch.png/revision/latest/scale-to-width-down/128?cb=20210413134246",
+      "icon": "/items/powered_toggle_latch.png",
       "description": "The Powered Latch emits a redstone signal that can be toggled on or off.",
       "recipes": [
         {
@@ -6051,7 +6023,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "pulse-extender",
       "name": "Pulse Extender",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/3/3a/Pulse_Extender.png/revision/latest/scale-to-width-down/128?cb=20230522013240",
+      "icon": "/items/pulse_extender.png",
       "description": "When powered, extends a redstone pulse for a specified time, much like a . The time can be set in its Value Settings Screen accessed by holding right-click. It can be set to extend a signal for 2 ticks up to 60 minutes. The settings can also be copied and pasted onto other extenders or Pulse Repeaters by using a Clipboard.",
       "recipes": [
         {
@@ -6099,7 +6071,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "pulse-repeater",
       "name": "Pulse Repeater",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/41/Pulse_Repeater.png/revision/latest/scale-to-width-down/128?cb=20230522013256",
+      "icon": "/items/pulse_repeater.png",
       "description": "Sends a pulse after delaying for a specified time.",
       "recipes": [
         {
@@ -6147,7 +6119,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "pulse-timer",
       "name": "Pulse Timer",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d6/Pulse_Timer.png/revision/latest/scale-to-width-down/128?cb=20250301004215",
+      "icon": "/items/pulse_timer.png",
       "description": "The Pulse Timer is used to pulse repeatedly at a set interval.",
       "recipes": [
         {
@@ -6195,7 +6167,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "radial-chassis",
       "name": "Radial Chassis",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/ed/Radial_Chassis.png/revision/latest/scale-to-width-down/128?cb=20230522013311",
+      "icon": "/items/radial_chassis.png",
       "description": "The Radial Chassis is a block used to connect Contraptions.",
       "recipes": [
         {
@@ -6233,7 +6205,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "re-packager",
       "name": "Re-Packager",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/8c/Re-Packager.png/revision/latest/scale-to-width-down/128?cb=20250301012024",
+      "icon": "/items/re-packager.png",
       "description": "The Re-Packager is used to merge multiple Cardboard Packages that contain one recipe for a Mechanical Crafter.",
       "recipes": [
         {
@@ -6266,7 +6238,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "redstone-contact",
       "name": "Redstone Contact",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/5d/Redstone_Contact.png/revision/latest/scale-to-width-down/128?cb=20210413134307",
+      "icon": "/items/redstone_contact.png",
       "description": "Redstone Contacts allow Contraptions to convey redstone signals or activate Redstone Circuits.",
       "recipes": [
         {
@@ -6309,7 +6281,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "redstone-link",
       "name": "Redstone Link",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/74/Redstone_Link.png/revision/latest/scale-to-width-down/128?cb=20250301024803",
+      "icon": "/items/redstone_link.png",
       "description": "The Redstone Link is used to send and receive redstone signals to other links.",
       "recipes": [
         {
@@ -6347,7 +6319,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "redstone-requester",
       "name": "Redstone Requester",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f7/Redstone_Requester.png/revision/latest/scale-to-width-down/128?cb=20250301003443",
+      "icon": "/items/redstone_requester.png",
       "description": "The Redstone Requester is used to request Cardboard Packages from linked Packagers.",
       "recipes": [
         {
@@ -6390,7 +6362,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "rope-pulley",
       "name": "Rope Pulley",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/78/Rope_Pulley.png/revision/latest/scale-to-width-down/128?cb=20230522013344",
+      "icon": "/items/rope_pulley.png",
       "description": "The Rope Pulley creates Contraptions much like a Mechanical Piston, but in only one direction and without the need for Piston Extension Poles.",
       "recipes": [
         {
@@ -6433,7 +6405,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "rose-quartz-block",
       "name": "Rose Quartz Block",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/14/Rose_Quartz_Block.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/rose_quartz_block.png",
       "description": "Rose Quartz Block.png|Block",
       "recipes": [
         {
@@ -6466,7 +6438,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "rose-quartz-lamp",
       "name": "Rose Quartz Lamp",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/ef/Rose_Quartz_Lamp.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/rose_quartz_lamp.png",
       "description": "The lamp can be activated with a redstone pulse. They will continue to emit a redstone signal afterwards. If multiple Rose Quartz Lamps are adjacent, activating one lamp will turn off other lamps up to 16 blocks away. They will emit a  signal depending on how far away the comparator is to the active lamp.",
       "recipes": [
         {
@@ -6509,7 +6481,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "rotation-speed-controller",
       "name": "Rotation Speed Controller",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1d/Rotation_Speed_Controller.png/revision/latest/scale-to-width-down/128?cb=20230522164344",
+      "icon": "/items/rotation_speed_controller.png",
       "description": "The Rotation Speed Controller is a mechanical component that allows the player to precisely control rotational speed.",
       "recipes": [
         {
@@ -6547,7 +6519,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "schematicannon",
       "name": "Schematicannon",
       "category": "Automation Machines",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bc/Schematicannon.png/revision/latest/scale-to-width-down/128?cb=20210518151915",
+      "icon": "/items/schematicannon.png",
       "description": "Schematicannon.png|Schematicannon",
       "recipes": [
         {
@@ -6595,7 +6567,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "scorchia",
       "name": "Scorchia",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/a/ad/Scorchia.png/revision/latest/scale-to-width-down/128?cb=20251018023827",
+      "icon": "/items/scorchia.png",
       "description": "Cut Scorchia Slab.png|Cut Slab",
       "recipes": [
         {
@@ -6633,7 +6605,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "scoria",
       "name": "Scoria",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/84/Scoria.png/revision/latest/scale-to-width-down/128?cb=20251018015323",
+      "icon": "/items/scoria.png",
       "description": "Cut Scoria Slab.png|Cut Slab",
       "recipes": [
         {
@@ -6671,7 +6643,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "seat",
       "name": "Seat",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/99/White_Seat.png/revision/latest/scale-to-width-down/128?cb=20230522011601",
+      "icon": "/items/white_seat.png",
       "description": "Orange Seat.png|Orange",
       "recipes": [
         {
@@ -6709,7 +6681,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sequenced-gearshift",
       "name": "Sequenced Gearshift",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/02/Sequenced_Gearshift.png/revision/latest/scale-to-width-down/128?cb=20230522013411",
+      "icon": "/items/sequenced_gearshift.png",
       "description": "The Sequenced Gearshift allows finer control over Rotational power, allowing multiple changes to the rotation over a period of time.",
       "recipes": [
         {
@@ -6752,7 +6724,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "shaft",
       "name": "Shaft",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/60/Shaft.png/revision/latest/scale-to-width-down/128?cb=20210413134426",
+      "icon": "/items/shaft.png",
       "description": "The shaft is a basic mechanical component in Create. A shaft can be used to connect two mechanical components such that the rotation of one rotates the other, and shafts serve as the only blocks upon which Mechanical Belts can be placed.",
       "recipes": [
         {
@@ -6808,7 +6780,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sliding-door",
       "name": "Sliding Door",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c1/Andesite_Door_Block.png/revision/latest/scale-to-width-down/71?cb=20230620174830",
+      "icon": "/items/andesite_door_block.png",
       "description": "Sliding Doors are s with special functions on Contraptions.",
       "recipes": [
         {
@@ -6958,7 +6930,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "smart-fluid-pipe",
       "name": "Smart Fluid Pipe",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/74/Smart_Fluid_Pipe.png/revision/latest/scale-to-width-down/128?cb=20251130203552",
+      "icon": "/items/smart_fluid_pipe.png",
       "description": "Smart Fluid Pipes can be used to allow only a certain liquid to pass through them. This can be set by placing a bucket or bottle of the liquid in the Filter slot on the pipe.",
       "recipes": [
         {
@@ -7001,7 +6973,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "smart-observer",
       "name": "Smart Observer",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/53/Smart_Observer.png/revision/latest/scale-to-width-down/128?cb=20230522013848",
+      "icon": "/items/smart_observer.png",
       "description": "The Smart Observer is a machine that emits a redstone signal dependent on the block or items inside a container in front of it.",
       "recipes": [
         {
@@ -7044,7 +7016,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "speedometer",
       "name": "Speedometer",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/55/Speedometer.png/revision/latest/scale-to-width-down/128?cb=20230522013445",
+      "icon": "/items/speedometer.png",
       "description": "The Speedometer measures the speed of Rotational Force.",
       "recipes": [
         {
@@ -7077,7 +7049,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "spout",
       "name": "Spout",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/98/Spout.png/revision/latest/scale-to-width-down/128?cb=20251130202337",
+      "icon": "/items/spout.png",
       "description": "The Spout is a block used for filling liquid containers such as bottles or buckets, or crafting with liquids.",
       "recipes": [
         {
@@ -7115,7 +7087,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "steam-engine",
       "name": "Steam Engine",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f6/Steam_Engine.png/revision/latest/scale-to-width-down/88?cb=20250517004220",
+      "icon": "/items/steam_engine.png",
       "description": "The Steam Engine is a block that provides Rotational Force. It outputs the highest Stress Unit (SU) capacity of all the survival-mode power-generating blocks. It converts the pressure caused by heating  in a Fluid Tank into Rotational Force, allowing for large scale item production and multiple contraptions to be powered.",
       "recipes": [
         {
@@ -7158,7 +7130,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "steam-whistle",
       "name": "Steam Whistle",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/76/Steam_Whistle.png/revision/latest/scale-to-width-down/128?cb=20250518200626",
+      "icon": "/items/steam_whistle.png",
       "description": "The Steam Whistle is a musical block activated by redstone.",
       "recipes": [
         {
@@ -7196,7 +7168,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sticker",
       "name": "Sticker",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6a/Sticker.png/revision/latest/scale-to-width-down/128?cb=20210413134452",
+      "icon": "/items/sticker.png",
       "description": "The Sticker is used to stick and unstick things to moving Contraptions.",
       "recipes": [
         {
@@ -7244,7 +7216,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "stock-link",
       "name": "Stock Link",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1c/Stock_Link.png/revision/latest/scale-to-width-down/128?cb=20250301003444",
+      "icon": "/items/stock_link.png",
       "description": "A Stock Link exposes a storage system to a Logistics Network, transmitting an inventory list to each of the other devices on the same network. The stock link also receives requests to extract inventory and passes the list on to an attached Packager to execute.",
       "recipes": [
         {
@@ -7282,7 +7254,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "stock-ticker",
       "name": "Stock Ticker",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/68/Stock_Ticker.png/revision/latest/scale-to-width-down/128?cb=20250301003444",
+      "icon": "/items/stock_ticker.png",
       "description": "A Stock Ticker is used to request items from a Logistics Network.",
       "recipes": [
         {
@@ -7325,7 +7297,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "stressometer",
       "name": "Stressometer",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/60/Stressometer.png/revision/latest/scale-to-width-down/128?cb=20230522013508",
+      "icon": "/items/stressometer.png",
       "description": "The Stressometer is used to measure the amount of Stress on a Shaft. This stress is the \"load\" of the system.",
       "recipes": [
         {
@@ -7386,7 +7358,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "table-cloth",
       "name": "Table Cloth",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6d/Red_Table_Cloth.png/revision/latest/scale-to-width-down/128?cb=20250301004215",
+      "icon": "/items/red_table_cloth.png",
       "description": "Red Table Cloth.png|Red",
       "recipes": [
         {
@@ -7424,7 +7396,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "threshold-switch",
       "name": "Threshold Switch",
       "category": "Redstone & Displays",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/cd/Threshold_Switch.png/revision/latest/scale-to-width-down/128?cb=20230522125948",
+      "icon": "/items/threshold_switch.png",
       "description": "The Threshold Switch measures how full an inventory is and can emit a  signal at adjustable thresholds.",
       "recipes": [
         {
@@ -7467,7 +7439,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "tiled-glass",
       "name": "Tiled Glass",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/43/Tiled_Glass.png/revision/latest/scale-to-width-down/128?cb=20210413134519",
+      "icon": "/items/tiled_glass.png",
       "description": "Tiled Glass is a decorative variant of",
       "recipes": [
         {
@@ -7500,7 +7472,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "toolbox",
       "name": "Toolbox",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/15/Brown_Toolbox.png/revision/latest/scale-to-width-down/128?cb=20211023022640",
+      "icon": "/items/brown_toolbox_1.png",
       "description": "Brown Toolbox.png|Brown",
       "recipes": [
         {
@@ -7576,7 +7548,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-controls",
       "name": "Train Controls",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/f6/Train_Controls.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/train_controls.png",
       "description": "Train Controls are required in the creation of Trains.",
       "recipes": [
         {
@@ -7619,7 +7591,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-observer",
       "name": "Train Observer",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/bd/Train_Observer.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/train_observer.png",
       "description": "The Train Observer is used to detect passing Trains.",
       "recipes": [
         {
@@ -7657,7 +7629,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-signal",
       "name": "Train Signal",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/67/Train_Signal.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/train_signal.png",
       "description": "Train Signals are used to control the flow of Trains not driven by players.",
       "recipes": [
         {
@@ -7695,7 +7667,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-station",
       "name": "Train Station",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/64/Train_Station.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/train_station.png",
       "description": "Train Stations are used to create, disassemble, and guide Trains.",
       "recipes": [
         {
@@ -7733,7 +7705,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-track",
       "name": "Train Track",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c8/Track_Block.png/revision/latest/scale-to-width-down/128?cb=20230602205456",
+      "icon": "/items/track_block.png",
       "description": "Train Tracks are special blocks used to support Trains.",
       "recipes": [
         {
@@ -7771,7 +7743,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "train-trapdoor",
       "name": "Train Trapdoor",
       "category": "Trains & Rail",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6c/Train_Trapdoor.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/train_trapdoor.png",
       "description": "A  resembling Train Casing.",
       "recipes": [
         {
@@ -7809,7 +7781,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "tuff",
       "name": "Tuff",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/99/Tuff.png/revision/latest/scale-to-width-down/128?cb=20250918204300",
+      "icon": "/items/tuff.png",
       "description": "Tuff Stairs (N).png|Stairs",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -7818,7 +7790,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "turntable",
       "name": "Turntable",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4b/Turntable.png/revision/latest/scale-to-width-down/128?cb=20210413134522",
+      "icon": "/items/turntable.png",
       "description": "The Turntable is a block which can rotate .",
       "recipes": [
         {
@@ -7856,7 +7828,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "valve-handle",
       "name": "Valve Handle",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/ca/Copper_Valve_Handle.png/revision/latest/scale-to-width-down/128?cb=20251130202810",
+      "icon": "/items/copper_valve_handle.png",
       "description": "Copper Valve Handle.png|Copper",
       "recipes": [
         {
@@ -7894,7 +7866,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "veridium",
       "name": "Veridium",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/84/Veridium.png/revision/latest/scale-to-width-down/128?cb=20250918162742",
+      "icon": "/items/veridium.png",
       "description": "Cut Veridium Slab.png|Cut Slab",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -7903,7 +7875,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "water-wheel",
       "name": "Water Wheel",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/2f/Water_Wheel.png/revision/latest/scale-to-width-down/128?cb=20230522013529",
+      "icon": "/items/water_wheel.png",
       "description": "Water_Wheel.png|Spruce",
       "recipes": [
         {
@@ -7969,7 +7941,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "weighted-ejector",
       "name": "Weighted Ejector",
       "category": "Logistics & Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/ff/Weighted_Ejector.png/revision/latest/scale-to-width-down/128?cb=20210413134617",
+      "icon": "/items/weighted_ejector.png",
       "description": "The Weighted Ejector flings items and entities to a targeted block up to 32 blocks away.",
       "recipes": [
         {
@@ -8012,7 +7984,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "windmill-bearing",
       "name": "Windmill Bearing",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/4f/Windmill_Bearing.png/revision/latest/scale-to-width-down/128?cb=20230522013542",
+      "icon": "/items/windmill_bearing.png",
       "description": "The Windmill Bearing is a block used to create Windmills for power generation.",
       "recipes": [
         {
@@ -8055,7 +8027,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "windmill-sail",
       "name": "Windmill Sail",
       "category": "Kinetics & Contraptions",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/8/87/White_Sail_Block.png/revision/latest/scale-to-width-down/128?cb=20230620172923",
+      "icon": "/items/white_sail_block.png",
       "description": "White_Sail Block.png|White Sail",
       "recipes": [
         {
@@ -8144,7 +8116,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "window",
       "name": "Window",
       "category": "Building & Decoration",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/67/Oak_Window.png/revision/latest/scale-to-width-down/128?cb=20210413133958",
+      "icon": "/items/oak_window_1.png",
       "description": "Spruce_Window.png|Spruce",
       "recipes": [
         {
@@ -8289,7 +8261,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "zinc-ore",
       "name": "Zinc Ore",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/47/Zinc_Ore.png/revision/latest/scale-to-width-down/128?cb=20230106085608",
+      "icon": "/items/zinc_ore.png",
       "description": "Deepslate Zinc Ore.png|Deepslate",
       "recipes": [],
       "sourceMod": "Create Mod"
@@ -8298,7 +8270,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brass-hand",
       "name": "Brass Hand",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6c/Brass_Hand.png/revision/latest/scale-to-width-down/128?cb=20220710101958",
+      "icon": "/items/brass_hand.png",
       "description": "The Brass Hand is an item that is only used in crafting recipes.",
       "recipes": [
         {
@@ -8407,7 +8379,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "electron-tube",
       "name": "Electron Tube",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/6e/Electron_Tube.png/revision/latest/scale-to-width-down/128?cb=20220710101430",
+      "icon": "/items/electron_tube.png",
       "description": "The Electron Tube is an item that is only used in crafting recipes.",
       "recipes": [
         {
@@ -8445,7 +8417,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "precision-mechanism",
       "name": "Precision Mechanism",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/12/Precision_Mechanism.png/revision/latest/scale-to-width-down/128?cb=20220710102550",
+      "icon": "/items/precision_mechanism.png",
       "description": "The Precision Mechanism is one of many Crafting Components.",
       "recipes": [
         {
@@ -8493,7 +8465,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sturdy-sheet",
       "name": "Sturdy Sheet",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/a/af/Sturdy_Sheet.png/revision/latest/scale-to-width-down/128?cb=20220708204513",
+      "icon": "/items/sturdy_sheet_1.png",
       "description": "Sturdy Sheets are a crafting component.",
       "recipes": [
         {
@@ -8559,7 +8531,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "transmitter",
       "name": "Transmitter",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/e9/Transmitter.png/revision/latest/scale-to-width-down/128?cb=20250301014102",
+      "icon": "/items/transmitter.png",
       "description": "The Transmitter is a crafting component used to craft link blocks.",
       "recipes": [
         {
@@ -8602,7 +8574,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "potato-cannon",
       "name": "Potato Cannon",
       "category": "Components & Tools",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/14/Potato_Cannon.png/revision/latest/scale-to-width-down/128?cb=20250519232038",
+      "icon": "/items/potato_cannon.png",
       "description": "The Potato Cannon is a projectile weapon that uses various food items as ammunition.",
       "recipes": [
         {
@@ -8650,7 +8622,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "magenta-dye",
       "name": "Magenta Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Magenta_Dye_JE3_BE3.png/128px-Magenta_Dye_JE3_BE3.png?e6f8c",
+      "icon": "/items/magenta_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -8870,7 +8842,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "purple-dye",
       "name": "Purple Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Purple_Dye_JE3_BE3.png/128px-Purple_Dye_JE3_BE3.png?9c8a1",
+      "icon": "/items/purple_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -9020,7 +8992,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "pink-dye",
       "name": "Pink Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Pink_Dye_JE3_BE3.png/128px-Pink_Dye_JE3_BE3.png?fef42",
+      "icon": "/items/pink_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -9228,7 +9200,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "amethyst-shard",
       "name": "Amethyst Shard",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Amethyst_Shard_JE2_BE1.png/128px-Amethyst_Shard_JE2_BE1.png?56555",
+      "icon": "/items/amethyst_shard_je2_be1.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -9296,7 +9268,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cobblestone",
       "name": "Cobblestone",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Cobblestone_JE5_BE3.png/128px-Cobblestone_JE5_BE3.png?25024",
+      "icon": "/items/cobblestone_je5_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -9721,7 +9693,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crushed-zinc-ore",
       "name": "Crushed Zinc Ore",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/e5/Crushed_Zinc_Ore.png/revision/latest?cb=20220710104934",
+      "icon": "/items/crushed_zinc_ore.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -9931,7 +9903,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "zinc-nugget",
       "name": "Zinc Nugget",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/ba/Zinc_Nugget.png/revision/latest/scale-to-width-down/128?cb=20220710102801",
+      "icon": "/items/zinc_nugget.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing).",
       "recipes": [
         {
@@ -10126,7 +10098,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "light-gray-dye",
       "name": "Light Gray Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Light_Gray_Dye_JE3_BE3.png/128px-Light_Gray_Dye_JE3_BE3.png?75a6d",
+      "icon": "/items/light_gray_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -10380,7 +10352,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "white-dye",
       "name": "White Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/White_Dye_JE2_BE2.png/128px-White_Dye_JE2_BE2.png?f9a07",
+      "icon": "/items/white_dye_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -10774,7 +10746,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "red-dye",
       "name": "Red Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Red_Dye_JE4_BE4.png/128px-Red_Dye_JE4_BE4.png?2d46c",
+      "icon": "/items/red_dye_je4_be4.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -11028,7 +11000,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "beetroot-seeds",
       "name": "Beetroot Seeds",
       "category": "Food & Farming",
-      "icon": "https://minecraft.wiki/images/thumb/Beetroot_Seeds_JE3_BE3.png/128px-Beetroot_Seeds_JE3_BE3.png?ca238",
+      "icon": "/items/beetroot_seeds_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -11096,7 +11068,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blaze-powder",
       "name": "Blaze Powder",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Blaze_Powder_JE2_BE1.png/128px-Blaze_Powder_JE2_BE1.png?b5dec",
+      "icon": "/items/blaze_powder_je2_be1.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -11135,7 +11107,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crushed-copper-ore",
       "name": "Crushed Copper Ore",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/48/Crushed_Copper_Ore.png/revision/latest?cb=20250518181513",
+      "icon": "/items/crushed_copper_ore.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -11345,7 +11317,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nugget-of-experience",
       "name": "Nugget of Experience",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b5/Nugget_of_Experience.png/revision/latest/scale-to-width-down/115?cb=20211213213955",
+      "icon": "/items/nugget_of_experience.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -12290,7 +12262,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crushed-gold-ore",
       "name": "Crushed Gold Ore",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/12/Crushed_Gold_Ore.png/revision/latest?cb=20220715092641",
+      "icon": "/items/crushed_gold_ore.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -12500,7 +12472,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "light-blue-dye",
       "name": "Light Blue Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Light_Blue_Dye_JE3_BE3.png/128px-Light_Blue_Dye_JE3_BE3.png?9d9bf",
+      "icon": "/items/light_blue_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -12568,7 +12540,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "bone-meal",
       "name": "Bone Meal",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Bone_Meal_JE3_BE3.png/128px-Bone_Meal_JE3_BE3.png?1be02",
+      "icon": "/items/bone_meal_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -12696,7 +12668,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "green-dye",
       "name": "Green Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Green_Dye_JE4_BE4.png/128px-Green_Dye_JE4_BE4.png?635d8",
+      "icon": "/items/green_dye_je4_be4.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -13078,7 +13050,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "black-dye",
       "name": "Black Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Black_Dye_JE2_BE2.png/128px-Black_Dye_JE2_BE2.png?48e23",
+      "icon": "/items/black_dye_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -13320,7 +13292,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gray-dye",
       "name": "Gray Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Gray_Dye_JE3_BE3.png/128px-Gray_Dye_JE3_BE3.png?7e2cb",
+      "icon": "/items/gray_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -13504,7 +13476,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "clay-ball",
       "name": "Clay Ball",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Clay_Ball_JE2_BE2.png/128px-Clay_Ball_JE2_BE2.png?b5328",
+      "icon": "/items/clay_ball_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling, Bulk Washing).",
       "recipes": [
         {
@@ -13706,7 +13678,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crushed-iron-ore",
       "name": "Crushed Iron Ore",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c3/Crushed_Iron_Ore.png/revision/latest/scale-to-width-down/128?cb=20220715092722",
+      "icon": "/items/crushed_iron_ore.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -13846,7 +13818,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "iron-nugget",
       "name": "Iron Nugget",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Iron_Nugget_JE1_BE1.png/128px-Iron_Nugget_JE1_BE1.png?fa1c7",
+      "icon": "/items/iron_nugget_je1_be1.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing).",
       "recipes": [
         {
@@ -14071,7 +14043,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "coal",
       "name": "Coal",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Coal_JE4_BE3.png/128px-Coal_JE4_BE3.png?165e9",
+      "icon": "/items/coal_je4_be3.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -14163,7 +14135,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gravel",
       "name": "Gravel",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Gravel_JE5_BE4.png/128px-Gravel_JE5_BE4.png?bb814",
+      "icon": "/items/gravel_je5_be4.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -14219,7 +14191,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brown-dye",
       "name": "Brown Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Brown_Dye_JE2_BE2.png/128px-Brown_Dye_JE2_BE2.png?85e10",
+      "icon": "/items/brown_dye_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -14287,7 +14259,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blue-dye",
       "name": "Blue Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Blue_Dye_JE2_BE2.png/128px-Blue_Dye_JE2_BE2.png?d8f99",
+      "icon": "/items/blue_dye_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -14401,7 +14373,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "yellow-dye",
       "name": "Yellow Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Yellow_Dye_JE3_BE3.png/128px-Yellow_Dye_JE3_BE3.png?b9cde",
+      "icon": "/items/yellow_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -14609,7 +14581,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cobbled-deepslate",
       "name": "Cobbled Deepslate",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Cobbled_Deepslate.png/128px-Cobbled_Deepslate.png?86523",
+      "icon": "/items/cobbled_deepslate.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -14906,7 +14878,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "diamond",
       "name": "Diamond",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Diamond_JE3_BE3.png/128px-Diamond_JE3_BE3.png?986a9",
+      "icon": "/items/diamond_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -15039,7 +15011,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "emerald",
       "name": "Emerald",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Emerald_JE3_BE3.png/128px-Emerald_JE3_BE3.png?4c5f3",
+      "icon": "/items/emerald_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -15131,7 +15103,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "lapis-lazuli",
       "name": "Lapis Lazuli",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Lapis_Lazuli_JE2_BE2.png/128px-Lapis_Lazuli_JE2_BE2.png?03506",
+      "icon": "/items/lapis_lazuli_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -15223,7 +15195,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "redstone-dust",
       "name": "Redstone Dust",
       "category": "Redstone & Displays",
-      "icon": "https://minecraft.wiki/images/thumb/Redstone_Dust_JE2_BE2.png/128px-Redstone_Dust_JE2_BE2.png?8cf17",
+      "icon": "/items/redstone_dust_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing, Spout Filling).",
       "recipes": [
         {
@@ -15371,7 +15343,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nether-quartz",
       "name": "Nether Quartz",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Nether_Quartz_JE2_BE2.png/128px-Nether_Quartz_JE2_BE2.png?d0049",
+      "icon": "/items/nether_quartz_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing).",
       "recipes": [
         {
@@ -15523,7 +15495,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gold-nugget",
       "name": "Gold Nugget",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Gold_Nugget_JE3_BE2.png/128px-Gold_Nugget_JE3_BE2.png?ba665",
+      "icon": "/items/gold_nugget_je3_be2.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing).",
       "recipes": [
         {
@@ -15860,7 +15832,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "flint",
       "name": "Flint",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Flint_JE3_BE3.png/128px-Flint_JE3_BE3.png?d10d1",
+      "icon": "/items/flint_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling, Bulk Washing).",
       "recipes": [
         {
@@ -16054,7 +16026,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "copper-nugget",
       "name": "Copper Nugget",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Copper_Nugget_JE1_BE1.png/128px-Copper_Nugget_JE1_BE1.png?42865",
+      "icon": "/items/copper_nugget_je1_be1.png",
       "description": "Produced by Create automation machines (Crushing, Bulk Washing).",
       "recipes": [
         {
@@ -16249,7 +16221,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "leather",
       "name": "Leather",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Leather_JE2_BE2.png/128px-Leather_JE2_BE2.png?10fae",
+      "icon": "/items/leather_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -16405,7 +16377,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "string",
       "name": "String",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/String_JE2_BE2.png/128px-String_JE2_BE2.png?25d69",
+      "icon": "/items/string_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -16549,7 +16521,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "wheat-seeds",
       "name": "Wheat Seeds",
       "category": "Food & Farming",
-      "icon": "https://minecraft.wiki/images/thumb/Wheat_Seeds_JE1_BE1.png/128px-Wheat_Seeds_JE1_BE1.png?68de8",
+      "icon": "/items/wheat_seeds_je1_be1.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -16853,7 +16825,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "glowstone-dust",
       "name": "Glowstone Dust",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Glowstone_Dust_JE2_BE2.png/128px-Glowstone_Dust_JE2_BE2.png?9bc1d",
+      "icon": "/items/glowstone_dust_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Spout Filling).",
       "recipes": [
         {
@@ -16954,7 +16926,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gold-ingot",
       "name": "Gold Ingot",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Gold_Ingot_JE4_BE2.png/128px-Gold_Ingot_JE4_BE2.png?80cd6",
+      "icon": "/items/gold_ingot_je4_be2.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -17011,7 +16983,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "red-sand",
       "name": "Red Sand",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Red_Sand_JE3_BE2.png/128px-Red_Sand_JE3_BE2.png?19111",
+      "icon": "/items/red_sand_je3_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -17113,7 +17085,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sand",
       "name": "Sand",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Sand_JE5_BE3.png/128px-Sand_JE5_BE3.png?ae2df",
+      "icon": "/items/sand_je5_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -17204,7 +17176,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "lime-dye",
       "name": "Lime Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Lime_Dye_JE3_BE3.png/128px-Lime_Dye_JE3_BE3.png?b78e2",
+      "icon": "/items/lime_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -17574,7 +17546,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "cinder-flour",
       "name": "Cinder Flour",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/ec/Cinder_Flour.png/revision/latest/scale-to-width-down/128?cb=20210413132950",
+      "icon": "/items/cinder_flour.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -17613,7 +17585,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "netherrack",
       "name": "Netherrack",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Netherrack_JE4_BE2.png/128px-Netherrack_JE4_BE2.png?8a940",
+      "icon": "/items/netherrack_je4_be2.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -17658,7 +17630,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nether-wart",
       "name": "Nether Wart",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Nether_Wart_%28item%29_JE2_BE1.png/128px-Nether_Wart_%28item%29_JE2_BE1.png?65953",
+      "icon": "/items/nether_wart__item__je2_be1.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -17692,7 +17664,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "powdered-obsidian",
       "name": "Powdered Obsidian",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/7c/Powdered_Obsidian.png/revision/latest/scale-to-width-down/128?cb=20210413134243",
+      "icon": "/items/powdered_obsidian_1.png",
       "description": "Produced by Create automation machines (Crushing).",
       "recipes": [
         {
@@ -17725,7 +17697,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "obsidian",
       "name": "Obsidian",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Obsidian_JE3_BE2.png/128px-Obsidian_JE3_BE2.png?0a8ae",
+      "icon": "/items/obsidian_je3_be2.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -17758,7 +17730,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "orange-dye",
       "name": "Orange Dye",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Orange_Dye_JE3_BE3.png/128px-Orange_Dye_JE3_BE3.png?7f1e2",
+      "icon": "/items/orange_dye_je3_be3.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -17896,7 +17868,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sugar",
       "name": "Sugar",
       "category": "Food & Farming",
-      "icon": "https://minecraft.wiki/images/thumb/Sugar_JE2_BE2.png/128px-Sugar_JE2_BE2.png?9185b",
+      "icon": "/items/sugar_je2_be2.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -17987,7 +17959,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "wheat-flour",
       "name": "Wheat Flour",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/2/2c/Wheat_Flour.png/revision/latest/scale-to-width-down/128?cb=20221101090612",
+      "icon": "/items/wheat_flour.png",
       "description": "Produced by Create automation machines (Crushing, Milling).",
       "recipes": [
         {
@@ -18067,7 +18039,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "iron-sheet",
       "name": "Iron Sheet",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/79/Iron_Sheet.png/revision/latest/scale-to-width-down/128?cb=20210413133623",
+      "icon": "/items/iron_sheet.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18100,7 +18072,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "golden-sheet",
       "name": "Golden Sheet",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/6/63/Golden_Sheet.png/revision/latest?cb=20210413133539",
+      "icon": "/items/golden_sheet.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18133,7 +18105,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "copper-sheet",
       "name": "Copper Sheet",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/e/e1/Copper_Sheet.png/revision/latest/scale-to-width-down/128?cb=20250316174952",
+      "icon": "/items/copper_sheet.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18166,7 +18138,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brass-sheet",
       "name": "Brass Sheet",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/d/d3/Brass_Sheet.png/revision/latest?cb=20220715092028",
+      "icon": "/items/brass_sheet.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18199,7 +18171,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "paper",
       "name": "Paper",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Paper_JE2_BE2.png/128px-Paper_JE2_BE2.png?9c3be",
+      "icon": "/items/paper_je2_be2.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18232,7 +18204,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "grass-path",
       "name": "Grass Path",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Dirt_Path_JE4_BE3.png/128px-Dirt_Path_JE4_BE3.png?0309b",
+      "icon": "/items/dirt_path_je4_be3.png",
       "description": "Produced by Create automation machines (Pressing).",
       "recipes": [
         {
@@ -18265,7 +18237,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "white-wool",
       "name": "White Wool",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/White_Wool_JE2_BE2.png/128px-White_Wool_JE2_BE2.png?2bcdc",
+      "icon": "/items/white_wool_je2_be2.png",
       "description": "Produced by Create automation machines (Packing, Bulk Washing).",
       "recipes": [
         {
@@ -18321,7 +18293,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "slime-block",
       "name": "Slime Block",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Slime_Block_JE2_BE3.png/128px-Slime_Block_JE2_BE3.png?57b93",
+      "icon": "/items/slime_block_je2_be3.png",
       "description": "Produced by Create automation machines (Packing).",
       "recipes": [
         {
@@ -18354,7 +18326,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "honey-block",
       "name": "Honey Block",
       "category": "Fluids",
-      "icon": "https://minecraft.wiki/images/thumb/Honey_Block_JE1_BE2.png/128px-Honey_Block_JE1_BE2.png?9608d",
+      "icon": "/items/honey_block_je1_be2.png",
       "description": "Produced by Create automation machines (Compacting).",
       "recipes": [
         {
@@ -18387,7 +18359,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blaze-cake-base",
       "name": "Blaze Cake Base",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/7/7e/Blaze_Cake_Base.png/revision/latest?cb=20210413132828",
+      "icon": "/items/blaze_cake_base.png",
       "description": "Produced by Create automation machines (Compacting).",
       "recipes": [
         {
@@ -18430,7 +18402,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "bar-of-chocolate",
       "name": "Bar of Chocolate",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/b/b6/Bar_of_Chocolate.png/revision/latest/scale-to-width-down/128?cb=20210413132808",
+      "icon": "/items/bar_of_chocolate.png",
       "description": "Produced by Create automation machines (Compacting).",
       "recipes": [
         {
@@ -18463,7 +18435,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "ice",
       "name": "Ice",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Ice_JE4_BE6.png/128px-Ice_JE4_BE6.png?b2bcc",
+      "icon": "/items/ice_je4_be6.png",
       "description": "Produced by Create automation machines (Compacting).",
       "recipes": [
         {
@@ -18496,7 +18468,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "netherite-ingot",
       "name": "Netherite Ingot",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Netherite_Ingot_JE1_BE2.png/128px-Netherite_Ingot_JE1_BE2.png?79364",
+      "icon": "/items/netherite_ingot_je1_be2.png",
       "description": "Produced by Create automation machines (Mixing).",
       "recipes": [
         {
@@ -18534,12 +18506,40 @@ export const CREATE_DATA: GameDataset = {
       "id": "andesite-alloy",
       "name": "Andesite Alloy",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/cc/Andesite_Alloy.png/revision/latest/scale-to-width-down/128?cb=20220710101556",
+      "icon": "/items/andesite_alloy.png",
       "description": "Produced by Create automation machines (Mixing).",
       "recipes": [
         {
+          "id": "recipe-crafting-andesite-alloy",
+          "name": "Crafting - Andesite Alloy",
+          "method": "Crafting",
+          "buildingRequired": "Mechanical Crafter",
+          "processingTimeSeconds": 2,
+          "speedRpm": 64,
+          "ingredients": [
+            {
+              "itemId": "andesite",
+              "itemName": "Andesite",
+              "amount": 2
+            },
+            {
+              "itemId": "iron-nugget-zinc-nugget",
+              "itemName": "Iron Nugget;Zinc Nugget",
+              "amount": 2
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "andesite-alloy",
+              "itemName": "Andesite Alloy",
+              "amount": 1
+            }
+          ],
+          "sourceMod": "Create Mod"
+        },
+        {
           "id": "recipe-mixer-andesite-alloy-1",
-          "name": "Mechanical Mixer - Andesite Alloy (from Andesite)",
+          "name": "Mechanical Mixer - Andesite Alloy (from Andesite & Iron Nugget)",
           "method": "Mixing",
           "buildingRequired": "Mechanical Mixer",
           "processingTimeSeconds": 2,
@@ -18567,7 +18567,7 @@ export const CREATE_DATA: GameDataset = {
         },
         {
           "id": "recipe-mixer-andesite-alloy-2",
-          "name": "Mechanical Mixer - Andesite Alloy (from Andesite)",
+          "name": "Mechanical Mixer - Andesite Alloy (from Andesite & Zinc Nugget)",
           "method": "Mixing",
           "buildingRequired": "Mechanical Mixer",
           "processingTimeSeconds": 2,
@@ -18600,7 +18600,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "brass-ingot",
       "name": "Brass Ingot",
       "category": "Materials & Resources",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/9/9e/Brass_Ingot.png/revision/latest/scale-to-width-down/128?cb=20220715094516",
+      "icon": "/items/brass_ingot.png",
       "description": "Produced by Create automation machines (Mixing (Heated)).",
       "recipes": [
         {
@@ -18638,7 +18638,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "500mb-of-builder-s-tea",
       "name": "500mB of Builder's Tea",
       "category": "Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/cd/Builder%27s_Tea.png/revision/latest/scale-to-width-down/128?cb=20210413132921",
+      "icon": "/items/builder_s_tea.png",
       "description": "Produced by Create automation machines (Mixing (Heated)).",
       "recipes": [
         {
@@ -18681,7 +18681,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "250mb-of-chocolate",
       "name": "250mB of Chocolate",
       "category": "Fluids",
-      "icon": "https://minecraft.wiki/images/thumb/Cocoa_Beans_JE4_BE3.png/128px-Cocoa_Beans_JE4_BE3.png?48f20",
+      "icon": "/items/cocoa_beans_je4_be3.png",
       "description": "Produced by Create automation machines (Mixing (Heated)).",
       "recipes": [
         {
@@ -18747,7 +18747,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "1000mb-of-honey",
       "name": "1000mB of Honey",
       "category": "Fluids",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/c/c6/Honey.png/revision/latest/scale-to-width-down/128?cb=20210727091310",
+      "icon": "/items/honey.png",
       "description": "Produced by Create automation machines (Mixing (Heated)).",
       "recipes": [
         {
@@ -18780,7 +18780,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "50mb-of-lava",
       "name": "50mB of Lava",
       "category": "Fluids",
-      "icon": "https://minecraft.wiki/images/thumb/Lava_JE19.gif/128px-Lava_JE19.gif?792cb",
+      "icon": "/items/lava_je19.gif",
       "description": "Produced by Create automation machines (Mixing (Super-Heated)).",
       "recipes": [
         {
@@ -18813,7 +18813,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "any-stripped-wood",
       "name": "Any Stripped Wood",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Stripped_Oak_Wood_%28UD%29_JE1_BE1.png/128px-Stripped_Oak_Wood_%28UD%29_JE1_BE1.png?0563f",
+      "icon": "/items/stripped_oak_wood__ud__je1_be1.png",
       "description": "Produced by Create automation machines (Sawing).",
       "recipes": [
         {
@@ -18846,7 +18846,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "any-planks",
       "name": "Any Planks",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Oak_Planks.png/128px-Oak_Planks.png?d9efa",
+      "icon": "/items/oak_planks_2.png",
       "description": "Produced by Create automation machines (Sawing).",
       "recipes": [
         {
@@ -18879,7 +18879,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "any-concrete",
       "name": "Any Concrete",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/White_Concrete.png/128px-White_Concrete.png?79206",
+      "icon": "/items/white_concrete.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -18912,7 +18912,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "gunpowder",
       "name": "Gunpowder",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Gunpowder_JE2_BE2.png/128px-Gunpowder_JE2_BE2.png?c4145",
+      "icon": "/items/gunpowder_je2_be2.png",
       "description": "Produced by Create automation machines (Bulk Washing, Spout Filling).",
       "recipes": [
         {
@@ -18978,7 +18978,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "glass",
       "name": "Glass",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Glass_JE4.png/128px-Glass_JE4.png?d0e06",
+      "icon": "/items/glass_je4.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -19011,7 +19011,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "glass-pane",
       "name": "Glass Pane",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Glass_Pane_%28EW%29_JE12.png/128px-Glass_Pane_%28EW%29_JE12.png?eb1c9",
+      "icon": "/items/glass_pane__ew__je12.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -19044,7 +19044,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "packed-ice",
       "name": "Packed Ice",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Packed_Ice_JE2_BE3.png/128px-Packed_Ice_JE2_BE3.png?b444d",
+      "icon": "/items/packed_ice_je2_be3.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -19077,7 +19077,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "dead-bush",
       "name": "Dead Bush",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Dead_Bush_JE6_BE4.png/128px-Dead_Bush_JE6_BE4.png?be303",
+      "icon": "/items/dead_bush_je6_be4.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -19117,7 +19117,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "dough",
       "name": "Dough",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/0/08/Dough.png/revision/latest/scale-to-width-down/128?cb=20220715094605",
+      "icon": "/items/dough.png",
       "description": "Produced by Create automation machines (Bulk Washing).",
       "recipes": [
         {
@@ -19150,7 +19150,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "prismarine-shard",
       "name": "Prismarine Shard",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Prismarine_Shard_JE2_BE2.png/128px-Prismarine_Shard_JE2_BE2.png?ef03b",
+      "icon": "/items/prismarine_shard_je2_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19190,7 +19190,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "prismarine-crystals",
       "name": "Prismarine Crystals",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Prismarine_Crystals_JE2_BE2.png/128px-Prismarine_Crystals_JE2_BE2.png?8d8af",
+      "icon": "/items/prismarine_crystals_je2_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19230,7 +19230,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "crimson-fungus",
       "name": "Crimson Fungus",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Crimson_Fungus_JE1_BE1.png/128px-Crimson_Fungus_JE1_BE1.png?e3eed",
+      "icon": "/items/crimson_fungus_je1_be1.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19263,7 +19263,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "warped-fungus",
       "name": "Warped Fungus",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Warped_Fungus_JE1_BE1.png/128px-Warped_Fungus_JE1_BE1.png?95b25",
+      "icon": "/items/warped_fungus_je1_be1.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19296,7 +19296,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "poisonous-potato",
       "name": "Poisonous Potato",
       "category": "Food & Farming",
-      "icon": "https://minecraft.wiki/images/thumb/Poisonous_Potato_JE3_BE2.png/128px-Poisonous_Potato_JE3_BE2.png?8f886",
+      "icon": "/items/poisonous_potato_je3_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19329,7 +19329,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "nether-brick",
       "name": "Nether Brick",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Nether_Brick_JE2_BE2.png/128px-Nether_Brick_JE2_BE2.png?be29a",
+      "icon": "/items/nether_brick_je2_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19362,7 +19362,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "soul-campfire",
       "name": "Soul Campfire",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Soul_Campfire_JE1_BE1.gif/128px-Soul_Campfire_JE1_BE1.gif?bf4a7",
+      "icon": "/items/soul_campfire_je1_be1.gif",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19395,7 +19395,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "soul-soil",
       "name": "Soul Soil",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Soul_Soil_JE1_BE1.png/128px-Soul_Soil_JE1_BE1.png?b79a3",
+      "icon": "/items/soul_soil_je1_be1.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19428,7 +19428,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "soul-lantern",
       "name": "Soul Lantern",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Soul_Lantern_JE2_BE1.gif/128px-Soul_Lantern_JE2_BE1.gif?ca51c",
+      "icon": "/items/soul_lantern_je2_be1.gif",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19461,7 +19461,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "soul-sand",
       "name": "Soul Sand",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Soul_Sand_JE2_BE2.png/128px-Soul_Sand_JE2_BE2.png?2334d",
+      "icon": "/items/soul_sand_je2_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19494,7 +19494,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "glow-berries",
       "name": "Glow Berries",
       "category": "Food & Farming",
-      "icon": "https://minecraft.wiki/images/thumb/Glow_Berries_JE1_BE1.png/128px-Glow_Berries_JE1_BE1.png?7c9cc",
+      "icon": "/items/glow_berries_je1_be1.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19527,7 +19527,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blackstone",
       "name": "Blackstone",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Blackstone_JE3_BE2.png/128px-Blackstone_JE3_BE2.png?abdc1",
+      "icon": "/items/blackstone_je3_be2.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19560,7 +19560,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "glow-ink-sac",
       "name": "Glow Ink Sac",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Glow_Ink_Sac_JE1_BE1.png/128px-Glow_Ink_Sac_JE1_BE1.png?d2917",
+      "icon": "/items/glow_ink_sac_je1_be1.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19593,7 +19593,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "soul-torch",
       "name": "Soul Torch",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Soul_Torch.gif/128px-Soul_Torch.gif?49a46",
+      "icon": "/items/soul_torch.gif",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19626,7 +19626,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "infested-stone-infested-stone-bricks-infested-mossy-stone-bricks-infested-cracked-stone-bricks-infested-chiseled-stone-bricks-infested-deepslate",
       "name": "Infested Stone;Infested Stone Bricks;Infested Mossy Stone Bricks;Infested Cracked Stone Bricks;Infested Chiseled Stone Bricks;Infested Deepslate",
       "category": "Building & Decoration",
-      "icon": "https://minecraft.wiki/images/thumb/Stone_JE5_BE3.png/128px-Stone_JE5_BE3.png?5780c",
+      "icon": "/items/stone_je5_be3.png",
       "description": "Produced by Create automation machines (Bulk Haunting).",
       "recipes": [
         {
@@ -19659,7 +19659,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "grass-block",
       "name": "Grass Block",
       "category": "Materials & Resources",
-      "icon": "https://minecraft.wiki/images/thumb/Grass_Block_JE7_BE6.png/128px-Grass_Block_JE7_BE6.png?2bd37",
+      "icon": "/items/grass_block_je7_be6.png",
       "description": "Produced by Create automation machines (Spout Filling).",
       "recipes": [
         {
@@ -19696,7 +19696,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "blaze-cake",
       "name": "Blaze Cake",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/5/52/Blaze_Cake.png/revision/latest/scale-to-width-down/128?cb=20210413132829",
+      "icon": "/items/blaze_cake.png",
       "description": "Produced by Create automation machines (Spout Filling).",
       "recipes": [
         {
@@ -19733,7 +19733,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "sweet-roll",
       "name": "Sweet Roll",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/4/41/Sweet_Roll.png/revision/latest/scale-to-width-down/128?cb=20210413134517",
+      "icon": "/items/sweet_roll.png",
       "description": "Produced by Create automation machines (Spout Filling).",
       "recipes": [
         {
@@ -19770,7 +19770,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "chocolate-glazed-berries",
       "name": "Chocolate Glazed Berries",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/f/fc/Chocolate_Glazed_Berries.png/revision/latest/scale-to-width-down/128?cb=20210413132940",
+      "icon": "/items/chocolate_glazed_berries.png",
       "description": "Produced by Create automation machines (Spout Filling).",
       "recipes": [
         {
@@ -19807,7 +19807,7 @@ export const CREATE_DATA: GameDataset = {
       "id": "honeyed-apple",
       "name": "Honeyed Apple",
       "category": "Food & Farming",
-      "icon": "https://static.wikia.nocookie.net/create_mod/images/1/1a/Honeyed_Apple.png/revision/latest/scale-to-width-down/128?cb=20210413133617",
+      "icon": "/items/honeyed_apple.png",
       "description": "Produced by Create automation machines (Spout Filling).",
       "recipes": [
         {

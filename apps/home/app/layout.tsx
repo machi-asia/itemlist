@@ -2,8 +2,25 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Game Production Calculator Hub",
-  description: "Select a game to plan manufacturing, optimize ratios, calculate machine counts, and explore interactive recipe trees.",
+  title: "ItemList | Game Production Calculator",
+  description: "Interactive production planners, recipe dependency graphs, and throughput calculators for automation and survival games.",
+  keywords: ["game calculator", "recipe planner", "production tree", "automation ratio", "create mod", "rimworld"],
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+  },
+  openGraph: {
+    title: "ItemList — Game Production Calculator",
+    description: "Interactive production planners, recipe dependency graphs, and throughput calculators for automation and survival games.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "ItemList — Game Production Calculator",
+    description: "Interactive production planners, recipe dependency graphs, and throughput calculators for automation and survival games.",
+  },
 };
 
 export default function RootLayout({

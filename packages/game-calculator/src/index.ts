@@ -6,6 +6,7 @@ export * from "./components/game-calculator-view";
 export * from "./components/game-header";
 export * from "./components/item-detail-popup";
 export * from "./components/recipe-chooser-modal";
+export * from "./components/report-issue-modal";
 export * from "./components/graph/recipe-graph";
 export * from "./components/graph/recipe-process-node";
 export * from "./components/ui/button";

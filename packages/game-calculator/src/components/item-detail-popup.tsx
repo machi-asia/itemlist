@@ -9,13 +9,14 @@ import {
   DialogTitle,
   DialogDescription,
 } from "./ui/dialog";
-import { Clock, Factory, ArrowRight, Layers } from "lucide-react";
+import { Clock, Factory, ArrowRight, Layers, Flag } from "lucide-react";
 
 interface ItemDetailPopupProps {
   item: GameItem | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onAddToPlanner?: (item: GameItem) => void;
+  onReportIssue?: (item: GameItem) => void;
 }
 
 export function ItemDetailPopup({
@@ -23,6 +24,7 @@ export function ItemDetailPopup({
   open,
   onOpenChange,
   onAddToPlanner,
+  onReportIssue,
 }: ItemDetailPopupProps) {
   if (!item) return null;
 
@@ -68,18 +70,33 @@ export function ItemDetailPopup({
               <Layers className="h-4 w-4 text-indigo-400" />
               Production Recipes ({recipes.length})
             </h4>
-            {onAddToPlanner && (
-              <button
-                type="button"
-                onClick={() => {
-                  onAddToPlanner(item);
-                  onOpenChange(false);
-                }}
-                className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline cursor-pointer"
-              >
-                + Plan this Item
-              </button>
-            )}
+            <div className="flex items-center gap-3">
+              {onReportIssue && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onReportIssue(item);
+                  }}
+                  className="flex items-center gap-1 text-xs text-zinc-400 hover:text-red-400 transition-colors cursor-pointer"
+                  title="Report wrong recipe or throughput for this item"
+                >
+                  <Flag className="h-3 w-3" />
+                  <span>Report</span>
+                </button>
+              )}
+              {onAddToPlanner && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    onAddToPlanner(item);
+                    onOpenChange(false);
+                  }}
+                  className="text-xs font-semibold text-indigo-400 hover:text-indigo-300 underline cursor-pointer"
+                >
+                  + Plan this Item
+                </button>
+              )}
+            </div>
           </div>
 
           {recipes.length === 0 ? (
