@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { Check, Clock, Factory } from "lucide-react";
+import { RAW_ITEM_ICONS } from "../data/raw-item-icons";
 
 interface RecipeChooserModalProps {
   item: GameItem | null;
@@ -106,16 +107,31 @@ export function RecipeChooserModal({
                 {/* Machine and Timing */}
                 <div className="flex items-center gap-3 text-[11px] text-zinc-400">
                   <span className="flex items-center gap-1.5">
-                    {rec.buildingIcon ? (
-                      <img
-                        src={rec.buildingIcon}
-                        alt={rec.buildingRequired}
-                        className="h-3.5 w-3.5 object-contain"
-                      />
-                    ) : (
-                      <Factory className="h-3.5 w-3.5 text-zinc-500" />
-                    )}
-                    <span className="text-zinc-300">{rec.buildingRequired}</span>
+                    {(() => {
+                      const cleanName = (rec.buildingRequired || "").replace(/ Loop$/, "");
+                      const icon =
+                        rec.buildingIcon ||
+                        RAW_ITEM_ICONS[rec.buildingRequired] ||
+                        RAW_ITEM_ICONS[cleanName];
+
+                      if (icon && (icon.startsWith("/") || icon.startsWith("http"))) {
+                        return (
+                          <img
+                            src={icon}
+                            alt={rec.buildingRequired}
+                            className="h-4 w-4 object-contain pixelated shrink-0 rounded-[2px]"
+                            referrerPolicy="no-referrer"
+                            crossOrigin="anonymous"
+                            loading="lazy"
+                          />
+                        );
+                      }
+                      if (icon) {
+                        return <span className="text-xs shrink-0">{icon}</span>;
+                      }
+                      return <Factory className="h-3.5 w-3.5 text-zinc-500 shrink-0" />;
+                    })()}
+                    <span className="text-zinc-200 font-medium">{rec.buildingRequired}</span>
                   </span>
                   {rec.speedRpm && (
                     <span className="font-mono text-amber-400">

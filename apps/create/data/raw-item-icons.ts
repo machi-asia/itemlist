@@ -218,5 +218,18 @@ export const RAW_ITEM_ICONS: Record<string, string> = {
   "String": "/items/string.png",
   "Feather": "/items/feather.png",
   "Flint": "/items/flint.png",
-  "Nether Quartz": "/items/quartz.png"
+  "Nether Quartz": "/items/quartz.png",
+
+  // Create Mod Automation Machines
+  "Crushing Wheel": "/items/crushing_wheel.png",
+  "Mechanical Crafter": "/items/mechanical_crafter.png",
+  "Mechanical Press": "/items/mechanical_press.png",
+  "Mechanical Mixer": "/items/mechanical_mixer.png",
+  "Mechanical Saw": "/items/mechanical_saw.png",
+  "Encased Fan": "/items/encased_fan.png",
+  "Millstone": "/items/millstone.png",
+  "Spout": "/items/spout.png",
+  "Deployer": "/items/deployer.png",
+  "Deployer Loop": "/items/deployer.png",
+  "Mechanical Drill": "/items/mechanical_drill.png"
 };

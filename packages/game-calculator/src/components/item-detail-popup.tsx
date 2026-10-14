@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { Clock, Factory, ArrowRight, Layers, Flag } from "lucide-react";
+import { RAW_ITEM_ICONS } from "../data/raw-item-icons";
 
 interface ItemDetailPopupProps {
   item: GameItem | null;
@@ -125,9 +126,32 @@ export function ItemDetailPopup({
                       )}
                     </div>
                     <div className="flex items-center gap-3 text-zinc-400">
-                      <span className="flex items-center gap-1">
-                        <Factory className="h-3.5 w-3.5 text-zinc-500" />
-                        {recipe.buildingRequired}
+                      <span className="flex items-center gap-1.5">
+                        {(() => {
+                          const cleanName = (recipe.buildingRequired || "").replace(/ Loop$/, "");
+                          const icon =
+                            recipe.buildingIcon ||
+                            RAW_ITEM_ICONS[recipe.buildingRequired] ||
+                            RAW_ITEM_ICONS[cleanName];
+
+                          if (icon && (icon.startsWith("/") || icon.startsWith("http"))) {
+                            return (
+                              <img
+                                src={icon}
+                                alt={recipe.buildingRequired}
+                                className="h-4 w-4 object-contain pixelated shrink-0 rounded-[2px]"
+                                referrerPolicy="no-referrer"
+                                crossOrigin="anonymous"
+                                loading="lazy"
+                              />
+                            );
+                          }
+                          if (icon) {
+                            return <span className="text-xs shrink-0">{icon}</span>;
+                          }
+                          return <Factory className="h-3.5 w-3.5 text-zinc-500 shrink-0" />;
+                        })()}
+                        <span className="text-zinc-200 font-medium">{recipe.buildingRequired}</span>
                       </span>
                       {recipe.speedRpm && (
                         <span className="font-mono text-[11px] text-amber-400">
