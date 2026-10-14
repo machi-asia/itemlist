@@ -14,58 +14,61 @@ export function AdSidebar({
   slot,
   className = "",
 }: AdSidebarProps) {
-  const adRef = React.useRef<HTMLModElement | null>(null);
-  const pushedRef = React.useRef(false);
-
-  useEffect(() => {
-    if (pushedRef.current) return;
-
-    // Run asynchronously to allow DOM rendering and avoid blocking React hydration
-    const timer = setTimeout(() => {
-      const elem = adRef.current;
-      if (
-        elem &&
-        !elem.getAttribute("data-adsbygoogle-status") &&
-        !elem.hasChildNodes() &&
-        !pushedRef.current
-      ) {
-        pushedRef.current = true;
-        try {
-          if (typeof window !== "undefined") {
-            const win = window as unknown as { adsbygoogle?: unknown[] };
-            win.adsbygoogle = win.adsbygoogle || [];
-            win.adsbygoogle.push({});
-          }
-        } catch {
-          // Prevent any unhandled TagError from breaking React execution
-        }
-      }
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
+  // Construct the sandboxed HTML for the ad
+  const adHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+  </style>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${client}" crossorigin="anonymous"></script>
+</head>
+<body>
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:160px;height:600px"
+       data-ad-client="${client}"
+       ${slot ? `data-ad-slot="${slot}"` : ""}></ins>
+  <script>
+    try {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (e) {}
+  </script>
+</body>
+</html>`;
 
   return (
     <aside
-      className={`hidden xl:flex flex-col shrink-0 bg-[#0c0d10] border-l border-zinc-800/80 w-[160px] 2xl:w-[200px] z-20 ${className}`}
+      className={`hidden xl:flex flex-col shrink-0 bg-[#0c0d10] border-l border-zinc-800/80 w-[176px] 2xl:w-[200px] z-20 select-none ${className}`}
       aria-label="Advertisement Sidebar"
     >
-      <div className="flex flex-col h-full w-full p-2 overflow-hidden items-center justify-start gap-2 sticky top-4">
+      <div className="flex flex-col h-full w-full p-2 overflow-hidden items-center justify-start gap-2">
         {/* Ad Label */}
-        <div className="flex items-center justify-between w-full px-1">
+        <div className="flex items-center justify-between w-full px-1 shrink-0">
           <span className="text-[9px] uppercase tracking-wider text-zinc-600 font-mono font-medium">
             Advertisement
           </span>
         </div>
 
-        {/* Ad Banner Container (always visible skyscraper) */}
-        <div className="flex-1 w-full min-h-[600px] flex items-center justify-center rounded-md bg-zinc-950/60 border border-dashed border-zinc-800/80 overflow-hidden text-center">
-          <ins
-            ref={adRef}
-            className="adsbygoogle"
-            style={{ display: "inline-block", width: "160px", height: "600px" }}
-            data-ad-client={client}
-            {...(slot ? { "data-ad-slot": slot } : {})}
+        {/* Ad Banner Container (completely isolated in iframe sandbox) */}
+        <div className="w-[160px] h-[600px] shrink-0 rounded-md bg-zinc-950/60 border border-dashed border-zinc-800/80 overflow-hidden flex items-center justify-center">
+          <iframe
+            title="Advertisement"
+            srcDoc={adHtml}
+            width={160}
+            height={600}
+            scrolling="no"
+            tabIndex={-1}
+            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-forms"
+            className="w-[160px] h-[600px] border-0 overflow-hidden block"
           />
         </div>
       </div>
