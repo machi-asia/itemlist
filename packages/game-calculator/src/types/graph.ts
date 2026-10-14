@@ -16,6 +16,7 @@ export interface RecipeNodeData extends Record<string, unknown> {
   requestedQuantity?: number;
   isRawInput?: boolean;
   onToggleRawInput?: (itemId: string) => void;
+  onNodeClick?: (item: GameItem) => void;
   building?: string;
   buildingIcon?: string;
   buildingCount?: number;

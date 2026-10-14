@@ -55,10 +55,11 @@ export function RecipeGraphView({
           ...node.data,
           onSwitchIngredient,
           onToggleRawInput,
+          onNodeClick,
         },
       };
     });
-  }, [rawNodes, onSwitchIngredient, onToggleRawInput]);
+  }, [rawNodes, onSwitchIngredient, onToggleRawInput, onNodeClick]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);

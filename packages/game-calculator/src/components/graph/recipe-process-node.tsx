@@ -24,6 +24,7 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
     groupKey,
     isRawInput,
     onToggleRawInput,
+    onNodeClick,
   } = data;
 
   const [cycleIndex, setCycleIndex] = useState(0);
@@ -59,9 +60,18 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
 
   return (
     <div
+      onClick={(e) => {
+        // If clicking an interactive button inside (like ingredient switcher), ignore node click
+        const target = e.target as HTMLElement;
+        if (target.closest("button") || target.closest("select")) return;
+        if (onNodeClick && data.item) {
+          onNodeClick(data.item);
+        }
+      }}
       onContextMenu={(e) => {
         e.preventDefault();
-        if (onToggleRawInput) {
+        e.stopPropagation();
+        if (onToggleRawInput && data.item) {
           onToggleRawInput(data.item.id);
         }
       }}
