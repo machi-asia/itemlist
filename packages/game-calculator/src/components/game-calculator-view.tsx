@@ -48,7 +48,7 @@ export interface CalculatorTab {
 
 const DEFAULT_TAB_ID = "tab-default";
 
-function getInitialTabs(datasetId: string): { tabs: CalculatorTab[]; activeTabId: string } {
+function getDefaultTabsState(): { tabs: CalculatorTab[]; activeTabId: string } {
   const defaultTab: CalculatorTab = {
     id: DEFAULT_TAB_ID,
     name: "Production 1",
@@ -57,27 +57,6 @@ function getInitialTabs(datasetId: string): { tabs: CalculatorTab[]; activeTabId
     ingredientChoices: {},
     rawInputs: [],
   };
-
-  if (typeof window === "undefined") {
-    return { tabs: [defaultTab], activeTabId: defaultTab.id };
-  }
-
-  try {
-    const raw = localStorage.getItem(`itemlist_tabs_${datasetId}`);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed.tabs) && parsed.tabs.length > 0) {
-        const activeId =
-          parsed.activeTabId && parsed.tabs.some((t: CalculatorTab) => t.id === parsed.activeTabId)
-            ? parsed.activeTabId
-            : parsed.tabs[0].id;
-        return { tabs: parsed.tabs, activeTabId: activeId };
-      }
-    }
-  } catch (e) {
-    console.error("Failed to load saved tabs from localStorage:", e);
-  }
-
   return { tabs: [defaultTab], activeTabId: defaultTab.id };
 }
 
@@ -97,11 +76,33 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
   const [isPlannerOpen, setIsPlannerOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // Tab management state initialized lazily
-  const [tabsState, setTabsState] = useState<{ tabs: CalculatorTab[]; activeTabId: string }>(() =>
-    getInitialTabs(dataset.id)
+  // Tab management state: deterministic initial state for SSR, populated from localStorage on client mount
+  const [tabsState, setTabsState] = useState<{ tabs: CalculatorTab[]; activeTabId: string }>(
+    getDefaultTabsState
   );
+  const [hasHydrated, setHasHydrated] = useState(false);
   const { tabs, activeTabId } = tabsState;
+
+  // Hydrate from localStorage once mounted on client
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(`itemlist_tabs_${dataset.id}`);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed.tabs) && parsed.tabs.length > 0) {
+          const activeId =
+            parsed.activeTabId && parsed.tabs.some((t: CalculatorTab) => t.id === parsed.activeTabId)
+              ? parsed.activeTabId
+              : parsed.tabs[0].id;
+          setTabsState({ tabs: parsed.tabs, activeTabId: activeId });
+        }
+      }
+    } catch (e) {
+      console.error("Failed to load saved tabs from localStorage:", e);
+    } finally {
+      setHasHydrated(true);
+    }
+  }, [dataset.id]);
 
   // Active tab object
   const activeTab = useMemo(() => {
@@ -119,8 +120,9 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
   const [editingTabId, setEditingTabId] = useState<string | null>(null);
   const [editingTabName, setEditingTabName] = useState("");
 
-  // Save to localStorage whenever tabs or activeTabId changes
+  // Save to localStorage whenever tabs or activeTabId changes (only after hydration)
   useEffect(() => {
+    if (!hasHydrated) return;
     try {
       localStorage.setItem(
         `itemlist_tabs_${dataset.id}`,
@@ -129,7 +131,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
     } catch (e) {
       console.error("Failed to save tabs to localStorage:", e);
     }
-  }, [dataset.id, tabs, activeTabId]);
+  }, [dataset.id, tabs, activeTabId, hasHydrated]);
 
   // Derived or helper states for active tab
   const requests = activeTab.requests;
