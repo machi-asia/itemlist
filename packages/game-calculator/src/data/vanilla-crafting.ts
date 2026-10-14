@@ -1539,7 +1539,7 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
     id: "stripped-log",
     name: "Stripped Log",
     category: "Materials & Resources",
-    icon: "/items/stripped_oak_log__ud__je1_be1.png",
+    icon: "/items/stripped_oak_log.png",
     description: "Stripped wood log processed using an axe in a Deployer or Mechanical Saw.",
     sourceMod: "Vanilla",
     recipes: [
@@ -1630,8 +1630,8 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
         buildingRequired: "Mechanical Crafter",
         processingTimeSeconds: 2,
         ingredients: [
-          { itemId: "quartz", itemName: "Nether Quartz", amount: 1 },
-          { itemId: "redstone", itemName: "Redstone Dust", amount: 8 }
+          { itemId: "nether-quartz", itemName: "Nether Quartz", amount: 1 },
+          { itemId: "redstone-dust", itemName: "Redstone Dust", amount: 8 }
         ],
         outputs: [{ itemId: "rose-quartz", itemName: "Rose Quartz", amount: 1 }],
         sourceMod: "Create Mod"
@@ -1644,8 +1644,8 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
         processingTimeSeconds: 4,
         speedRpm: 64,
         ingredients: [
-          { itemId: "quartz", itemName: "Nether Quartz", amount: 1 },
-          { itemId: "redstone", itemName: "Redstone Dust", amount: 4 }
+          { itemId: "nether-quartz", itemName: "Nether Quartz", amount: 1 },
+          { itemId: "redstone-dust", itemName: "Redstone Dust", amount: 4 }
         ],
         outputs: [{ itemId: "rose-quartz", itemName: "Rose Quartz", amount: 1 }],
         sourceMod: "Create Mod"

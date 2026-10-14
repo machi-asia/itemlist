@@ -211,13 +211,16 @@ export function calculateRecipeGraph(
       candidateOptions: { id: string; name: string; icon: string }[];
       activeCandidateId: string;
       groupKey: string;
-    }
+    },
+    parentIngredientId?: string
   ) {
     const key = item.id;
 
     if (parentItem) {
       const edgeId = `edge-${item.id}-${parentItem.id}`;
-      const targetHandle = `handle-in-${item.id}`;
+      const targetHandle = parentIngredientId
+        ? `handle-in-${parentIngredientId}`
+        : `handle-in-${item.id}`;
       const existingEdge = edgeMap.get(edgeId);
       if (existingEdge) {
         existingEdge.ratePerMinute += requiredPerMin;
@@ -318,7 +321,7 @@ export function calculateRecipeGraph(
 
         const ingredientBatchPerRecipe = ingredient.amount;
         const subItemNeededRate = (requiredPerMin / outputBatch) * ingredientBatchPerRecipe;
-        addRequirement(subItem, subItemNeededRate, item, candCtx);
+        addRequirement(subItem, subItemNeededRate, item, candCtx, ingredient.itemId);
       }
 
       visitedPath.delete(key);

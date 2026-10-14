@@ -86,6 +86,24 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
               referrerPolicy="no-referrer"
               crossOrigin="anonymous"
               loading="lazy"
+              onError={(e) => {
+                // If local image fails or 404s, fall back to Minecraft Wiki / assets URL or generic icon
+                const target = e.currentTarget;
+                if (!target.dataset.triedFallback) {
+                  target.dataset.triedFallback = "true";
+                  const cleanName = currentLabel.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+                  target.src = `https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/${cleanName}.png`;
+                } else {
+                  target.style.display = "none";
+                  const parent = target.parentElement;
+                  if (parent && !parent.querySelector(".fallback-label")) {
+                    const span = document.createElement("span");
+                    span.className = "fallback-label text-xs font-semibold text-zinc-400";
+                    span.textContent = currentLabel.slice(0, 2).toUpperCase();
+                    parent.appendChild(span);
+                  }
+                }
+              }}
             />
           ) : (
             <span className="text-lg">{currentIcon || "📦"}</span>
@@ -204,6 +222,16 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
                       referrerPolicy="no-referrer"
                       crossOrigin="anonymous"
                       loading="lazy"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        if (!target.dataset.triedFallback) {
+                          target.dataset.triedFallback = "true";
+                          const cleanName = ing.itemName.toLowerCase().replace(/[^a-z0-9]+/g, "_");
+                          target.src = `https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/${cleanName}.png`;
+                        } else {
+                          target.style.display = "none";
+                        }
+                      }}
                     />
                   ) : (
                     <span className="text-xs leading-none shrink-0">{ing.icon || "📦"}</span>
