@@ -3489,15 +3489,43 @@ export const CREATE_DATA: GameDataset = {
       "description": "The Encased Chain Drive is a block that can transfer rotation much like the Mechanical Belt.",
       "recipes": [
         {
-          "id": "recipe-encased-chain-drive-crafter-0",
-          "name": "Mechanical Crafter - Encased Chain Drive",
+          "id": "recipe-encased-chain-drive-crafter-iron",
+          "name": "Mechanical Crafter - Encased Chain Drive (from Iron Nugget)",
           "method": "Mechanical Crafting",
           "buildingRequired": "Mechanical Crafter",
           "processingTimeSeconds": 4,
           "ingredients": [
             {
-              "itemId": "iron-nugget-zinc-nugget",
-              "itemName": "Iron Nugget; Zinc Nugget",
+              "itemId": "iron-nugget",
+              "itemName": "Iron Nugget",
+              "amount": 3
+            },
+            {
+              "itemId": "andesite-casing",
+              "itemName": "Andesite Casing",
+              "amount": 1
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "encased-chain-drive",
+              "itemName": "Encased Chain Drive",
+              "amount": 1
+            }
+          ],
+          "speedRpm": 64,
+          "sourceMod": "Create Mod"
+        },
+        {
+          "id": "recipe-encased-chain-drive-crafter-zinc",
+          "name": "Mechanical Crafter - Encased Chain Drive (from Zinc Nugget)",
+          "method": "Mechanical Crafting",
+          "buildingRequired": "Mechanical Crafter",
+          "processingTimeSeconds": 4,
+          "ingredients": [
+            {
+              "itemId": "zinc-nugget",
+              "itemName": "Zinc Nugget",
               "amount": 3
             },
             {
@@ -18538,9 +18566,9 @@ export const CREATE_DATA: GameDataset = {
       "description": "Produced by Create automation machines (Mixing).",
       "recipes": [
         {
-          "id": "recipe-crafting-andesite-alloy",
-          "name": "Crafting - Andesite Alloy",
-          "method": "Crafting",
+          "id": "recipe-crafting-andesite-alloy-iron",
+          "name": "Mechanical Crafter - Andesite Alloy (from Iron Nugget)",
+          "method": "Mechanical Crafting",
           "buildingRequired": "Mechanical Crafter",
           "processingTimeSeconds": 2,
           "speedRpm": 64,
@@ -18551,8 +18579,36 @@ export const CREATE_DATA: GameDataset = {
               "amount": 2
             },
             {
-              "itemId": "iron-nugget-zinc-nugget",
-              "itemName": "Iron Nugget;Zinc Nugget",
+              "itemId": "iron-nugget",
+              "itemName": "Iron Nugget",
+              "amount": 2
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "andesite-alloy",
+              "itemName": "Andesite Alloy",
+              "amount": 1
+            }
+          ],
+          "sourceMod": "Create Mod"
+        },
+        {
+          "id": "recipe-crafting-andesite-alloy-zinc",
+          "name": "Mechanical Crafter - Andesite Alloy (from Zinc Nugget)",
+          "method": "Mechanical Crafting",
+          "buildingRequired": "Mechanical Crafter",
+          "processingTimeSeconds": 2,
+          "speedRpm": 64,
+          "ingredients": [
+            {
+              "itemId": "andesite",
+              "itemName": "Andesite",
+              "amount": 2
+            },
+            {
+              "itemId": "zinc-nugget",
+              "itemName": "Zinc Nugget",
               "amount": 2
             }
           ],

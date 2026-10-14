@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import type { RecipeCustomNode } from "../../types/graph";
 import { cn } from "../../lib/utils";
-import { RefreshCw } from "lucide-react";
 
 export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
   const {
@@ -27,23 +26,8 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
     onNodeClick,
   } = data;
 
-  const [cycleIndex, setCycleIndex] = useState(0);
-
-  // Cycle candidate options every 1.5 seconds if multiple options exist
-  useEffect(() => {
-    if (!candidateOptions || candidateOptions.length <= 1) return;
-    const interval = setInterval(() => {
-      setCycleIndex((prev) => (prev + 1) % candidateOptions.length);
-    }, 1500);
-    return () => clearInterval(interval);
-  }, [candidateOptions]);
-
-  const activeOption = candidateOptions && candidateOptions.length > 0
-    ? candidateOptions[cycleIndex % candidateOptions.length]
-    : undefined;
-
-  const currentIcon = activeOption?.icon || itemIcon;
-  const currentLabel = activeOption?.name || label;
+  const currentIcon = itemIcon;
+  const currentLabel = label;
 
   const ingredients = data.ingredients || [];
   const hasMultipleIngredients = ingredients.length > 1;
@@ -128,11 +112,6 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
           ) : (
             <span className="text-lg">{currentIcon || "📦"}</span>
           )}
-          {candidateOptions && candidateOptions.length > 1 && (
-            <div className="absolute bottom-0 right-0 p-0.5 bg-black/70 rounded-tl-[3px] text-[7px] text-amber-400">
-              <RefreshCw className="h-2 w-2 animate-spin" style={{ animationDuration: "3s" }} />
-            </div>
-          )}
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex items-center justify-between gap-1">
@@ -163,55 +142,6 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
           </div>
         </div>
       </div>
-
-      {/* Candidate Ingredient Switcher (When an ingredient provides a choice) */}
-      {!isRawInput && candidateOptions && candidateOptions.length > 1 && onSwitchIngredient && groupKey && (
-        <div className="mt-2 pt-1.5 border-t border-zinc-800/60 flex flex-col gap-1">
-          <div className="flex items-center justify-between text-[10px] text-zinc-400 font-medium">
-            <span className="flex items-center gap-1 text-amber-300/90">
-              <RefreshCw className="h-2.5 w-2.5" />
-              <span>Choose Ingredient:</span>
-            </span>
-          </div>
-          <div className="grid grid-cols-2 gap-1">
-            {candidateOptions.map((opt) => {
-              const isSelected = activeCandidateId === opt.id;
-              const isImg = opt.icon && (opt.icon.startsWith("/") || opt.icon.startsWith("http"));
-              return (
-                <button
-                  key={opt.id}
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onSwitchIngredient(groupKey, opt.id);
-                  }}
-                  className={cn(
-                    "flex items-center gap-1.5 px-2 py-1 rounded text-[10px] font-medium transition-all text-left truncate border",
-                    isSelected
-                      ? "bg-amber-500/20 border-amber-500/60 text-amber-200 shadow-sm"
-                      : "bg-white/[0.03] border-white/5 text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.08]"
-                  )}
-                  title={`Switch to ${opt.name}`}
-                >
-                  {isImg ? (
-                    <img
-                      src={opt.icon}
-                      alt={opt.name}
-                      className="h-3 w-3 object-contain pixelated shrink-0"
-                      referrerPolicy="no-referrer"
-                      crossOrigin="anonymous"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <span className="text-[10px] shrink-0">{opt.icon || "📦"}</span>
-                  )}
-                  <span className="truncate">{opt.name}</span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      )}
 
       {/* 2. Dynamic Blender-Style Ingredient Ports List (when multiple inputs exist) */}
       {!isRawInput && hasMultipleIngredients && (
