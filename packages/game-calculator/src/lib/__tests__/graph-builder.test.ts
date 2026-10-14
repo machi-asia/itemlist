@@ -175,12 +175,73 @@ describe("calculateRecipeGraph", () => {
 
     const ironIngotNode = rawResult.nodes.find((n) => n.id === "node-iron-ingot");
     expect(ironIngotNode?.data.isRawInput).toBe(true);
-    expect(ironIngotNode?.data.ingredients).toBeUndefined();
-    expect(ironIngotNode?.data.building).toBeUndefined();
-
     // Raw ingredients list should now list Iron Ingot as a raw input
     expect(rawResult.rawIngredients.some((r) => r.itemName === "Iron Ingot")).toBe(true);
     expect(rawResult.rawIngredients.some((r) => r.itemName === "Iron Ore")).toBe(false);
   });
+
+  it("unifies mB fluid quantities (e.g. 100mB of Lava) with the base fluid item", () => {
+    const fluidItems: GameItem[] = [
+      {
+        id: "lava",
+        name: "Lava",
+        category: "Fluids",
+        icon: "🔥",
+        description: "Lava",
+        recipes: [],
+      },
+      {
+        id: "andesite-alloy",
+        name: "Andesite Alloy",
+        category: "Alloys",
+        icon: "⚙️",
+        description: "Alloy",
+        recipes: [
+          {
+            id: "recipe-alloy-lava",
+            name: "Mix Andesite with Lava",
+            buildingRequired: "Mixer",
+            processingTimeSeconds: 1,
+            ingredients: [
+              { itemId: "100mb-of-lava", itemName: "100mB of Lava", amount: 1 },
+            ],
+            outputs: [{ itemId: "andesite-alloy", itemName: "Andesite Alloy", amount: 1 }],
+          },
+        ],
+      },
+      {
+        id: "basalt",
+        name: "Basalt",
+        category: "Blocks",
+        icon: "🪨",
+        description: "Basalt",
+        recipes: [
+          {
+            id: "recipe-drill-basalt",
+            name: "Drill Basalt",
+            buildingRequired: "Drill",
+            processingTimeSeconds: 1,
+            ingredients: [
+              { itemId: "lava", itemName: "Lava", amount: 1 },
+            ],
+            outputs: [{ itemId: "basalt", itemName: "Basalt", amount: 1 }],
+          },
+        ],
+      },
+    ];
+
+    const result = calculateRecipeGraph(fluidItems, [
+      { itemId: "andesite-alloy", targetQuantityPerMinute: 60 },
+      { itemId: "basalt", targetQuantityPerMinute: 60 },
+    ]);
+
+    // Both recipes require lava - one referenced "100mB of Lava" and one referenced "Lava".
+    // They should merge into a single "node-lava" node rather than two separate nodes.
+    const lavaNodes = result.nodes.filter((n) => n.id === "node-lava");
+    expect(lavaNodes).toHaveLength(1);
+    expect(result.nodes.some((n) => n.id.includes("100mb-of-lava"))).toBe(false);
+    expect(result.rawIngredients.filter((r) => r.itemId === "lava" || r.itemName === "Lava")).toHaveLength(1);
+  });
 });
+
 

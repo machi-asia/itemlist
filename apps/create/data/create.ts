@@ -137,8 +137,7 @@ export const CREATE_DATA: GameDataset = {
               "amount": 1
             },
             {
-              "itemId": "100mb-of-lava",
-              "itemName": "100mB of Lava",
+              "itemId": "lava", "itemName": "Lava",
               "amount": 1
             }
           ],
@@ -3345,8 +3344,7 @@ export const CREATE_DATA: GameDataset = {
               "amount": 1
             },
             {
-              "itemId": "100mb-of-lava",
-              "itemName": "100mB of Lava",
+              "itemId": "lava", "itemName": "Lava",
               "amount": 1
             }
           ],
@@ -4080,8 +4078,7 @@ export const CREATE_DATA: GameDataset = {
               "amount": 1
             },
             {
-              "itemId": "100mb-of-lava",
-              "itemName": "100mB of Lava",
+              "itemId": "lava", "itemName": "Lava",
               "amount": 1
             }
           ],
@@ -18861,8 +18858,7 @@ export const CREATE_DATA: GameDataset = {
       "sourceMod": "Create Mod"
     },
     {
-      "id": "50mb-of-lava",
-      "name": "50mB of Lava",
+      "id": "lava", "name": "Lava",
       "category": "Fluids",
       "icon": "/items/lava_je19.gif",
       "description": "Produced by Create automation machines (Mixing (Super-Heated)).",
@@ -18883,8 +18879,7 @@ export const CREATE_DATA: GameDataset = {
           ],
           "outputs": [
             {
-              "itemId": "50mb-of-lava",
-              "itemName": "50mB of Lava",
+              "itemId": "lava", "itemName": "Lava",
               "amount": 1
             }
           ],
@@ -19796,8 +19791,7 @@ export const CREATE_DATA: GameDataset = {
               "amount": 1
             },
             {
-              "itemId": "250mb-of-lava",
-              "itemName": "250mB of Lava",
+              "itemId": "lava", "itemName": "Lava",
               "amount": 1
             }
           ],

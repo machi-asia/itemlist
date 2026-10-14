@@ -49,12 +49,23 @@ export function calculateRecipeGraph(
     itemMap.set(item.name.toLowerCase(), item);
   }
 
+  function normalizeFluidName(name: string): string {
+    const match = name.match(/^\d+\s*mb\s+of\s+(.+)$/i);
+    return match ? match[1]!.trim() : name;
+  }
+
   // Ensure any ingredient referenced in recipes that is not yet a top-level catalog item
   // is automatically resolved as a raw base ingredient with its proper name and icon
   for (const item of items) {
     for (const r of item.recipes || []) {
       for (const ing of r.ingredients || []) {
-        if (!itemMap.has(ing.itemId) && !itemMap.has(ing.itemName.toLowerCase())) {
+        const normName = normalizeFluidName(ing.itemName);
+        if (
+          !itemMap.has(ing.itemId) &&
+          !itemMap.has(ing.itemName.toLowerCase()) &&
+          !itemMap.has(normName.toLowerCase()) &&
+          !itemMap.has(normName.toLowerCase().replace(/[^a-z0-9]+/g, "-"))
+        ) {
           const cleanName = ing.itemName.split(";")[0]?.trim() || "";
           const directIcon =
             RAW_ITEM_ICONS[ing.itemName] ||
@@ -91,7 +102,13 @@ export function calculateRecipeGraph(
   const visitedPath = new Set<string>();
 
   function resolveItem(identifier: string): GameItem | undefined {
-    return itemMap.get(identifier) || itemMap.get(identifier.toLowerCase());
+    const direct = itemMap.get(identifier) || itemMap.get(identifier.toLowerCase());
+    if (direct) return direct;
+    const normalized = normalizeFluidName(identifier);
+    if (normalized !== identifier) {
+      return itemMap.get(normalized) || itemMap.get(normalized.toLowerCase()) || itemMap.get(normalized.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
+    }
+    return undefined;
   }
 
   function resolveMachineIcon(buildingName?: string): string | undefined {
