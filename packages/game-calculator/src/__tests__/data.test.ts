@@ -78,6 +78,21 @@ describe("Game Datasets", () => {
     const polishedRoseQuartz = CREATE_DATA.items.find((i: GameItem) => i.id === "polished-rose-quartz");
     expect(polishedRoseQuartz).toBeDefined();
     expect(polishedRoseQuartz?.recipes?.some((r: Recipe) => r.buildingRequired === "Deployer")).toBe(true);
+
+    // Verify Cobblestone and Basalt Mechanical Drill recipes
+    const cobblestone = CREATE_DATA.items.find((i: GameItem) => i.id === "cobblestone");
+    expect(cobblestone).toBeDefined();
+    const cobbleDrill = cobblestone?.recipes?.find((r: Recipe) => r.buildingRequired === "Mechanical Drill");
+    expect(cobbleDrill).toBeDefined();
+    expect(cobbleDrill?.processingTimeSeconds).toBe(0.67);
+    expect(cobbleDrill?.ingredients.map((ing) => ing.itemId).sort()).toEqual(["lava", "water"]);
+
+    const basalt = CREATE_DATA.items.find((i: GameItem) => i.id === "basalt");
+    expect(basalt).toBeDefined();
+    const basaltDrill = basalt?.recipes?.find((r: Recipe) => r.buildingRequired === "Mechanical Drill");
+    expect(basaltDrill).toBeDefined();
+    expect(basaltDrill?.processingTimeSeconds).toBe(0.44);
+    expect(basaltDrill?.ingredients.map((ing) => ing.itemId).sort()).toEqual(["blue-ice", "lava", "soul-soil"]);
   });
 
   it("validates RimWorld dataset integrity", () => {

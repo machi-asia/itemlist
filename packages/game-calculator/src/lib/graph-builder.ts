@@ -100,6 +100,7 @@ export function calculateRecipeGraph(
     const direct = resolveItem(cleanName) || resolveItem(cleanName.toLowerCase().replace(/[^a-z0-9]+/g, "-"));
     if (direct?.icon && (direct.icon.startsWith("http") || direct.icon.startsWith("/"))) return direct.icon;
     const lower = cleanName.toLowerCase();
+    if (lower.includes("drill")) return resolveItem("mechanical-drill")?.icon;
     if (lower.includes("crush")) return resolveItem("crushing-wheel")?.icon;
     if (lower.includes("crafter") || lower.includes("craft")) return resolveItem("mechanical-crafter")?.icon;
     if (lower.includes("press")) return resolveItem("mechanical-press")?.icon;

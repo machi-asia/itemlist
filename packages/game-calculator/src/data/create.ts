@@ -9269,8 +9269,36 @@ export const CREATE_DATA: GameDataset = {
       "name": "Cobblestone",
       "category": "Materials & Resources",
       "icon": "/items/cobblestone_je5_be3.png",
-      "description": "Produced by Create automation machines (Crushing, Milling).",
+      "description": "Produced by Create automation machines (Mechanical Drill generator, Crushing, Milling).",
       "recipes": [
+        {
+          "id": "recipe-mechanical-drill-cobblestone-gen",
+          "name": "Mechanical Drill (Cobblestone Generator)",
+          "method": "Drilling",
+          "buildingRequired": "Mechanical Drill",
+          "processingTimeSeconds": 0.67,
+          "speedRpm": 128,
+          "ingredients": [
+            {
+              "itemId": "water",
+              "itemName": "Water",
+              "amount": 1
+            },
+            {
+              "itemId": "lava",
+              "itemName": "Lava",
+              "amount": 1
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "cobblestone",
+              "itemName": "Cobblestone",
+              "amount": 1
+            }
+          ],
+          "sourceMod": "Create Mod"
+        },
         {
           "id": "recipe-crushing-andesite-2",
           "name": "Crushing Wheels (from Andesite)",

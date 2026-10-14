@@ -1674,5 +1674,30 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
         sourceMod: "Create Mod"
       }
     ]
+  },
+  {
+    id: "basalt",
+    name: "Basalt",
+    category: "Materials & Resources",
+    icon: "/items/basalt.png",
+    description: "Igneous rock generated when lava flows above soul soil adjacent to blue ice, broken continuously by a Mechanical Drill.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-mechanical-drill-basalt-gen",
+        name: "Mechanical Drill (Basalt Generator)",
+        method: "Drilling",
+        buildingRequired: "Mechanical Drill",
+        processingTimeSeconds: 0.44,
+        speedRpm: 128,
+        ingredients: [
+          { itemId: "blue-ice", itemName: "Blue Ice", amount: 1 },
+          { itemId: "lava", itemName: "Lava", amount: 1 },
+          { itemId: "soul-soil", itemName: "Soul Soil", amount: 1 }
+        ],
+        outputs: [{ itemId: "basalt", itemName: "Basalt", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
   }
 ];
