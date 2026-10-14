@@ -7,6 +7,8 @@ export const RAW_ITEM_ICONS: Record<string, string> = {
   "Stick": "/items/stick.png",
   "Andesite Casing": "/items/andesite_casing_2.png",
   "Iron Nugget;Zinc Nugget": "/items/iron_nugget.png",
+  "Iron Nugget": "/items/iron_nugget.png",
+  "Zinc Nugget": "/items/zinc_nugget.png",
   "100mB of Lava": "/items/lava_bucket.png",
   "Dried Kelp": "/items/dried_kelp.png",
   "Copper Ingot": "/items/copper_ingot.png",

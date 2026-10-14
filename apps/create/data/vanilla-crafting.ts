@@ -1534,5 +1534,145 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
         sourceMod: "Create Mod"
       }
     ]
+  },
+  {
+    id: "stripped-log",
+    name: "Stripped Log",
+    category: "Materials & Resources",
+    icon: "/items/stripped_oak_log__ud__je1_be1.png",
+    description: "Stripped wood log processed using an axe in a Deployer or Mechanical Saw.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-deploying-stripped-log",
+        name: "Deployer (from Oak Log)",
+        method: "Manual Application",
+        buildingRequired: "Deployer",
+        processingTimeSeconds: 1,
+        ingredients: [
+          { itemId: "oak-log", itemName: "Oak Log", amount: 1 },
+          { itemId: "iron-axe", itemName: "Iron Axe", amount: 1 }
+        ],
+        outputs: [{ itemId: "stripped-log", itemName: "Stripped Log", amount: 1 }],
+        sourceMod: "Create Mod"
+      },
+      {
+        id: "recipe-saw-stripped-log",
+        name: "Mechanical Saw - Stripped Log",
+        method: "Sawing",
+        buildingRequired: "Mechanical Saw",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "any-log", itemName: "Any Log", amount: 1 }],
+        outputs: [{ itemId: "stripped-log", itemName: "Stripped Log", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "stripped-wood",
+    name: "Stripped Wood",
+    category: "Materials & Resources",
+    icon: "/items/stripped_oak_wood__ud__je1_be1.png",
+    description: "Stripped wood with 6-sided bark stripped using an axe in a Deployer.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-deploying-stripped-wood",
+        name: "Deployer (from Oak Wood)",
+        method: "Manual Application",
+        buildingRequired: "Deployer",
+        processingTimeSeconds: 1,
+        ingredients: [
+          { itemId: "oak-wood", itemName: "Oak Wood", amount: 1 },
+          { itemId: "iron-axe", itemName: "Iron Axe", amount: 1 }
+        ],
+        outputs: [{ itemId: "stripped-wood", itemName: "Stripped Wood", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "sand-paper",
+    name: "Sand Paper",
+    category: "Tools & Equipment",
+    icon: "/items/sand_paper.png",
+    description: "Used for polishing items such as Rose Quartz, either manually or via Deployer.",
+    sourceMod: "Create Mod",
+    recipes: [
+      {
+        id: "recipe-crafting-sand-paper",
+        name: "Crafting - Sand Paper",
+        method: "Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        ingredients: [
+          { itemId: "paper", itemName: "Paper", amount: 1 },
+          { itemId: "sand", itemName: "Sand", amount: 1 }
+        ],
+        outputs: [{ itemId: "sand-paper", itemName: "Sand Paper", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "rose-quartz",
+    name: "Rose Quartz",
+    category: "Materials & Resources",
+    icon: "/items/rose_quartz.png",
+    description: "Crystalline composite formed by crafting Nether Quartz with Redstone Dust, or mixing them.",
+    sourceMod: "Create Mod",
+    recipes: [
+      {
+        id: "recipe-crafting-rose-quartz",
+        name: "Crafting - Rose Quartz",
+        method: "Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        ingredients: [
+          { itemId: "quartz", itemName: "Nether Quartz", amount: 1 },
+          { itemId: "redstone", itemName: "Redstone Dust", amount: 8 }
+        ],
+        outputs: [{ itemId: "rose-quartz", itemName: "Rose Quartz", amount: 1 }],
+        sourceMod: "Create Mod"
+      },
+      {
+        id: "recipe-mixing-rose-quartz",
+        name: "Mechanical Mixer - Rose Quartz",
+        method: "Mixing",
+        buildingRequired: "Mechanical Mixer",
+        processingTimeSeconds: 4,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "quartz", itemName: "Nether Quartz", amount: 1 },
+          { itemId: "redstone", itemName: "Redstone Dust", amount: 4 }
+        ],
+        outputs: [{ itemId: "rose-quartz", itemName: "Rose Quartz", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
+  },
+  {
+    id: "polished-rose-quartz",
+    name: "Polished Rose Quartz",
+    category: "Materials & Resources",
+    icon: "/items/polished_rose_quartz.png",
+    description: "Rose Quartz polished with Sand Paper using a Deployer, essential for Electron Tubes.",
+    sourceMod: "Create Mod",
+    recipes: [
+      {
+        id: "recipe-deploying-polished-rose-quartz",
+        name: "Deployer (Polishing Rose Quartz)",
+        method: "Manual Application",
+        buildingRequired: "Deployer",
+        processingTimeSeconds: 1,
+        ingredients: [
+          { itemId: "rose-quartz", itemName: "Rose Quartz", amount: 1 },
+          { itemId: "sand-paper", itemName: "Sand Paper", amount: 1 }
+        ],
+        outputs: [{ itemId: "polished-rose-quartz", itemName: "Polished Rose Quartz", amount: 1 }],
+        sourceMod: "Create Mod"
+      }
+    ]
   }
 ];

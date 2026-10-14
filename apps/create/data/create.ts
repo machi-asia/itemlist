@@ -119,34 +119,6 @@ export const CREATE_DATA: GameDataset = {
           "sourceMod": "Vanilla"
         },
         {
-          "id": "recipe-andesite-crafter-1",
-          "name": "Mechanical Crafter - Andesite",
-          "method": "Mechanical Crafting",
-          "buildingRequired": "Mechanical Crafter",
-          "processingTimeSeconds": 4,
-          "ingredients": [
-            {
-              "itemId": "andesite",
-              "itemName": "Andesite",
-              "amount": 2
-            },
-            {
-              "itemId": "iron-nugget-zinc-nugget",
-              "itemName": "Iron Nugget;Zinc Nugget",
-              "amount": 2
-            }
-          ],
-          "outputs": [
-            {
-              "itemId": "andesite-alloy",
-              "itemName": "Andesite Alloy",
-              "amount": 1
-            }
-          ],
-          "speedRpm": 64,
-          "sourceMod": "Vanilla"
-        },
-        {
           "id": "recipe-press-andesite-11",
           "name": "Mechanical Press (Compacting) (from Flint)",
           "method": "Compacting",
@@ -18538,8 +18510,36 @@ export const CREATE_DATA: GameDataset = {
       "description": "Produced by Create automation machines (Mixing).",
       "recipes": [
         {
+          "id": "recipe-crafting-andesite-alloy",
+          "name": "Crafting - Andesite Alloy",
+          "method": "Crafting",
+          "buildingRequired": "Mechanical Crafter",
+          "processingTimeSeconds": 2,
+          "speedRpm": 64,
+          "ingredients": [
+            {
+              "itemId": "andesite",
+              "itemName": "Andesite",
+              "amount": 2
+            },
+            {
+              "itemId": "iron-nugget-zinc-nugget",
+              "itemName": "Iron Nugget;Zinc Nugget",
+              "amount": 2
+            }
+          ],
+          "outputs": [
+            {
+              "itemId": "andesite-alloy",
+              "itemName": "Andesite Alloy",
+              "amount": 1
+            }
+          ],
+          "sourceMod": "Create Mod"
+        },
+        {
           "id": "recipe-mixer-andesite-alloy-1",
-          "name": "Mechanical Mixer - Andesite Alloy (from Andesite)",
+          "name": "Mechanical Mixer - Andesite Alloy (from Andesite & Iron Nugget)",
           "method": "Mixing",
           "buildingRequired": "Mechanical Mixer",
           "processingTimeSeconds": 2,
@@ -18567,7 +18567,7 @@ export const CREATE_DATA: GameDataset = {
         },
         {
           "id": "recipe-mixer-andesite-alloy-2",
-          "name": "Mechanical Mixer - Andesite Alloy (from Andesite)",
+          "name": "Mechanical Mixer - Andesite Alloy (from Andesite & Zinc Nugget)",
           "method": "Mixing",
           "buildingRequired": "Mechanical Mixer",
           "processingTimeSeconds": 2,
