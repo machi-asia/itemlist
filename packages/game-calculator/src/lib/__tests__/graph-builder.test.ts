@@ -157,6 +157,10 @@ describe("calculateRecipeGraph", () => {
       expect.arrayContaining(["node-iron-sheet", "node-iron-ingot", "node-iron-ore"])
     );
 
+    // In the normal graph, iron-ore has no recipes so it should automatically be marked isRawInput: true
+    const ironOreNode = normalResult.nodes.find((n) => n.id === "node-iron-ore");
+    expect(ironOreNode?.data.isRawInput).toBe(true);
+
     // Setting iron-ingot as raw input should terminate its upstream recipes (so no iron-ore node)
     const rawResult = calculateRecipeGraph(
       MOCK_ITEMS,

@@ -446,6 +446,9 @@ export function calculateRecipeGraph(
       };
     });
 
+    const isNaturallyRaw = !acc.recipe || !acc.recipe.ingredients || acc.recipe.ingredients.length === 0;
+    const isRawInput = rawInputSet.has(acc.item.id) || isNaturallyRaw;
+
     const data: RecipeNodeData = {
       item: acc.item,
       label: acc.item.name,
@@ -453,9 +456,9 @@ export function calculateRecipeGraph(
       outputPerMinute: Number(acc.demandedOutputPerMinute.toFixed(2)),
       isRequested: acc.requestedDirectly > 0,
       requestedQuantity: acc.requestedDirectly > 0 ? acc.requestedDirectly : undefined,
-      isRawInput: rawInputSet.has(acc.item.id),
-      building: acc.buildingName,
-      buildingIcon: acc.buildingIcon || resolveMachineIcon(acc.buildingName),
+      isRawInput,
+      building: isRawInput ? undefined : acc.buildingName,
+      buildingIcon: isRawInput ? undefined : (acc.buildingIcon || resolveMachineIcon(acc.buildingName)),
       pairedCatalystName: acc.pairedCatalystName,
       pairedCatalystIcon: acc.pairedCatalystIcon,
       buildingCount: acc.buildingCount,
