@@ -12,9 +12,25 @@
     "rimworld": {
       "root": "apps/rimworld",
       "framework": "nextjs"
+    },
+    "admin": {
+      "root": "apps/admin",
+      "framework": "nextjs"
     }
   },
   "rewrites": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "admin.itemlist.online"
+        }
+      ],
+      "destination": {
+        "service": "admin"
+      }
+    },
     {
       "source": "/(.*)",
       "has": [
@@ -37,6 +53,12 @@
       ],
       "destination": {
         "service": "rimworld"
+      }
+    },
+    {
+      "source": "/admin(/.*)?",
+      "destination": {
+        "service": "admin"
       }
     },
     {
