@@ -63,11 +63,9 @@ export function AdSidebar({
           <ins
             ref={adRef}
             className="adsbygoogle"
-            style={{ display: "block", width: "100%", height: "100%", minHeight: "600px" }}
+            style={{ display: "inline-block", width: "160px", height: "600px" }}
             data-ad-client={client}
             {...(slot ? { "data-ad-slot": slot } : {})}
-            data-ad-format="vertical"
-            data-full-width-responsive="true"
           />
         </div>
       </div>
