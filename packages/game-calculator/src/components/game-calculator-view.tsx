@@ -58,6 +58,21 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
   // Intermediate ingredient choice overrides: groupKey/itemId -> chosenCandidateOptionId
   const [ingredientChoices, setIngredientChoices] = useState<Record<string, string>>({});
 
+  // Nodes explicitly marked as raw input (won't expand upstream recipes or use ingredients)
+  const [rawInputs, setRawInputs] = useState<Set<string>>(new Set());
+
+  const handleToggleRawInput = useCallback((itemId: string) => {
+    setRawInputs((prev) => {
+      const next = new Set(prev);
+      if (next.has(itemId)) {
+        next.delete(itemId);
+      } else {
+        next.add(itemId);
+      }
+      return next;
+    });
+  }, []);
+
   const handleSwitchIngredient = useCallback((groupKey: string, chosenOptionId: string) => {
     setIngredientChoices((prev) => ({
       ...prev,
@@ -178,10 +193,10 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
     );
   }, []);
 
-  // Compute graph calculation with recipeOverrides and ingredientChoices
+  // Compute graph calculation with recipeOverrides, ingredientChoices, and rawInputs
   const graphCalculation = useMemo(() => {
-    return calculateRecipeGraph(dataset.items, requests, recipeOverrides, ingredientChoices);
-  }, [dataset.items, requests, recipeOverrides, ingredientChoices]);
+    return calculateRecipeGraph(dataset.items, requests, recipeOverrides, ingredientChoices, rawInputs);
+  }, [dataset.items, requests, recipeOverrides, ingredientChoices, rawInputs]);
 
   const totalMachineCount = useMemo(() => {
     return Object.values(graphCalculation.totalBuildings).reduce((sum, count) => sum + count, 0);
@@ -612,6 +627,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
           <RecipeGraphView
             calculation={graphCalculation}
             onSwitchIngredient={handleSwitchIngredient}
+            onToggleRawInput={handleToggleRawInput}
             onNodeClick={(item) => {
               const availableRecipes = item.recipes || (item.recipe ? [item.recipe] : []);
               if (availableRecipes.length > 1) {

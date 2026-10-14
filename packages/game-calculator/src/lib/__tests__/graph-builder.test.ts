@@ -146,4 +146,37 @@ describe("calculateRecipeGraph", () => {
     expect(zincResult.nodes.some((n) => n.id === "node-iron-ingot")).toBe(false);
     expect(zincResult.rawIngredients.some((r) => r.itemName === "Zinc Ore")).toBe(true);
   });
+
+  it("marks a node as raw input and terminates upstream recipe expansion when included in rawInputs", () => {
+    // Normal graph: iron-sheet -> iron-ingot -> iron-ore (3 tiers, 3 nodes)
+    const normalResult = calculateRecipeGraph(MOCK_ITEMS, [
+      { itemId: "iron-sheet", targetQuantityPerMinute: 60 },
+    ]);
+    expect(normalResult.nodes).toHaveLength(3);
+    expect(normalResult.nodes.map((n) => n.id)).toEqual(
+      expect.arrayContaining(["node-iron-sheet", "node-iron-ingot", "node-iron-ore"])
+    );
+
+    // Setting iron-ingot as raw input should terminate its upstream recipes (so no iron-ore node)
+    const rawResult = calculateRecipeGraph(
+      MOCK_ITEMS,
+      [{ itemId: "iron-sheet", targetQuantityPerMinute: 60 }],
+      undefined,
+      undefined,
+      new Set(["iron-ingot"])
+    );
+
+    expect(rawResult.nodes).toHaveLength(2); // iron-sheet and iron-ingot
+    expect(rawResult.nodes.some((n) => n.id === "node-iron-ore")).toBe(false);
+
+    const ironIngotNode = rawResult.nodes.find((n) => n.id === "node-iron-ingot");
+    expect(ironIngotNode?.data.isRawInput).toBe(true);
+    expect(ironIngotNode?.data.ingredients).toBeUndefined();
+    expect(ironIngotNode?.data.building).toBeUndefined();
+
+    // Raw ingredients list should now list Iron Ingot as a raw input
+    expect(rawResult.rawIngredients.some((r) => r.itemName === "Iron Ingot")).toBe(true);
+    expect(rawResult.rawIngredients.some((r) => r.itemName === "Iron Ore")).toBe(false);
+  });
 });
+

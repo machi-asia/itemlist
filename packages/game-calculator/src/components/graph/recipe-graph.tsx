@@ -23,6 +23,7 @@ interface RecipeGraphViewProps {
   calculation: GraphCalculationResult;
   onNodeClick?: (item: GameItem) => void;
   onSwitchIngredient?: (groupKey: string, chosenOptionId: string) => void;
+  onToggleRawInput?: (itemId: string) => void;
 }
 
 const nodeTypes: NodeTypes = {
@@ -33,7 +34,12 @@ const edgeTypes: EdgeTypes = {
   conveyorBelt: ConveyorBeltEdge,
 };
 
-export function RecipeGraphView({ calculation, onNodeClick, onSwitchIngredient }: RecipeGraphViewProps) {
+export function RecipeGraphView({
+  calculation,
+  onNodeClick,
+  onSwitchIngredient,
+  onToggleRawInput,
+}: RecipeGraphViewProps) {
   const { nodes: rawNodes, edges: initialEdges, totalBuildings, rawIngredients } = calculation;
 
   // Track user-dragged or customized positions across recalculations
@@ -48,10 +54,11 @@ export function RecipeGraphView({ calculation, onNodeClick, onSwitchIngredient }
         data: {
           ...node.data,
           onSwitchIngredient,
+          onToggleRawInput,
         },
       };
     });
-  }, [rawNodes, onSwitchIngredient]);
+  }, [rawNodes, onSwitchIngredient, onToggleRawInput]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -205,6 +212,12 @@ export function RecipeGraphView({ calculation, onNodeClick, onSwitchIngredient }
           onNodeClick={(_e, node) => {
             if (onNodeClick && (node as RecipeCustomNode).data?.item) {
               onNodeClick((node as RecipeCustomNode).data.item as GameItem);
+            }
+          }}
+          onNodeContextMenu={(e, node) => {
+            e.preventDefault();
+            if (onToggleRawInput && (node as RecipeCustomNode).data?.item) {
+              onToggleRawInput((node as RecipeCustomNode).data.item.id);
             }
           }}
           fitView

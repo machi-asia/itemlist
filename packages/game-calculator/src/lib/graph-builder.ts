@@ -29,12 +29,20 @@ interface InternalNodeAccumulator {
   groupKey?: string;
 }
 
+function useRawInputSet(rawInputs?: Set<string> | string[]): Set<string> {
+  if (!rawInputs) return new Set();
+  if (rawInputs instanceof Set) return rawInputs;
+  return new Set(rawInputs);
+}
+
 export function calculateRecipeGraph(
   items: GameItem[],
   requests: ProductionRequest[],
   recipeOverrides?: Record<string, string>,
-  ingredientChoices?: Record<string, string>
+  ingredientChoices?: Record<string, string>,
+  rawInputs?: Set<string> | string[]
 ): GraphCalculationResult {
+  const rawInputSet = useRawInputSet(rawInputs);
   const itemMap = new Map<string, GameItem>();
   for (const item of items) {
     itemMap.set(item.id, item);
@@ -247,8 +255,9 @@ export function calculateRecipeGraph(
         existing.groupKey = candidateContext.groupKey;
       }
     } else {
+      const isRaw = rawInputSet.has(item.id);
       const overrideId = requestRecipeIds.get(key) ?? recipeOverrides?.[key];
-      const recipe = pickRecipe(item, overrideId);
+      const recipe = isRaw ? undefined : pickRecipe(item, overrideId);
       const bInfo = resolveBuildingInfo(recipe);
       const nodeAcc: InternalNodeAccumulator = {
         item,
@@ -267,7 +276,8 @@ export function calculateRecipeGraph(
       nodeAccumulators.set(key, nodeAcc);
     }
 
-    const accRecipe = nodeAccumulators.get(key)?.recipe;
+    const isRaw = rawInputSet.has(item.id);
+    const accRecipe = isRaw ? undefined : nodeAccumulators.get(key)?.recipe;
     if (accRecipe && accRecipe.ingredients.length > 0) {
       visitedPath.add(key);
 
@@ -442,6 +452,7 @@ export function calculateRecipeGraph(
       outputPerMinute: Number(acc.demandedOutputPerMinute.toFixed(2)),
       isRequested: acc.requestedDirectly > 0,
       requestedQuantity: acc.requestedDirectly > 0 ? acc.requestedDirectly : undefined,
+      isRawInput: rawInputSet.has(acc.item.id),
       building: acc.buildingName,
       buildingIcon: acc.buildingIcon || resolveMachineIcon(acc.buildingName),
       pairedCatalystName: acc.pairedCatalystName,

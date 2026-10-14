@@ -22,6 +22,8 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
     activeCandidateId,
     onSwitchIngredient,
     groupKey,
+    isRawInput,
+    onToggleRawInput,
   } = data;
 
   const [cycleIndex, setCycleIndex] = useState(0);
@@ -57,15 +59,23 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
 
   return (
     <div
+      onContextMenu={(e) => {
+        e.preventDefault();
+        if (onToggleRawInput) {
+          onToggleRawInput(data.item.id);
+        }
+      }}
       className={cn(
-        "relative flex flex-col justify-between w-[270px] rounded-lg p-3 transition-all backdrop-blur-sm border shadow-lg",
-        isRequested
+        "relative flex flex-col justify-between w-[270px] rounded-lg p-3 transition-all backdrop-blur-sm border shadow-lg cursor-pointer select-none",
+        isRawInput
+          ? "bg-sky-950/40 border-sky-500/70 ring-2 ring-sky-500/50 shadow-sky-500/20"
+          : isRequested
           ? "bg-indigo-950/40 border-indigo-500/60 ring-1 ring-indigo-500/40"
           : "bg-zinc-900/90 border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900"
       )}
     >
-      {/* 1. Left Input Socket(s) */}
-      {!hasMultipleIngredients ? (
+      {/* 1. Left Input Socket(s) - Hidden when set as raw input */}
+      {!isRawInput && !hasMultipleIngredients ? (
         // Single default target handle when only 1 or 0 ingredients
         <Handle
           type="target"
@@ -125,6 +135,11 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
                   {sourceMod}
                 </span>
               )}
+              {isRawInput && (
+                <span className="rounded bg-sky-500/20 px-1 py-0.2 text-[9px] font-semibold text-sky-300 border border-sky-500/40">
+                  Raw Input
+                </span>
+              )}
               {isRequested && (
                 <span className="rounded bg-indigo-500/20 px-1 py-0.2 text-[9px] font-semibold text-indigo-300">
                   Target
@@ -140,7 +155,7 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
       </div>
 
       {/* Candidate Ingredient Switcher (When an ingredient provides a choice) */}
-      {candidateOptions && candidateOptions.length > 1 && onSwitchIngredient && groupKey && (
+      {!isRawInput && candidateOptions && candidateOptions.length > 1 && onSwitchIngredient && groupKey && (
         <div className="mt-2 pt-1.5 border-t border-zinc-800/60 flex flex-col gap-1">
           <div className="flex items-center justify-between text-[10px] text-zinc-400 font-medium">
             <span className="flex items-center gap-1 text-amber-300/90">
@@ -189,7 +204,7 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
       )}
 
       {/* 2. Dynamic Blender-Style Ingredient Ports List (when multiple inputs exist) */}
-      {hasMultipleIngredients && (
+      {!isRawInput && hasMultipleIngredients && (
         <div className="mt-2.5 pt-2 border-t border-zinc-800/60 flex flex-col gap-1.5">
           {ingredients.map((ing, idx) => {
             const socketColor = SOCKET_COLORS[idx % SOCKET_COLORS.length]!;
@@ -252,7 +267,7 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
       )}
 
       {/* 3. Facility / Machine Bar */}
-      {building && (
+      {!isRawInput && building && (
         <div className="mt-2 flex items-center justify-between border-t border-zinc-800/40 pt-1.5 text-[11px]">
           <div className="flex items-center gap-1.5 min-w-0 flex-1">
             <div className="flex items-center gap-1 shrink-0">

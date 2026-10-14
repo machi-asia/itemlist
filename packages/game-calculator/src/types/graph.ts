@@ -14,6 +14,8 @@ export interface RecipeNodeData extends Record<string, unknown> {
   outputPerMinute: number;
   isRequested: boolean;
   requestedQuantity?: number;
+  isRawInput?: boolean;
+  onToggleRawInput?: (itemId: string) => void;
   building?: string;
   buildingIcon?: string;
   buildingCount?: number;
