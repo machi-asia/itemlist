@@ -962,21 +962,23 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
           )}
 
           {/* Graph View */}
-          <RecipeGraphView
-            key={activeTabId}
-            calculation={graphCalculation}
-            initialPositions={nodePositions}
-            onPositionsChange={handleNodePositionsChange}
-            onSwitchIngredient={handleSwitchIngredient}
-            onToggleRawInput={handleToggleRawInput}
-            onNodeClick={(item) => {
-              const availableRecipes = item.recipes || (item.recipe ? [item.recipe] : []);
-              if (availableRecipes.length > 1) {
-                setChooserMode("swap");
-                setChooserItem(item);
-              }
-            }}
-          />
+          <div className="flex-1 min-h-0 w-full relative flex flex-col">
+            <RecipeGraphView
+              key={activeTabId}
+              calculation={graphCalculation}
+              initialPositions={nodePositions}
+              onPositionsChange={handleNodePositionsChange}
+              onSwitchIngredient={handleSwitchIngredient}
+              onToggleRawInput={handleToggleRawInput}
+              onNodeClick={(item) => {
+                const availableRecipes = item.recipes || (item.recipe ? [item.recipe] : []);
+                if (availableRecipes.length > 1) {
+                  setChooserMode("swap");
+                  setChooserItem(item);
+                }
+              }}
+            />
+          </div>
         </main>
       </div>
 
