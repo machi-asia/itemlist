@@ -5,7 +5,7 @@ export interface AppConfig {
   appUrl: string;
 }
 
-export type AppId = "home" | "create" | "rimworld";
+export type AppId = "home" | "create" | "rimworld" | "admin";
 
 export const APPS_CONFIG: Record<AppId, AppConfig> = {
   home: {
@@ -26,6 +26,17 @@ export const APPS_CONFIG: Record<AppId, AppConfig> = {
     underDevelopment: true,
     appUrl: "https://rimworld.itemlist.online",
   },
+  admin: {
+    id: "admin",
+    name: "Admin Portal",
+    underDevelopment: false,
+    appUrl: "https://admin.itemlist.online",
+  },
+};
+
+export const SUPABASE_CONFIG = {
+  url: "https://zyatzdkapdqngwyhiqqn.supabase.co",
+  anonKey: "sb_publishable_xwwMB4HT0zXrWgEhPN63yA_xBNK00YR",
 };
 
 export function isAppUnderDevelopment(appId: AppId | string): boolean {

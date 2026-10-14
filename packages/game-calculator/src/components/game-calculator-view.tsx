@@ -43,6 +43,7 @@ import {
   Check,
 } from "lucide-react";
 import { isAppUnderDevelopment } from "@repo/app-config";
+import { fetchCommunityOverrides, type CommunityOverride } from "../lib/supabase-client";
 
 interface GameCalculatorViewProps {
   dataset: GameDataset;
@@ -115,6 +116,74 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
       setHasHydrated(true);
     }
   }, [dataset.id]);
+
+  // Community consensus overrides (applied when >= 3 distinct reports match)
+  const [communityOverrides, setCommunityOverrides] = useState<CommunityOverride[]>([]);
+
+  useEffect(() => {
+    let isMounted = true;
+    fetchCommunityOverrides(dataset.id).then((overrides) => {
+      if (isMounted && overrides && overrides.length > 0) {
+        setCommunityOverrides(overrides);
+      }
+    });
+    return () => {
+      isMounted = false;
+    };
+  }, [dataset.id]);
+
+  // Active items: base dataset items merged with community consensus overrides
+  const activeItems = useMemo(() => {
+    if (!communityOverrides || communityOverrides.length === 0) {
+      return dataset.items;
+    }
+
+    const overrideMap = new Map<string, CommunityOverride>();
+    for (const ov of communityOverrides) {
+      overrideMap.set(ov.item_id, ov);
+    }
+
+    return dataset.items.map((item) => {
+      const ov = overrideMap.get(item.id);
+      if (!ov || !ov.corrections) return item;
+
+      const cor = ov.corrections;
+      const updatedRecipes = (item.recipes || []).map((rec, idx) => {
+        // Override primary recipe properties
+        if (idx === 0) {
+          const updatedIngs =
+            cor.ingredients && cor.ingredients.length > 0
+              ? cor.ingredients.map((ing) => ({
+                  itemId: ing.name.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+                  itemName: ing.name,
+                  amount: ing.amount,
+                }))
+              : rec.ingredients;
+
+          return {
+            ...rec,
+            method: cor.recipeMethod || rec.method,
+            buildingRequired: cor.machineRequired || rec.buildingRequired,
+            processingTimeSeconds:
+              cor.processingTimeSeconds !== undefined ? cor.processingTimeSeconds : rec.processingTimeSeconds,
+            speedRpm: cor.speedRpm !== undefined ? cor.speedRpm : rec.speedRpm,
+            ingredients: updatedIngs,
+            outputs:
+              cor.outputAmount !== undefined && rec.outputs && rec.outputs.length > 0
+                ? [{ ...rec.outputs[0]!, amount: cor.outputAmount }]
+                : rec.outputs,
+          };
+        }
+        return rec;
+      });
+
+      return {
+        ...item,
+        icon: cor.iconUrl || item.icon,
+        recipes: updatedRecipes,
+      };
+    });
+  }, [dataset.items, communityOverrides]);
 
   // Active tab object
   const activeTab = useMemo(() => {
@@ -316,7 +385,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
     const groups: { category: string; items: GameItem[] }[] = [];
     const map = new Map<string, GameItem[]>();
 
-    for (const item of dataset.items) {
+    for (const item of activeItems) {
       const match =
         !query ||
         item.name.toLowerCase().includes(query) ||
@@ -335,7 +404,7 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
       groups.push({ category: cat, items: map.get(cat)! });
     }
     return groups;
-  }, [dataset.items, search]);
+  }, [activeItems, search]);
 
   const totalFilteredCount = useMemo(() => {
     return categorizedItems.reduce((sum, g) => sum + g.items.length, 0);
@@ -436,10 +505,10 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
     );
   }, []);
 
-  // Compute graph calculation with recipeOverrides, ingredientChoices, and rawInputs
+  // Compute graph calculation with recipeOverrides, ingredientChoices, rawInputs, and community overrides
   const graphCalculation = useMemo(() => {
-    return calculateRecipeGraph(dataset.items, requests, recipeOverrides, ingredientChoices, rawInputs);
-  }, [dataset.items, requests, recipeOverrides, ingredientChoices, rawInputs]);
+    return calculateRecipeGraph(activeItems, requests, recipeOverrides, ingredientChoices, rawInputs);
+  }, [activeItems, requests, recipeOverrides, ingredientChoices, rawInputs]);
 
   const totalMachineCount = useMemo(() => {
     return Object.values(graphCalculation.totalBuildings).reduce((sum, count) => sum + count, 0);

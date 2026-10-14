@@ -10,6 +10,7 @@ import {
   DialogDescription,
 } from "./ui/dialog";
 import { Flag, CheckCircle2, Send, Plus, Trash2, Wrench, Clock, Image, Layers } from "lucide-react";
+import { submitIssueReport } from "../lib/supabase-client";
 
 export type ReportIssueType = "wrong_recipe" | "wrong_throughput" | "missing_recipe" | "wrong_icon" | "other";
 
@@ -113,7 +114,6 @@ export function ReportIssueModal({
       issueType,
       description: description.trim(),
       suggestedFix: suggestedFix.trim(),
-      timestamp: new Date().toISOString(),
       // Contextual correction details
       corrections: {
         recipeMethod: recipeMethod.trim() || undefined,
@@ -127,9 +127,14 @@ export function ReportIssueModal({
       },
     };
 
+    // Send to Supabase asynchronously
+    submitIssueReport(reportPayload).catch((e) => {
+      console.warn("Could not save issue report to Supabase:", e);
+    });
+
     try {
       const existing = JSON.parse(localStorage.getItem("game_calc_reports") || "[]");
-      existing.push(reportPayload);
+      existing.push({ ...reportPayload, timestamp: new Date().toISOString() });
       localStorage.setItem("game_calc_reports", JSON.stringify(existing));
     } catch {
       // localStorage may fail in private mode

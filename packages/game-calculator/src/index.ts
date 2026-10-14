@@ -15,3 +15,4 @@ export * from "./components/ui/card";
 export * from "./components/ui/dialog";
 export * from "./components/ui/select";
 export * from "./components/ui/tabs";
+export * from "./lib/supabase-client";
