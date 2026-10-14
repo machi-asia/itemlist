@@ -32,6 +32,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark h-screen overflow-hidden">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2144375932551709"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="antialiased h-screen overflow-hidden bg-zinc-950 text-zinc-100">{children}</body>
     </html>
   );
