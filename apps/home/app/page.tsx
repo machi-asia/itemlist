@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, Layers, Sparkles, Cpu, Cog, AlertTriangle } from "lucide-react";
-import { CREATE_DATA, RIMWORLD_DATA } from "@repo/game-calculator/data";
+import { GAMES_METADATA } from "@repo/game-calculator/data";
 import { RightAdSidebar } from "@repo/game-calculator";
 import { APPS_CONFIG } from "@repo/app-config";
 
 const GAMES = [
   {
-    ...CREATE_DATA,
+    ...GAMES_METADATA.create,
     config: APPS_CONFIG.create,
     appUrl: "https://create.itemlist.online",
     icon: <Cog className="h-6 w-6 text-amber-400" />,
@@ -15,7 +15,7 @@ const GAMES = [
     previewIcons: ["⚙️", "🥢", "🔨", "⏱️"],
   },
   {
-    ...RIMWORLD_DATA,
+    ...GAMES_METADATA.rimworld,
     config: APPS_CONFIG.rimworld,
     appUrl: "https://rimworld.itemlist.online",
     icon: <Cpu className="h-6 w-6 text-cyan-400" />,
@@ -133,7 +133,7 @@ export default function HomePage() {
 
                 <div className="relative z-10 mt-6 flex items-center justify-between border-t border-zinc-800/80 pt-4">
                   <span className="text-xs font-mono text-zinc-500">
-                    {game.items.length} Registered Items
+                    {game.itemCount} Registered Items
                   </span>
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-indigo-400 group-hover:text-indigo-300 group-hover:translate-x-1 transition-all">
                     Launch Calculator

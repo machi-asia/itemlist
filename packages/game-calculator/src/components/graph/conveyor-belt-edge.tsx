@@ -9,7 +9,7 @@ import {
 } from "@xyflow/react";
 import type { RecipeCustomEdge } from "../../types/graph";
 
-export function ConveyorBeltEdge({
+function ConveyorBeltEdgeComponent({
   id,
   sourceX,
   sourceY,
@@ -66,3 +66,5 @@ export function ConveyorBeltEdge({
     </>
   );
 }
+
+export const ConveyorBeltEdge = React.memo(ConveyorBeltEdgeComponent);

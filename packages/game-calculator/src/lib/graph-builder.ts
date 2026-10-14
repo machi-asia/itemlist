@@ -35,23 +35,21 @@ function useRawInputSet(rawInputs?: Set<string> | string[]): Set<string> {
   return new Set(rawInputs);
 }
 
-export function calculateRecipeGraph(
-  items: GameItem[],
-  requests: ProductionRequest[],
-  recipeOverrides?: Record<string, string>,
-  ingredientChoices?: Record<string, string>,
-  rawInputs?: Set<string> | string[]
-): GraphCalculationResult {
-  const rawInputSet = useRawInputSet(rawInputs);
+const itemMapCache = new WeakMap<GameItem[], Map<string, GameItem>>();
+
+function normalizeFluidName(name: string): string {
+  const match = name.match(/^\d+\s*mb\s+of\s+(.+)$/i);
+  return match ? match[1]!.trim() : name;
+}
+
+function getOrCreateItemMap(items: GameItem[]): Map<string, GameItem> {
+  const cached = itemMapCache.get(items);
+  if (cached) return cached;
+
   const itemMap = new Map<string, GameItem>();
   for (const item of items) {
     itemMap.set(item.id, item);
     itemMap.set(item.name.toLowerCase(), item);
-  }
-
-  function normalizeFluidName(name: string): string {
-    const match = name.match(/^\d+\s*mb\s+of\s+(.+)$/i);
-    return match ? match[1]!.trim() : name;
   }
 
   // Ensure any ingredient referenced in recipes that is not yet a top-level catalog item
@@ -88,6 +86,20 @@ export function calculateRecipeGraph(
       }
     }
   }
+
+  itemMapCache.set(items, itemMap);
+  return itemMap;
+}
+
+export function calculateRecipeGraph(
+  items: GameItem[],
+  requests: ProductionRequest[],
+  recipeOverrides?: Record<string, string>,
+  ingredientChoices?: Record<string, string>,
+  rawInputs?: Set<string> | string[]
+): GraphCalculationResult {
+  const rawInputSet = useRawInputSet(rawInputs);
+  const itemMap = getOrCreateItemMap(items);
 
   const requestRecipeIds = new Map<string, string>();
   for (const req of requests) {

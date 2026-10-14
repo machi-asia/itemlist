@@ -5,7 +5,7 @@ import { Handle, Position, type NodeProps } from "@xyflow/react";
 import type { RecipeCustomNode } from "../../types/graph";
 import { cn } from "../../lib/utils";
 
-export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
+function RecipeProcessNodeComponent({ data }: NodeProps<RecipeCustomNode>) {
   const {
     label,
     itemIcon,
@@ -253,3 +253,5 @@ export function RecipeProcessNode({ data }: NodeProps<RecipeCustomNode>) {
     </div>
   );
 }
+
+export const RecipeProcessNode = React.memo(RecipeProcessNodeComponent);

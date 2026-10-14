@@ -1,15 +1,27 @@
 "use client";
 
 import React, { useState, useMemo, useCallback, useEffect } from "react";
+import dynamic from "next/dynamic";
 import type { GameDataset, GameItem, Recipe } from "../types/data";
 import type { ProductionRequest } from "../types/graph";
 import { calculateRecipeGraph } from "../lib/graph-builder";
 import { RecipeGraphView } from "./graph/recipe-graph";
-import { ItemDetailPopup } from "./item-detail-popup";
-import { RecipeChooserModal } from "./recipe-chooser-modal";
-import { ReportIssueModal } from "./report-issue-modal";
 import { Button } from "./ui/button";
 import Link from "next/link";
+
+// Dynamically load secondary modals only when opened
+const ItemDetailPopup = dynamic(
+  () => import("./item-detail-popup").then((m) => m.ItemDetailPopup),
+  { ssr: false }
+);
+const RecipeChooserModal = dynamic(
+  () => import("./recipe-chooser-modal").then((m) => m.RecipeChooserModal),
+  { ssr: false }
+);
+const ReportIssueModal = dynamic(
+  () => import("./report-issue-modal").then((m) => m.ReportIssueModal),
+  { ssr: false }
+);
 import {
   Search,
   Plus,
@@ -603,7 +615,11 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
                 </div>
               ) : (
                 categorizedItems.map((group) => (
-                  <div key={group.category} className="flex flex-col gap-1.5">
+                  <div
+                    key={group.category}
+                    className="flex flex-col gap-1.5"
+                    style={{ contentVisibility: "auto", containIntrinsicSize: "200px" }}
+                  >
                     {/* Category Separator Header */}
                     <div className="flex items-center gap-2 pt-1 pb-0.5 sticky top-0 bg-[#09090b]/95 backdrop-blur-sm z-10">
                       <span className="text-[11px] font-semibold tracking-wider uppercase text-zinc-400">
