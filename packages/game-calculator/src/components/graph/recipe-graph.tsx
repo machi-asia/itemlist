@@ -117,8 +117,8 @@ export function RecipeGraphView({
 
   return (
     <div className="flex flex-col gap-2 w-full h-full min-h-0 flex-1">
-      {/* Metrics Row - Sleek & Borderless */}
-      <div className="flex flex-wrap items-center justify-between gap-3 py-1 text-xs">
+      {/* Metrics Row - Hidden on mobile view (< sm) to preserve canvas space */}
+      <div className="hidden sm:flex flex-wrap items-center justify-between gap-3 py-1 text-xs">
         <div className="flex flex-wrap items-center gap-2">
           <span className="flex items-center gap-1.5 font-medium text-zinc-400">
             <Cpu className="h-3.5 w-3.5 text-indigo-400" />
@@ -251,7 +251,7 @@ export function RecipeGraphView({
           <Background color="#27272a" gap={16} variant={BackgroundVariant.Dots} />
           <Controls className="!bg-zinc-900/80 !border-0 !text-white [&>button]:!fill-white [&>button]:!border-0" />
           <MiniMap
-            className="!bg-zinc-900/60 !border-0 rounded-lg overflow-hidden"
+            className="!hidden sm:!block !bg-zinc-900/60 !border-0 rounded-lg overflow-hidden"
             nodeColor="#6366f1"
             maskColor="rgba(0, 0, 0, 0.7)"
           />
