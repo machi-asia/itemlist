@@ -3,6 +3,7 @@ export * from "./lib/graph-builder";
 export * from "./lib/utils";
 export * from "./components/game-calculator-app";
 export * from "./components/game-calculator-view";
+export * from "./components/left-ad-sidebar";
 export * from "./components/game-header";
 export * from "./components/item-detail-popup";
 export * from "./components/recipe-chooser-modal";
