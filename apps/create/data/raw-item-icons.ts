@@ -219,6 +219,11 @@ export const RAW_ITEM_ICONS: Record<string, string> = {
   "Feather": "/items/feather.png",
   "Flint": "/items/flint.png",
   "Nether Quartz": "/items/quartz.png",
+  "Diamond": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond.png",
+  "Leather": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/leather.png",
+  "Netherite Ingot": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_ingot.png",
+  "Scute": "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/scute.png",
+  "Shield": "/items/shield.png",
 
   // Create Mod Automation Machines
   "Crushing Wheel": "/items/crushing_wheel.png",

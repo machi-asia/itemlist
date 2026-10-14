@@ -3,11 +3,13 @@ import { RAW_ITEM_ICONS } from "./raw-item-icons";
 
 function getIcon(name: string, fallbackSlug: string): string {
   if (RAW_ITEM_ICONS[name]) return RAW_ITEM_ICONS[name];
-  return `/items/${fallbackSlug}.png`;
+  if (fallbackSlug.startsWith("http") || fallbackSlug.startsWith("/")) return fallbackSlug;
+  return `https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/${fallbackSlug}.png`;
 }
 
 function getBlockIcon(name: string, fallbackSlug: string): string {
   if (RAW_ITEM_ICONS[name]) return RAW_ITEM_ICONS[name];
+  if (fallbackSlug.startsWith("http") || fallbackSlug.startsWith("/")) return fallbackSlug;
   return `/items/${fallbackSlug}.png`;
 }
 
@@ -1700,4 +1702,1329 @@ export const VANILLA_CRAFTING_ITEMS: GameItem[] = [
       }
     ]
   }
+,
+  // ==========================================
+  // --- Vanilla Tools, Weapons & Armor ---
+  // ==========================================
+
+  // --- Wooden Tools ---
+  {
+    id: "wooden-sword",
+    name: "Wooden Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Wooden Sword", "wooden_sword"),
+    description: "Basic melee weapon crafted with 2 Planks and 1 Stick.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-wooden-sword-crafter",
+        name: "Mechanical Crafter - Wooden Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "wooden-sword", itemName: "Wooden Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "wooden-pickaxe",
+    name: "Wooden Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Wooden Pickaxe", "wooden_pickaxe"),
+    description: "Basic mining tool crafted with 3 Planks and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-wooden-pickaxe-crafter",
+        name: "Mechanical Crafter - Wooden Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "wooden-pickaxe", itemName: "Wooden Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "wooden-axe",
+    name: "Wooden Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Wooden Axe", "wooden_axe"),
+    description: "Basic wood-cutting tool crafted with 3 Planks and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-wooden-axe-crafter",
+        name: "Mechanical Crafter - Wooden Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "wooden-axe", itemName: "Wooden Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "wooden-shovel",
+    name: "Wooden Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Wooden Shovel", "wooden_shovel"),
+    description: "Basic digging tool crafted with 1 Plank and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-wooden-shovel-crafter",
+        name: "Mechanical Crafter - Wooden Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "wooden-shovel", itemName: "Wooden Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "wooden-hoe",
+    name: "Wooden Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Wooden Hoe", "wooden_hoe"),
+    description: "Basic tilling tool crafted with 2 Planks and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-wooden-hoe-crafter",
+        name: "Mechanical Crafter - Wooden Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "wooden-hoe", itemName: "Wooden Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Stone Tools ---
+  {
+    id: "stone-sword",
+    name: "Stone Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Stone Sword", "stone_sword"),
+    description: "Durable melee weapon crafted with 2 Cobblestone and 1 Stick.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-stone-sword-crafter",
+        name: "Mechanical Crafter - Stone Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "stone-sword", itemName: "Stone Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "stone-pickaxe",
+    name: "Stone Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Stone Pickaxe", "stone_pickaxe"),
+    description: "Durable mining tool crafted with 3 Cobblestone and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-stone-pickaxe-crafter",
+        name: "Mechanical Crafter - Stone Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "stone-pickaxe", itemName: "Stone Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "stone-axe",
+    name: "Stone Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Stone Axe", "stone_axe"),
+    description: "Durable wood-cutting tool crafted with 3 Cobblestone and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-stone-axe-crafter",
+        name: "Mechanical Crafter - Stone Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "stone-axe", itemName: "Stone Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "stone-shovel",
+    name: "Stone Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Stone Shovel", "stone_shovel"),
+    description: "Durable digging tool crafted with 1 Cobblestone and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-stone-shovel-crafter",
+        name: "Mechanical Crafter - Stone Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "stone-shovel", itemName: "Stone Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "stone-hoe",
+    name: "Stone Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Stone Hoe", "stone_hoe"),
+    description: "Durable tilling tool crafted with 2 Cobblestone and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-stone-hoe-crafter",
+        name: "Mechanical Crafter - Stone Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "cobblestone", itemName: "Cobblestone", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "stone-hoe", itemName: "Stone Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Iron Tools ---
+  {
+    id: "iron-sword",
+    name: "Iron Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Iron Sword", "iron_sword"),
+    description: "Versatile combat weapon crafted with 2 Iron Ingots and 1 Stick.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-sword-crafter",
+        name: "Mechanical Crafter - Iron Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "iron-sword", itemName: "Iron Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-pickaxe",
+    name: "Iron Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Iron Pickaxe", "iron_pickaxe"),
+    description: "Essential mining tool capable of breaking gold, redstone, and diamond ore.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-pickaxe-crafter",
+        name: "Mechanical Crafter - Iron Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "iron-pickaxe", itemName: "Iron Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-axe",
+    name: "Iron Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Iron Axe", "iron_axe"),
+    description: "Efficient wood-chopping and stripping tool, essential for Deployers and log stripping.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-axe-crafter",
+        name: "Mechanical Crafter - Iron Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "iron-axe", itemName: "Iron Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-shovel",
+    name: "Iron Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Iron Shovel", "iron_shovel"),
+    description: "Fast dirt and gravel digging tool crafted with 1 Iron Ingot and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-shovel-crafter",
+        name: "Mechanical Crafter - Iron Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "iron-shovel", itemName: "Iron Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-hoe",
+    name: "Iron Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Iron Hoe", "iron_hoe"),
+    description: "Agricultural tool crafted with 2 Iron Ingots and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-hoe-crafter",
+        name: "Mechanical Crafter - Iron Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "iron-hoe", itemName: "Iron Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Golden Tools ---
+  {
+    id: "golden-sword",
+    name: "Golden Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Golden Sword", "golden_sword"),
+    description: "Fast but low-durability weapon crafted with 2 Gold Ingots and 1 Stick.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-sword-crafter",
+        name: "Mechanical Crafter - Golden Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gold-ingot", itemName: "Gold Ingot", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "golden-sword", itemName: "Golden Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-pickaxe",
+    name: "Golden Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Golden Pickaxe", "golden_pickaxe"),
+    description: "Fastest mining speed tool crafted with 3 Gold Ingots and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-pickaxe-crafter",
+        name: "Mechanical Crafter - Golden Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gold-ingot", itemName: "Gold Ingot", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "golden-pickaxe", itemName: "Golden Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-axe",
+    name: "Golden Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Golden Axe", "golden_axe"),
+    description: "Extremely fast woodchopping tool crafted with 3 Gold Ingots and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-axe-crafter",
+        name: "Mechanical Crafter - Golden Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gold-ingot", itemName: "Gold Ingot", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "golden-axe", itemName: "Golden Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-shovel",
+    name: "Golden Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Golden Shovel", "golden_shovel"),
+    description: "Rapid digging shovel crafted with 1 Gold Ingot and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-shovel-crafter",
+        name: "Mechanical Crafter - Golden Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gold-ingot", itemName: "Gold Ingot", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "golden-shovel", itemName: "Golden Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-hoe",
+    name: "Golden Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Golden Hoe", "golden_hoe"),
+    description: "Agricultural hoe crafted with 2 Gold Ingots and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-hoe-crafter",
+        name: "Mechanical Crafter - Golden Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "gold-ingot", itemName: "Gold Ingot", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "golden-hoe", itemName: "Golden Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Diamond Tools ---
+  {
+    id: "diamond-sword",
+    name: "Diamond Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Diamond Sword", "diamond_sword"),
+    description: "High-damage combat weapon crafted with 2 Diamonds and 1 Stick.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-sword-crafter",
+        name: "Mechanical Crafter - Diamond Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond", itemName: "Diamond", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "diamond-sword", itemName: "Diamond Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-pickaxe",
+    name: "Diamond Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Diamond Pickaxe", "diamond_pickaxe"),
+    description: "High-durability pickaxe capable of mining Obsidian and Ancient Debris.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-pickaxe-crafter",
+        name: "Mechanical Crafter - Diamond Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond", itemName: "Diamond", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "diamond-pickaxe", itemName: "Diamond Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-axe",
+    name: "Diamond Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Diamond Axe", "diamond_axe"),
+    description: "Heavy damage and swift wood chopping axe crafted with 3 Diamonds and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-axe-crafter",
+        name: "Mechanical Crafter - Diamond Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond", itemName: "Diamond", amount: 3 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "diamond-axe", itemName: "Diamond Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-shovel",
+    name: "Diamond Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Diamond Shovel", "diamond_shovel"),
+    description: "Durable digging tool crafted with 1 Diamond and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-shovel-crafter",
+        name: "Mechanical Crafter - Diamond Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond", itemName: "Diamond", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "diamond-shovel", itemName: "Diamond Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-hoe",
+    name: "Diamond Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Diamond Hoe", "diamond_hoe"),
+    description: "High-durability farming hoe crafted with 2 Diamonds and 2 Sticks.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-hoe-crafter",
+        name: "Mechanical Crafter - Diamond Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond", itemName: "Diamond", amount: 2 },
+          { itemId: "stick", itemName: "Stick", amount: 2 }
+        ],
+        outputs: [{ itemId: "diamond-hoe", itemName: "Diamond Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Netherite Tools ---
+  {
+    id: "netherite-sword",
+    name: "Netherite Sword",
+    category: "Combat & Defense",
+    icon: getIcon("Netherite Sword", "netherite_sword"),
+    description: "Ultimate melee weapon upgraded from a Diamond Sword with a Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-sword-upgrade",
+        name: "Smithing Upgrade - Netherite Sword",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-sword", itemName: "Diamond Sword", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-sword", itemName: "Netherite Sword", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-pickaxe",
+    name: "Netherite Pickaxe",
+    category: "Tools & Equipment",
+    icon: getIcon("Netherite Pickaxe", "netherite_pickaxe"),
+    description: "Supreme mining tool upgraded from a Diamond Pickaxe with a Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-pickaxe-upgrade",
+        name: "Smithing Upgrade - Netherite Pickaxe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-pickaxe", itemName: "Diamond Pickaxe", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-pickaxe", itemName: "Netherite Pickaxe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-axe",
+    name: "Netherite Axe",
+    category: "Tools & Equipment",
+    icon: getIcon("Netherite Axe", "netherite_axe"),
+    description: "Supreme axe upgraded from a Diamond Axe with a Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-axe-upgrade",
+        name: "Smithing Upgrade - Netherite Axe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-axe", itemName: "Diamond Axe", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-axe", itemName: "Netherite Axe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-shovel",
+    name: "Netherite Shovel",
+    category: "Tools & Equipment",
+    icon: getIcon("Netherite Shovel", "netherite_shovel"),
+    description: "Supreme shovel upgraded from a Diamond Shovel with a Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-shovel-upgrade",
+        name: "Smithing Upgrade - Netherite Shovel",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-shovel", itemName: "Diamond Shovel", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-shovel", itemName: "Netherite Shovel", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-hoe",
+    name: "Netherite Hoe",
+    category: "Tools & Equipment",
+    icon: getIcon("Netherite Hoe", "netherite_hoe"),
+    description: "Supreme hoe upgraded from a Diamond Hoe with a Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-hoe-upgrade",
+        name: "Smithing Upgrade - Netherite Hoe",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-hoe", itemName: "Diamond Hoe", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-hoe", itemName: "Netherite Hoe", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Leather Armor ---
+  {
+    id: "leather-helmet",
+    name: "Leather Helmet",
+    category: "Armor & Apparel",
+    icon: getIcon("Leather Helmet", "leather_helmet"),
+    description: "Basic protective headwear crafted with 5 Leather.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-leather-helmet-crafter",
+        name: "Mechanical Crafter - Leather Helmet",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "leather", itemName: "Leather", amount: 5 }],
+        outputs: [{ itemId: "leather-helmet", itemName: "Leather Helmet", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "leather-chestplate",
+    name: "Leather Tunic",
+    category: "Armor & Apparel",
+    icon: getIcon("Leather Tunic", "leather_chestplate"),
+    description: "Basic protective body armor crafted with 8 Leather.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-leather-chestplate-crafter",
+        name: "Mechanical Crafter - Leather Tunic",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "leather", itemName: "Leather", amount: 8 }],
+        outputs: [{ itemId: "leather-chestplate", itemName: "Leather Tunic", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "leather-leggings",
+    name: "Leather Pants",
+    category: "Armor & Apparel",
+    icon: getIcon("Leather Pants", "leather_leggings"),
+    description: "Basic protective leg armor crafted with 7 Leather.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-leather-leggings-crafter",
+        name: "Mechanical Crafter - Leather Pants",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "leather", itemName: "Leather", amount: 7 }],
+        outputs: [{ itemId: "leather-leggings", itemName: "Leather Pants", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "leather-boots",
+    name: "Leather Boots",
+    category: "Armor & Apparel",
+    icon: getIcon("Leather Boots", "leather_boots"),
+    description: "Protective footwear crafted with 4 Leather, prevents sinking in Powder Snow.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-leather-boots-crafter",
+        name: "Mechanical Crafter - Leather Boots",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "leather", itemName: "Leather", amount: 4 }],
+        outputs: [{ itemId: "leather-boots", itemName: "Leather Boots", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Iron Armor ---
+  {
+    id: "iron-helmet",
+    name: "Iron Helmet",
+    category: "Armor & Apparel",
+    icon: getIcon("Iron Helmet", "iron_helmet"),
+    description: "Standard protective helmet crafted with 5 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-helmet-crafter",
+        name: "Mechanical Crafter - Iron Helmet",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 5 }],
+        outputs: [{ itemId: "iron-helmet", itemName: "Iron Helmet", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-chestplate",
+    name: "Iron Chestplate",
+    category: "Armor & Apparel",
+    icon: getIcon("Iron Chestplate", "iron_chestplate"),
+    description: "Heavy iron body armor crafted with 8 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-chestplate-crafter",
+        name: "Mechanical Crafter - Iron Chestplate",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 8 }],
+        outputs: [{ itemId: "iron-chestplate", itemName: "Iron Chestplate", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-leggings",
+    name: "Iron Leggings",
+    category: "Armor & Apparel",
+    icon: getIcon("Iron Leggings", "iron_leggings"),
+    description: "Protective iron leg armor crafted with 7 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-leggings-crafter",
+        name: "Mechanical Crafter - Iron Leggings",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 7 }],
+        outputs: [{ itemId: "iron-leggings", itemName: "Iron Leggings", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "iron-boots",
+    name: "Iron Boots",
+    category: "Armor & Apparel",
+    icon: getIcon("Iron Boots", "iron_boots"),
+    description: "Durable protective footwear crafted with 4 Iron Ingots.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-iron-boots-crafter",
+        name: "Mechanical Crafter - Iron Boots",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "iron-ingot", itemName: "Iron Ingot", amount: 4 }],
+        outputs: [{ itemId: "iron-boots", itemName: "Iron Boots", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Golden Armor ---
+  {
+    id: "golden-helmet",
+    name: "Golden Helmet",
+    category: "Armor & Apparel",
+    icon: getIcon("Golden Helmet", "golden_helmet"),
+    description: "Gilded helmet crafted with 5 Gold Ingots, pacifies Piglins in the Nether.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-helmet-crafter",
+        name: "Mechanical Crafter - Golden Helmet",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "gold-ingot", itemName: "Gold Ingot", amount: 5 }],
+        outputs: [{ itemId: "golden-helmet", itemName: "Golden Helmet", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-chestplate",
+    name: "Golden Chestplate",
+    category: "Armor & Apparel",
+    icon: getIcon("Golden Chestplate", "golden_chestplate"),
+    description: "Gilded body armor crafted with 8 Gold Ingots, pacifies Piglins in the Nether.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-chestplate-crafter",
+        name: "Mechanical Crafter - Golden Chestplate",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "gold-ingot", itemName: "Gold Ingot", amount: 8 }],
+        outputs: [{ itemId: "golden-chestplate", itemName: "Golden Chestplate", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-leggings",
+    name: "Golden Leggings",
+    category: "Armor & Apparel",
+    icon: getIcon("Golden Leggings", "golden_leggings"),
+    description: "Gilded leg armor crafted with 7 Gold Ingots, pacifies Piglins in the Nether.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-leggings-crafter",
+        name: "Mechanical Crafter - Golden Leggings",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "gold-ingot", itemName: "Gold Ingot", amount: 7 }],
+        outputs: [{ itemId: "golden-leggings", itemName: "Golden Leggings", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "golden-boots",
+    name: "Golden Boots",
+    category: "Armor & Apparel",
+    icon: getIcon("Golden Boots", "golden_boots"),
+    description: "Gilded footwear crafted with 4 Gold Ingots, pacifies Piglins in the Nether.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-golden-boots-crafter",
+        name: "Mechanical Crafter - Golden Boots",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "gold-ingot", itemName: "Gold Ingot", amount: 4 }],
+        outputs: [{ itemId: "golden-boots", itemName: "Golden Boots", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Diamond Armor ---
+  {
+    id: "diamond-helmet",
+    name: "Diamond Helmet",
+    category: "Armor & Apparel",
+    icon: getIcon("Diamond Helmet", "diamond_helmet"),
+    description: "High-tier protective helmet crafted with 5 Diamonds.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-helmet-crafter",
+        name: "Mechanical Crafter - Diamond Helmet",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "diamond", itemName: "Diamond", amount: 5 }],
+        outputs: [{ itemId: "diamond-helmet", itemName: "Diamond Helmet", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-chestplate",
+    name: "Diamond Chestplate",
+    category: "Armor & Apparel",
+    icon: getIcon("Diamond Chestplate", "diamond_chestplate"),
+    description: "High-tier heavy chestplate crafted with 8 Diamonds.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-chestplate-crafter",
+        name: "Mechanical Crafter - Diamond Chestplate",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "diamond", itemName: "Diamond", amount: 8 }],
+        outputs: [{ itemId: "diamond-chestplate", itemName: "Diamond Chestplate", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-leggings",
+    name: "Diamond Leggings",
+    category: "Armor & Apparel",
+    icon: getIcon("Diamond Leggings", "diamond_leggings"),
+    description: "High-tier protective leggings crafted with 7 Diamonds.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-leggings-crafter",
+        name: "Mechanical Crafter - Diamond Leggings",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "diamond", itemName: "Diamond", amount: 7 }],
+        outputs: [{ itemId: "diamond-leggings", itemName: "Diamond Leggings", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "diamond-boots",
+    name: "Diamond Boots",
+    category: "Armor & Apparel",
+    icon: getIcon("Diamond Boots", "diamond_boots"),
+    description: "High-tier protective boots crafted with 4 Diamonds.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-diamond-boots-crafter",
+        name: "Mechanical Crafter - Diamond Boots",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "diamond", itemName: "Diamond", amount: 4 }],
+        outputs: [{ itemId: "diamond-boots", itemName: "Diamond Boots", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Netherite Armor ---
+  {
+    id: "netherite-helmet",
+    name: "Netherite Helmet",
+    category: "Armor & Apparel",
+    icon: getIcon("Netherite Helmet", "netherite_helmet"),
+    description: "Supreme armor helmet with knockback resistance, upgraded with Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-helmet-upgrade",
+        name: "Smithing Upgrade - Netherite Helmet",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-helmet", itemName: "Diamond Helmet", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-helmet", itemName: "Netherite Helmet", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-chestplate",
+    name: "Netherite Chestplate",
+    category: "Armor & Apparel",
+    icon: getIcon("Netherite Chestplate", "netherite_chestplate"),
+    description: "Supreme armor chestplate with knockback resistance, upgraded with Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-chestplate-upgrade",
+        name: "Smithing Upgrade - Netherite Chestplate",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-chestplate", itemName: "Diamond Chestplate", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-chestplate", itemName: "Netherite Chestplate", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-leggings",
+    name: "Netherite Leggings",
+    category: "Armor & Apparel",
+    icon: getIcon("Netherite Leggings", "netherite_leggings"),
+    description: "Supreme armor leggings with knockback resistance, upgraded with Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-leggings-upgrade",
+        name: "Smithing Upgrade - Netherite Leggings",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-leggings", itemName: "Diamond Leggings", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-leggings", itemName: "Netherite Leggings", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "netherite-boots",
+    name: "Netherite Boots",
+    category: "Armor & Apparel",
+    icon: getIcon("Netherite Boots", "netherite_boots"),
+    description: "Supreme armor boots with knockback resistance, upgraded with Netherite Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-netherite-boots-upgrade",
+        name: "Smithing Upgrade - Netherite Boots",
+        method: "Mechanical Crafter",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 3,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "diamond-boots", itemName: "Diamond Boots", amount: 1 },
+          { itemId: "netherite-ingot", itemName: "Netherite Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "netherite-boots", itemName: "Netherite Boots", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+
+  // --- Specialty Armor & Combat Gear ---
+  {
+    id: "turtle-helmet",
+    name: "Turtle Shell",
+    category: "Armor & Apparel",
+    icon: getIcon("Turtle Shell", "turtle_helmet"),
+    description: "Headwear crafted with 5 Scutes that grants the Water Breathing status effect.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-turtle-helmet-crafter",
+        name: "Mechanical Crafter - Turtle Shell",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [{ itemId: "scute", itemName: "Scute", amount: 5 }],
+        outputs: [{ itemId: "turtle-helmet", itemName: "Turtle Shell", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "shield",
+    name: "Shield",
+    category: "Combat & Defense",
+    icon: getIcon("Shield", "shield"),
+    description: "Defensive blocking shield crafted with 6 Planks and 1 Iron Ingot.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-shield-crafter",
+        name: "Mechanical Crafter - Shield",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "oak-planks", itemName: "Oak Planks", amount: 6 },
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 1 }
+        ],
+        outputs: [{ itemId: "shield", itemName: "Shield", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "crossbow",
+    name: "Crossbow",
+    category: "Combat & Defense",
+    icon: getIcon("Crossbow", "crossbow_standby"),
+    description: "Powerful ranged weapon crafted with 3 Sticks, 2 Strings, 1 Iron Ingot, and 1 Tripwire Hook.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-crossbow-crafter",
+        name: "Mechanical Crafter - Crossbow",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "stick", itemName: "Stick", amount: 3 },
+          { itemId: "string", itemName: "String", amount: 2 },
+          { itemId: "iron-ingot", itemName: "Iron Ingot", amount: 1 },
+          { itemId: "tripwire-hook", itemName: "Tripwire Hook", amount: 1 }
+        ],
+        outputs: [{ itemId: "crossbow", itemName: "Crossbow", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "fishing-rod",
+    name: "Fishing Rod",
+    category: "Tools & Equipment",
+    icon: getIcon("Fishing Rod", "fishing_rod"),
+    description: "Tool for catching fish and junk from bodies of water, crafted with 3 Sticks and 2 Strings.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-fishing-rod-crafter",
+        name: "Mechanical Crafter - Fishing Rod",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "stick", itemName: "Stick", amount: 3 },
+          { itemId: "string", itemName: "String", amount: 2 }
+        ],
+        outputs: [{ itemId: "fishing-rod", itemName: "Fishing Rod", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "spyglass",
+    name: "Spyglass",
+    category: "Tools & Equipment",
+    icon: getIcon("Spyglass", "spyglass"),
+    description: "Handheld telescopic lens crafted with 2 Copper Ingots and 1 Amethyst Shard.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-spyglass-crafter",
+        name: "Mechanical Crafter - Spyglass",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "copper-ingot", itemName: "Copper Ingot", amount: 2 },
+          { itemId: "amethyst-shard", itemName: "Amethyst Shard", amount: 1 }
+        ],
+        outputs: [{ itemId: "spyglass", itemName: "Spyglass", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  },
+  {
+    id: "brush",
+    name: "Brush",
+    category: "Tools & Equipment",
+    icon: getIcon("Brush", "brush"),
+    description: "Archaeology tool used for excavating suspicious sand and gravel.",
+    sourceMod: "Vanilla",
+    recipes: [
+      {
+        id: "recipe-brush-crafter",
+        name: "Mechanical Crafter - Brush",
+        method: "Mechanical Crafting",
+        buildingRequired: "Mechanical Crafter",
+        processingTimeSeconds: 2,
+        speedRpm: 64,
+        ingredients: [
+          { itemId: "feather", itemName: "Feather", amount: 1 },
+          { itemId: "copper-ingot", itemName: "Copper Ingot", amount: 1 },
+          { itemId: "stick", itemName: "Stick", amount: 1 }
+        ],
+        outputs: [{ itemId: "brush", itemName: "Brush", amount: 1 }],
+        sourceMod: "Vanilla"
+      }
+    ]
+  }
+
 ];
