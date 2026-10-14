@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 import type { GameDataset, GameItem, Recipe } from "../types/data";
 import type { ProductionRequest } from "../types/graph";
 import { calculateRecipeGraph } from "../lib/graph-builder";
@@ -27,11 +27,58 @@ import {
   ArrowLeft,
   AlertTriangle,
   Flag,
+  Edit2,
+  Check,
 } from "lucide-react";
 import { isAppUnderDevelopment } from "@repo/app-config";
 
 interface GameCalculatorViewProps {
   dataset: GameDataset;
+}
+
+export interface CalculatorTab {
+  id: string;
+  name: string;
+  requests: ProductionRequest[];
+  recipeOverrides: Record<string, string>;
+  ingredientChoices: Record<string, string>;
+  rawInputs: string[];
+  nodePositions?: Record<string, { x: number; y: number }>;
+}
+
+const DEFAULT_TAB_ID = "tab-default";
+
+function getInitialTabs(datasetId: string): { tabs: CalculatorTab[]; activeTabId: string } {
+  const defaultTab: CalculatorTab = {
+    id: DEFAULT_TAB_ID,
+    name: "Production 1",
+    requests: [],
+    recipeOverrides: {},
+    ingredientChoices: {},
+    rawInputs: [],
+  };
+
+  if (typeof window === "undefined") {
+    return { tabs: [defaultTab], activeTabId: defaultTab.id };
+  }
+
+  try {
+    const raw = localStorage.getItem(`itemlist_tabs_${datasetId}`);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed.tabs) && parsed.tabs.length > 0) {
+        const activeId =
+          parsed.activeTabId && parsed.tabs.some((t: CalculatorTab) => t.id === parsed.activeTabId)
+            ? parsed.activeTabId
+            : parsed.tabs[0].id;
+        return { tabs: parsed.tabs, activeTabId: activeId };
+      }
+    }
+  } catch (e) {
+    console.error("Failed to load saved tabs from localStorage:", e);
+  }
+
+  return { tabs: [defaultTab], activeTabId: defaultTab.id };
 }
 
 export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
@@ -49,36 +96,204 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
   const [isPlannerOpen, setIsPlannerOpen] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
-  // Production planner targets
-  const [requests, setRequests] = useState<ProductionRequest[]>([]);
+  // Tab management state initialized lazily
+  const [tabsState, setTabsState] = useState<{ tabs: CalculatorTab[]; activeTabId: string }>(() =>
+    getInitialTabs(dataset.id)
+  );
+  const { tabs, activeTabId } = tabsState;
 
-  // Intermediate recipe overrides for graph calculation: itemId -> recipeId
-  const [recipeOverrides, setRecipeOverrides] = useState<Record<string, string>>({});
+  // Active tab object
+  const activeTab = useMemo(() => {
+    return tabs.find((t) => t.id === activeTabId) || tabs[0] || {
+      id: DEFAULT_TAB_ID,
+      name: "Production 1",
+      requests: [],
+      recipeOverrides: {},
+      ingredientChoices: {},
+      rawInputs: [],
+    };
+  }, [tabs, activeTabId]);
 
-  // Intermediate ingredient choice overrides: groupKey/itemId -> chosenCandidateOptionId
-  const [ingredientChoices, setIngredientChoices] = useState<Record<string, string>>({});
+  // Editing tab name inline
+  const [editingTabId, setEditingTabId] = useState<string | null>(null);
+  const [editingTabName, setEditingTabName] = useState("");
 
-  // Nodes explicitly marked as raw input (won't expand upstream recipes or use ingredients)
-  const [rawInputs, setRawInputs] = useState<Set<string>>(new Set());
+  // Save to localStorage whenever tabs or activeTabId changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(
+        `itemlist_tabs_${dataset.id}`,
+        JSON.stringify({ tabs, activeTabId })
+      );
+    } catch (e) {
+      console.error("Failed to save tabs to localStorage:", e);
+    }
+  }, [dataset.id, tabs, activeTabId]);
 
-  const handleToggleRawInput = useCallback((itemId: string) => {
-    setRawInputs((prev) => {
-      const next = new Set(prev);
-      if (next.has(itemId)) {
-        next.delete(itemId);
-      } else {
-        next.add(itemId);
-      }
-      return next;
-    });
-  }, []);
+  // Derived or helper states for active tab
+  const requests = activeTab.requests;
+  const recipeOverrides = activeTab.recipeOverrides || {};
+  const ingredientChoices = activeTab.ingredientChoices || {};
+  const rawInputs = useMemo(() => new Set<string>(activeTab.rawInputs || []), [activeTab.rawInputs]);
+  const nodePositions = activeTab.nodePositions;
 
-  const handleSwitchIngredient = useCallback((groupKey: string, chosenOptionId: string) => {
-    setIngredientChoices((prev) => ({
+  // Helpers to update active tab state
+  const updateActiveTab = useCallback(
+    (updater: (prevTab: CalculatorTab) => CalculatorTab) => {
+      setTabsState((prev) => ({
+        ...prev,
+        tabs: prev.tabs.map((tab) => (tab.id === prev.activeTabId ? updater(tab) : tab)),
+      }));
+    },
+    []
+  );
+
+  const setRequests = useCallback(
+    (updaterOrVal: ProductionRequest[] | ((prev: ProductionRequest[]) => ProductionRequest[])) => {
+      updateActiveTab((tab) => ({
+        ...tab,
+        requests:
+          typeof updaterOrVal === "function" ? updaterOrVal(tab.requests || []) : updaterOrVal,
+      }));
+    },
+    [updateActiveTab]
+  );
+
+  const setRecipeOverrides = useCallback(
+    (
+      updaterOrVal:
+        | Record<string, string>
+        | ((prev: Record<string, string>) => Record<string, string>)
+    ) => {
+      updateActiveTab((tab) => ({
+        ...tab,
+        recipeOverrides:
+          typeof updaterOrVal === "function"
+            ? updaterOrVal(tab.recipeOverrides || {})
+            : updaterOrVal,
+      }));
+    },
+    [updateActiveTab]
+  );
+
+  const setIngredientChoices = useCallback(
+    (
+      updaterOrVal:
+        | Record<string, string>
+        | ((prev: Record<string, string>) => Record<string, string>)
+    ) => {
+      updateActiveTab((tab) => ({
+        ...tab,
+        ingredientChoices:
+          typeof updaterOrVal === "function"
+            ? updaterOrVal(tab.ingredientChoices || {})
+            : updaterOrVal,
+      }));
+    },
+    [updateActiveTab]
+  );
+
+  const handleToggleRawInput = useCallback(
+    (itemId: string) => {
+      updateActiveTab((tab) => {
+        const set = new Set(tab.rawInputs || []);
+        if (set.has(itemId)) {
+          set.delete(itemId);
+        } else {
+          set.add(itemId);
+        }
+        return {
+          ...tab,
+          rawInputs: Array.from(set),
+        };
+      });
+    },
+    [updateActiveTab]
+  );
+
+  const handleSwitchIngredient = useCallback(
+    (groupKey: string, chosenOptionId: string) => {
+      setIngredientChoices((prev) => ({
+        ...prev,
+        [groupKey]: chosenOptionId,
+      }));
+    },
+    [setIngredientChoices]
+  );
+
+  const handleNodePositionsChange = useCallback(
+    (positions: Record<string, { x: number; y: number }>) => {
+      updateActiveTab((tab) => ({
+        ...tab,
+        nodePositions: {
+          ...(tab.nodePositions || {}),
+          ...positions,
+        },
+      }));
+    },
+    [updateActiveTab]
+  );
+
+  // Tab Operations: Create, Switch, Rename, Delete
+  const handleCreateTab = useCallback(() => {
+    const newId = `tab-${Date.now()}`;
+    const newIndex = tabs.length + 1;
+    const newTab: CalculatorTab = {
+      id: newId,
+      name: `Production ${newIndex}`,
+      requests: [],
+      recipeOverrides: {},
+      ingredientChoices: {},
+      rawInputs: [],
+    };
+    setTabsState((prev) => ({
+      tabs: [...prev.tabs, newTab],
+      activeTabId: newId,
+    }));
+  }, [tabs.length]);
+
+  const handleSwitchTab = useCallback((tabId: string) => {
+    setTabsState((prev) => ({
       ...prev,
-      [groupKey]: chosenOptionId,
+      activeTabId: tabId,
     }));
   }, []);
+
+  const handleDeleteTab = useCallback(
+    (tabId: string, e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (tabs.length <= 1) return; // Keep at least one tab
+
+      setTabsState((prev) => {
+        const remaining = prev.tabs.filter((t) => t.id !== tabId);
+        const fallbackId = remaining.length > 0 ? remaining[0]!.id : DEFAULT_TAB_ID;
+        const lastTab = remaining[remaining.length - 1];
+        const nextActiveId =
+          prev.activeTabId === tabId ? (lastTab ? lastTab.id : fallbackId) : prev.activeTabId;
+        return {
+          tabs: remaining,
+          activeTabId: nextActiveId,
+        };
+      });
+    },
+    [tabs.length]
+  );
+
+  const handleStartRename = useCallback((tab: CalculatorTab, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingTabId(tab.id);
+    setEditingTabName(tab.name);
+  }, []);
+
+  const handleSaveRename = useCallback(() => {
+    if (editingTabId && editingTabName.trim()) {
+      setTabsState((prev) => ({
+        ...prev,
+        tabs: prev.tabs.map((t) => (t.id === editingTabId ? { ...t, name: editingTabName.trim() } : t)),
+      }));
+    }
+    setEditingTabId(null);
+  }, [editingTabId, editingTabName]);
 
   // Filtered and grouped items by category
   const categorizedItems = useMemo(() => {
@@ -469,19 +684,126 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
 
         {/* Right Canvas: Recipe Dependency Tree Graph + Target Planner */}
         <main className="flex-1 min-w-0 h-full min-h-0 flex flex-col gap-2 overflow-hidden">
-          {/* Top Bar with Sidebar Open Button if collapsed */}
-          {!isSidebarOpen && (
-            <div className="flex items-center gap-2 shrink-0">
-              <button
-                type="button"
-                onClick={() => setIsSidebarOpen(true)}
-                className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] px-2.5 py-1 rounded transition-colors"
-              >
-                <PanelLeftOpen className="h-3.5 w-3.5 text-indigo-400" />
-                <span>Show Catalog ({dataset.items.length})</span>
-              </button>
+          {/* Top Bar with Sidebar Open Button if collapsed + Production Tabs */}
+          <div className="flex items-center justify-between gap-2 shrink-0 flex-wrap">
+            <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 max-w-full">
+              {!isSidebarOpen && (
+                <button
+                  type="button"
+                  onClick={() => setIsSidebarOpen(true)}
+                  className="flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] px-2.5 py-1 rounded transition-colors mr-1"
+                >
+                  <PanelLeftOpen className="h-3.5 w-3.5 text-indigo-400" />
+                  <span>Catalog</span>
+                </button>
+              )}
+
+              {/* Tabs List */}
+              <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/[0.05]">
+                {tabs.map((tab) => {
+                  const isActive = tab.id === activeTabId;
+                  const isEditing = editingTabId === tab.id;
+
+                  if (isEditing) {
+                    return (
+                      <div
+                        key={tab.id}
+                        className="flex items-center gap-1 px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/50 text-xs"
+                      >
+                        <input
+                          type="text"
+                          value={editingTabName}
+                          onChange={(e) => setEditingTabName(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") handleSaveRename();
+                            if (e.key === "Escape") setEditingTabId(null);
+                          }}
+                          autoFocus
+                          className="w-24 bg-transparent text-white text-xs outline-none py-0.5"
+                        />
+                        <button
+                          type="button"
+                          onClick={handleSaveRename}
+                          className="text-emerald-400 hover:text-emerald-300 p-0.5"
+                        >
+                          <Check className="h-3 w-3" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setEditingTabId(null)}
+                          className="text-zinc-400 hover:text-zinc-200 p-0.5"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </div>
+                    );
+                  }
+
+                  const targetCount = tab.requests?.length || 0;
+
+                  return (
+                    <div
+                      key={tab.id}
+                      onClick={() => handleSwitchTab(tab.id)}
+                      onDoubleClick={(e) => handleStartRename(tab, e)}
+                      className={`group relative flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-medium cursor-pointer transition-all select-none ${
+                        isActive
+                          ? "bg-indigo-600/20 text-indigo-200 border border-indigo-500/30 shadow-sm"
+                          : "text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.04] border border-transparent"
+                      }`}
+                      title="Click to switch, double-click to rename"
+                    >
+                      <span>{tab.name}</span>
+                      {targetCount > 0 && (
+                        <span
+                          className={`text-[10px] px-1 rounded-full font-mono ${
+                            isActive
+                              ? "bg-indigo-500/30 text-indigo-300"
+                              : "bg-white/[0.06] text-zinc-500 group-hover:text-zinc-400"
+                          }`}
+                        >
+                          {targetCount}
+                        </span>
+                      )}
+
+                      {/* Rename Icon button */}
+                      <button
+                        type="button"
+                        onClick={(e) => handleStartRename(tab, e)}
+                        className="opacity-0 group-hover:opacity-100 hover:text-white text-zinc-500 p-0.5 transition-opacity"
+                        title="Rename Tab"
+                      >
+                        <Edit2 className="h-2.5 w-2.5" />
+                      </button>
+
+                      {/* Close Tab button (if more than 1 tab) */}
+                      {tabs.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={(e) => handleDeleteTab(tab.id, e)}
+                          className="opacity-0 group-hover:opacity-100 hover:text-red-400 text-zinc-500 p-0.5 transition-opacity"
+                          title="Close Tab"
+                        >
+                          <X className="h-2.5 w-2.5" />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+
+                {/* Add New Tab Button */}
+                <button
+                  type="button"
+                  onClick={handleCreateTab}
+                  className="flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+                  title="Create new production tab"
+                >
+                  <Plus className="h-3.5 w-3.5 text-indigo-400" />
+                  <span className="hidden sm:inline">New Tab</span>
+                </button>
+              </div>
             </div>
-          )}
+          </div>
 
           {/* Production Target Planner Drawer (Sitting directly on top of the right graph canvas) */}
           {isPlannerOpen && (
@@ -625,7 +947,10 @@ export function GameCalculatorView({ dataset }: GameCalculatorViewProps) {
 
           {/* Graph View */}
           <RecipeGraphView
+            key={activeTabId}
             calculation={graphCalculation}
+            initialPositions={nodePositions}
+            onPositionsChange={handleNodePositionsChange}
             onSwitchIngredient={handleSwitchIngredient}
             onToggleRawInput={handleToggleRawInput}
             onNodeClick={(item) => {

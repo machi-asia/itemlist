@@ -24,6 +24,8 @@ interface RecipeGraphViewProps {
   onNodeClick?: (item: GameItem) => void;
   onSwitchIngredient?: (groupKey: string, chosenOptionId: string) => void;
   onToggleRawInput?: (itemId: string) => void;
+  initialPositions?: Record<string, { x: number; y: number }>;
+  onPositionsChange?: (positions: Record<string, { x: number; y: number }>) => void;
 }
 
 const nodeTypes: NodeTypes = {
@@ -39,15 +41,26 @@ export function RecipeGraphView({
   onNodeClick,
   onSwitchIngredient,
   onToggleRawInput,
+  initialPositions,
+  onPositionsChange,
 }: RecipeGraphViewProps) {
   const { nodes: rawNodes, edges: initialEdges, totalBuildings, rawIngredients } = calculation;
 
   // Track user-dragged or customized positions across recalculations
   const positionsRef = React.useRef<Map<string, { x: number; y: number }>>(new Map());
 
+  // Initialize positionsRef from initialPositions if provided
+  useEffect(() => {
+    if (initialPositions) {
+      for (const [id, pos] of Object.entries(initialPositions)) {
+        positionsRef.current.set(id, pos);
+      }
+    }
+  }, [initialPositions]);
+
   const initialNodes = useMemo(() => {
     return rawNodes.map((node) => {
-      const savedPos = positionsRef.current.get(node.id);
+      const savedPos = positionsRef.current.get(node.id) || initialPositions?.[node.id];
       return {
         ...node,
         position: savedPos || node.position,
@@ -59,7 +72,7 @@ export function RecipeGraphView({
         },
       };
     });
-  }, [rawNodes, onSwitchIngredient, onToggleRawInput, onNodeClick]);
+  }, [rawNodes, onSwitchIngredient, onToggleRawInput, onNodeClick, initialPositions]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -208,6 +221,13 @@ export function RecipeGraphView({
           onNodeDragStop={(_e, node) => {
             if (node.position) {
               positionsRef.current.set(node.id, { x: node.position.x, y: node.position.y });
+              if (onPositionsChange) {
+                const updated: Record<string, { x: number; y: number }> = {};
+                positionsRef.current.forEach((pos, key) => {
+                  updated[key] = pos;
+                });
+                onPositionsChange(updated);
+              }
             }
           }}
           onNodeClick={(_e, node) => {
